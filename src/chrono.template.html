@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; font-src data:; img-src data:">
+<title>Chronographs: Health · Arnold Institute of Broscience</title>
+<style>
+@font-face{font-family:"AIB Serif";src:url(data:font/woff2;base64,/*CORM*/) format("woff2");font-weight:300 700;font-style:normal;font-display:block}
+@font-face{font-family:"AIB Serif";src:url(data:font/woff2;base64,/*CORMI*/) format("woff2");font-weight:300 700;font-style:italic;font-display:block}
+@font-face{font-family:"AIB Sans";src:url(data:font/woff2;base64,/*INTER*/) format("woff2");font-weight:400 700;font-style:normal;font-display:block}
+:root{
+  --ink:#12100D; --ink2:#1B1814; --ink3:#25211B; --line:#3A342B;
+  --ivory:#F4EEE1; --ivory2:rgba(244,238,225,.72); --ivory3:rgba(244,238,225,.52);
+  --brass:#A8874A; --brass2:#C9A866; --ember:#E9814F;
+  --serif:"AIB Serif","Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --sans:"AIB Sans",Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ink);color:var(--ivory);font:15px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--brass2);text-decoration:none;border-bottom:1px solid rgba(201,168,102,.4)}
+a:hover{border-bottom-color:var(--brass2)}
+:focus-visible{outline:2px solid var(--brass2);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1180px;margin:0 auto;padding:22px 18px 40px}
+header.mast{display:flex;flex-direction:column;gap:6px;padding:4px 2px 20px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.mast .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.mast .inst{font:600 11px/1.3 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--brass2)}
+.mast .back{font-size:12.5px}
+.mast .kicker{font:600 11px/1.3 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ivory3);margin-top:6px}
+.mast h1{font:500 42px/1.05 var(--serif);margin:0;letter-spacing:-.005em}
+.mast h1 em{font-style:italic;color:var(--brass2);font-weight:500}
+.mast .motto{font:italic 400 17px/1.35 var(--serif);color:var(--ivory2);text-wrap:pretty}
+.mast .meta{font:12px/1.4 var(--sans);color:var(--ivory3);display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:2px}
+.card{background:var(--ink2);border:1px solid var(--line);border-radius:18px;padding:20px 18px 18px;min-width:0;position:relative;margin-bottom:16px}
+.eyebrow{font:600 11px/1.3 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--brass2)}
+h2{font:500 31px/1.12 var(--serif);margin:6px 0 6px;text-wrap:balance}
+h2 em{font-style:italic;color:var(--ember)}
+.lede{color:var(--ivory2);margin:0 0 12px;font-size:14.5px;text-wrap:pretty}
+svg{display:block;overflow:visible}
+svg text{font-family:var(--sans)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--ivory2);margin-top:10px}
+.legend span{white-space:nowrap}
+.legend i{display:inline-block;width:12px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.legend i.ln{height:0;border-top:2px solid var(--ember);width:16px;border-radius:0;vertical-align:3px}
+.legend i.dash{height:0;border-top:2px dashed var(--brass2);width:16px;border-radius:0;vertical-align:3px}
+.legend i.tick{width:2px;height:12px;border-radius:0;background:var(--ivory2);margin:0 8px 0 4px;vertical-align:-2px}
+/* info chip */
+details.info{margin:2px 0 12px;font-size:12.5px;color:var(--ivory2)}
+details.info summary{display:inline-flex;align-items:center;gap:6px;cursor:pointer;list-style:none;border:1px solid var(--line);border-radius:99px;padding:4px 10px;color:var(--ivory2)}
+details.info summary::-webkit-details-marker{display:none}
+details.info summary b{display:inline-grid;place-items:center;width:15px;height:15px;border-radius:50%;border:1px solid var(--brass);color:var(--brass2);font:600 10px/1 var(--serif)}
+details.info ul{margin:8px 0 0;padding:10px 12px 10px 28px;background:var(--ink3);border-radius:12px;display:grid;gap:4px;line-height:1.4}
+/* section 1 */
+.s1{display:grid;grid-template-columns:1fr;gap:14px}
+.ridges{position:relative;touch-action:pan-y;cursor:ew-resize;-webkit-user-select:none;user-select:none;outline:none}
+.ridges:focus-visible{outline:2px solid var(--brass2);outline-offset:4px;border-radius:8px}
+.bands{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.bands button{font:500 12px/1 var(--sans);color:var(--ivory2);background:transparent;border:1px solid var(--line);border-radius:99px;padding:7px 10px;cursor:pointer}
+.bands button[aria-pressed="true"]{background:var(--brass2);border-color:var(--brass2);color:var(--ink)}
+.bands button.you::after{content:" · you";opacity:.75}
+/* info cards */
+.icard{background:var(--ink3);border:1px solid var(--line);border-radius:16px;padding:14px 14px 12px;min-width:0}
+.icard .lbl{font:600 10.5px/1.25 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--ivory3)}
+.icard .big{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-top:4px}
+.icard .big b{font:500 58px/.95 var(--serif);letter-spacing:-.01em}
+.icard .big span{font-size:13px;color:var(--ivory2)}
+.icard .say{font:italic 500 19px/1.3 var(--serif);color:var(--ivory);margin:6px 0 10px;text-wrap:balance}
+.icard .say em{color:var(--ember);font-style:italic}
+.fit{margin-top:10px;border:1px solid rgba(201,168,102,.35);border-radius:10px;padding:8px 10px 9px;background:rgba(201,168,102,.06)}
+.fit .lbl{margin:0 0 3px}
+.fitrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px;font-size:13px}
+.fitrow i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ember);align-self:center}
+.fitrow b{font:500 20px/1.15 var(--serif);color:var(--ivory)}
+.fitrow small{font-size:11.5px;color:var(--ivory3)}
+.fsrc{font-size:10.5px;color:var(--ivory3);margin-top:3px}
+.cells{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.cells div{background:var(--ink2);padding:8px 10px;min-width:0}
+.cells span{display:block;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ivory3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cells b{display:block;font:500 22px/1.15 var(--serif);white-space:nowrap}
+.cells b small{font:500 11px var(--sans);color:var(--ivory3);margin-left:3px;letter-spacing:0}
+.icard .fine{font-size:11.5px;color:var(--ivory3);margin-top:8px;line-height:1.4}
+.icard .note{margin-top:10px;font-size:13px;color:var(--ivory2);display:flex;gap:8px;align-items:baseline;line-height:1.4}
+.icard .note b{flex:none;font:600 10px/1.2 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:var(--brass2);border-radius:99px;padding:3px 7px}
+/* facts */
+.facts{display:grid;grid-template-columns:1fr;gap:10px;margin:0 0 16px}
+.fact{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:linear-gradient(180deg,rgba(168,135,74,.08),transparent 70%)}
+.fact span{font:600 10.5px/1.2 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--brass2)}
+.fact p{margin:4px 0 0;font:500 18px/1.3 var(--serif);color:var(--ivory);text-wrap:pretty}
+/* section 2 */
+.roadwrap{position:relative;margin-top:12px}
+.road{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--line) transparent;border-radius:12px;background:var(--ink3);outline:none;cursor:grab}
+.road.drag{cursor:grabbing}
+.road:focus-visible{outline:2px solid var(--brass2);outline-offset:3px}
+.road::-webkit-scrollbar{height:6px}.road::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
+.yaxis{position:absolute;left:0;top:0;pointer-events:none;border-radius:12px 0 0 12px}
+.cline{position:absolute;top:0;width:0;pointer-events:none;border-left:1.5px solid var(--ivory)}
+.cline::before{content:"";position:absolute;left:-6.5px;top:-2px;border:6px solid transparent;border-top:7px solid var(--ivory)}
+.nav{display:flex;gap:8px;margin-top:10px}
+.nav button{flex:1;font:500 13px var(--sans);background:transparent;color:var(--ivory);border:1px solid var(--line);border-radius:10px;padding:9px 8px;cursor:pointer}
+.nav button:hover{border-color:var(--brass)}
+.hint{font-size:12px;color:var(--ivory3);margin-top:8px}
+footer.end{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);color:var(--ivory3);font-size:12px;display:grid;gap:8px}
+footer.end .seal{font:italic 15px var(--serif);color:var(--brass2)}
+footer.end ul{margin:0;padding-left:18px;display:grid;gap:3px}
+footer.end .row{display:flex;justify-content:space-between;gap:6px 14px;flex-wrap:wrap}
+body *{font-variant-numeric:lining-nums tabular-nums!important;font-feature-settings:"lnum","tnum"!important}
+@media (min-width:760px){
+  .wrap{padding:34px 28px 56px}
+  .mast h1{font-size:58px}
+  .card{padding:24px 24px 22px}
+  h2{font-size:38px}
+  .facts{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .cells.c4{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media (min-width:1024px){
+  .s1{grid-template-columns:minmax(0,1fr) 320px;gap:24px;align-items:start}
+  .s1 .icard{position:sticky;top:16px}
+  .s1 .chartcol{grid-column:1;grid-row:1}
+  .s1 .icard{grid-column:2;grid-row:1}
+  .s2top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:24px;align-items:end}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <div class="top"><div class="inst">Arnold Institute of Broscience</div><a class="back" href="dashboard.html">← The Daily Ledger</a></div>
+    <div class="kicker">A Chronograph · Resting heart rate</div>
+    <h1>Chronographs: <em>Health</em></h1>
+    <div class="motto">One number, two lines: where your heart sits among men your age, and the road it has walked since September.</div>
+    <div class="meta" id="meta"></div>
+  </header>
+
+  <section class="card" id="sit" aria-labelledby="sit-h">
+    <div class="eyebrow">Where your heart sits</div>
+    <h2 id="sit-h">…</h2>
+    <p class="lede">Each ridge is how resting pulse spreads across US men in one age band. Further left is a slower, stronger heart. Drag across the curves to read any number; tap a ridge to switch bands.</p>
+    <details class="info"><summary><b>i</b> About these numbers</summary><ul id="cav1"></ul></details>
+    <div class="s1">
+      <div class="icard" id="card1" aria-live="polite"></div>
+      <div class="chartcol">
+        <div class="ridges" id="ridges" tabindex="0" role="slider" aria-label="Scrub resting pulse in bpm; up and down arrows switch age band" aria-valuemin="40" aria-valuemax="110"></div>
+        <div class="legend" id="leg1"></div>
+        <div class="bands" id="bands" role="group" aria-label="Age band"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="facts" id="facts"></div>
+
+  <section class="card" id="roadc" aria-labelledby="road-h">
+    <div class="s2top">
+      <div>
+        <div class="eyebrow">Your road</div>
+        <h2 id="road-h">Day by day, <em>against the crowd</em></h2>
+        <p class="lede" id="road-lede">Your resting heart rate per WHOOP cycle, laid over the typical range for US men 35–44. Scroll the timeline; the reading line picks out the day beneath it.</p>
+      </div>
+      <div class="icard" id="card2" aria-live="polite"></div>
+    </div>
+    <div class="roadwrap" id="roadwrap">
+      <div class="road" id="road" tabindex="0" aria-label="Resting heart rate timeline; left and right arrows move a day"></div>
+      <div class="yaxis" id="yaxis"></div>
+      <div class="yaxis" id="ylab" style="border-radius:0"></div>
+      <div class="cline" id="cline"></div>
+    </div>
+    <div class="nav"><button type="button" id="prev">← Earlier</button><button type="button" id="now">Today</button><button type="button" id="next">Later →</button></div>
+    <div class="legend" id="leg2"></div>
+  </section>
+
+  <footer class="end">
+    <div class="row"><span class="seal">Arnold Institute of Broscience · Chronographs: Health</span><a href="dashboard.html">← Back to The Daily Ledger</a></div>
+    <ul id="cav2"></ul>
+    <div id="src"></div>
+    <div>Published for viewing only. A self-contained page: it loads nothing from the network. Percentiles and fitness categories are estimates, not a measurement or medical advice.</div>
+  </footer>
+</div>
+<!-- SNAPSHOT:BEGIN (managed by build_chronographs.py; do not edit by hand) -->
+<script id="snapshot" type="application/json">{}</script>
+<!-- SNAPSHOT:END -->
+<script>
+(function(){
+"use strict";
+var C={ink:"#12100D",ink2:"#1B1814",ink3:"#25211B",line:"#3A342B",ivory:"#F4EEE1",brass:"#A8874A",brass2:"#C9A866",ember:"#E9814F"};
+var MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],DOW=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+var OFF=new RegExp(["sm"+"ok","ci"+"gar","nic"+"otin","tob"+"acco","va"+"pe","cut.?b"+"ack","qu"+"it"].join("|"),"i");
+var SERIF='AIB Serif, Cormorant Garamond, Georgia, serif';
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function isNum(x){return typeof x==="number"&&isFinite(x);}
+function arr(x){return Array.isArray(x)?x:[];}
+function fmt(x,d){return isNum(x)?x.toFixed(d==null?0:d):"–";}
+function safe(s){return (typeof s==="string"&&!OFF.test(s))?s:"";}
+function dash(s){return String(s).replace(/(\d)-(\d)/g,"$1–$2");}
+function mean(a){a=a.filter(isNum);return a.length?a.reduce(function(s,x){return s+x;},0)/a.length:null;}
+function wall(iso){if(typeof iso!=="string")return null;var m=iso.match(/^(\d{4})-(\d{2})-(\d{2})(?:T(\d{2}):(\d{2}))?/);if(!m)return null;
+  var t=Date.UTC(+m[1],+m[2]-1,+m[3],m[4]?+m[4]:0,m[5]?+m[5]:0),dt=new Date(t);return{t:t,y:+m[1],mo:+m[2]-1,d:+m[3],h:m[4]?+m[4]:0,mi:m[5]?+m[5]:0,dow:dt.getUTCDay()};}
+function dlong(w){return w?DOW[w.dow]+" "+w.d+" "+MON[w.mo]:"";}
+function hhmm(w){return w?(w.h<10?"0":"")+w.h+":"+(w.mi<10?"0":"")+w.mi:"";}
+function ord(n){n=Math.round(n);var s=["th","st","nd","rd"],v=n%100;return n+(s[(v-20)%10]||s[v]||s[0]);}
+function txt(x,y,s,o){o=o||{};return '<text x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" font-size="'+(o.size||11)+'" fill="'+(o.fill||"rgba(244,238,225,.6)")+'"'+(o.anchor?' text-anchor="'+o.anchor+'"':'')+(o.weight?' font-weight="'+o.weight+'"':'')+(o.family?' font-family="'+o.family+'"':'')+(o.ls?' letter-spacing="'+o.ls+'"':'')+(o.halo?' stroke="'+o.halo+'" stroke-width="3.5" paint-order="stroke" stroke-linejoin="round"':'')+'>'+esc(s)+'</text>';}
+
+var D={};try{D=JSON.parse($("snapshot").textContent||"{}");}catch(e){D={};}
+var POP=D.population||{},ME=D.me||{};
+var BANDS=arr(POP.bands).filter(function(b){return isNum(b.age_min)||/\+$/.test(b.band||"");}).filter(function(b){return !/all/i.test(b.band||"");});
+var AGE=isNum(ME.age)?ME.age:null,GOALO=(ME.goal_rhr&&typeof ME.goal_rhr==="object")?ME.goal_rhr:(isNum(ME.goal_rhr)?{value:ME.goal_rhr,status:"confirmed"}:null),GOAL=GOALO&&isNum(GOALO.value)?GOALO.value:null,GDASH=GOALO&&GOALO.status==="proposed"?' stroke-dasharray="5 5"':'',GWORD=GOALO&&GOALO.status==="proposed"?"proposed goal ":"goal ",FIT=ME.rhr_fitness||null;
+function bandFor(age){for(var i=0;i<BANDS.length;i++){var b=BANDS[i];if(isNum(age)&&age>=b.age_min&&(!isNum(b.age_max)||age<=b.age_max))return i;}return -1;}
+var MYB=bandFor(AGE);if(MYB<0)MYB=Math.min(2,BANDS.length-1);
+var selBand=MYB;
+function bname(b){return dash(b.band||"");}
+// percentile in a band: linear interpolation of percentile_lookup (CDF x 100, 1-bpm grid)
+function pctOf(b,bpm){if(!b||!b.percentile_lookup||!isNum(bpm))return null;var L=b.percentile_lookup,keys=Object.keys(L).map(Number).filter(isNum).sort(function(a,c){return a-c;});if(!keys.length)return null;
+  if(bpm<=keys[0])return L[String(keys[0])];if(bpm>=keys[keys.length-1])return L[String(keys[keys.length-1])];
+  var lo=Math.floor(bpm),hi=lo+1,a=L[String(lo)],c=L[String(hi)];if(!isNum(a)||!isNum(c))return null;return a+(c-a)*(bpm-lo);}
+function pctText(p){if(!isNum(p))return"–";if(p<1)return"under the 1st";if(p<2)return"under the 2nd";if(p>99)return"over the 99th";if(p>98)return"over the 98th";return ord(p);}
+function slower(p){return isNum(p)?Math.max(0,Math.min(100,Math.round(100-p))):null;}
+
+// my days
+var DAYS=arr(ME.days).map(function(x){var o={};for(var k in x)o[k]=x[k];o._w=wall(x.cycle_start);return o;}).filter(function(x){return x._w;});
+DAYS.sort(function(a,b){return a._w.t-b._w.t;});
+var RH=DAYS.filter(function(x){return isNum(x.rhr);});
+RH.forEach(function(x,i){var s=RH.slice(Math.max(0,i-6),i+1).map(function(y){return y.rhr;});x._avg=s.length>=3?mean(s):null;x._avgN=s.length;});
+var LAST=RH.length?RH[RH.length-1]:null,NOW=LAST&&isNum(LAST._avg)?LAST._avg:(LAST?LAST.rhr:null);
+function noteOf(x){var n=safe(x.note);if(!n)return"";if(/long whoop cycle/i.test(n)&&isNum(x.cycle_hours))return Math.round(x.cycle_hours)+" h cycle: naps only";return n;}
+
+/* ---------- header + caveats ---------- */
+(function(){var g=wall(ME.generated),m=[];
+  if(g)m.push("Data pulled <b>"+esc(dlong(g)+", "+hhmm(g))+"</b> (local time)");
+  if(RH.length)m.push(RH.length+" scored cycles since "+esc(dlong(RH[0]._w).replace(/^\w+ /,"")));
+  var b=BANDS[MYB];if(b)m.push("Reference: US men "+esc(bname(b))+" (your band)");
+  $("meta").innerHTML=m.map(function(s){return"<span>"+s+"</span>";}).join("");
+  var cav=["Population numbers are seated clinic pulse readings, taken after about 5 minutes' rest.","A wearable's resting heart rate comes from sleep and tends to read lower than a clinic pulse, so treat your percentile as a friendly estimate.","Clinic readings come in even numbers: a 30-second count, doubled.","Age bands compare different men at one moment in time, not one man ageing.","Source: NHANES 2015–16 and 2017–18 (CDC/NCHS), survey-weighted"+(POP.n_total?", "+POP.n_total.toLocaleString("en-US")+" men":"")+"."];
+  var h=cav.map(function(s){return"<li>"+esc(s)+"</li>";}).join("");$("cav1").innerHTML=h;$("cav2").innerHTML=h;
+  var cit=safe(POP.citation||"");$("src").textContent=cit?("Citation: "+cit):"";
+})();
+
+/* ---------- section 1: ridgeline ---------- */
+var R1={bpm:null};
+function densAt(b,bpm){var d=arr(b.density);for(var i=0;i<d.length-1;i++){if(d[i].bpm<=bpm&&d[i+1].bpm>=bpm){var f=(bpm-d[i].bpm)/((d[i+1].bpm-d[i].bpm)||1);return d[i].density+(d[i+1].density-d[i].density)*f;}}return 0;}
+var G1=null;
+function drawRidges(){
+  var el=$("ridges"),Wd=Math.max(300,Math.round(el.clientWidth||340));
+  if(!BANDS.length){el.innerHTML='<p class="lede" style="padding:12px 0">The population reference is not loaded yet.</p>';G1=null;return;}
+  var desk=Wd>=600,L=desk?64:48,Rm=desk?14:8,rg=desk?46:36,A=rg*(desk?1.9:1.85),top=A+30,axisH=46;
+  var n=BANDS.length,H=top+(n-1)*rg+axisH,x0=40,x1=110;
+  var dmax=0;BANDS.forEach(function(b){arr(b.density).forEach(function(p){if(p.density>dmax)dmax=p.density;});});dmax=dmax||1;
+  function sx(v){return L+(v-x0)/(x1-x0)*(Wd-L-Rm);}
+  function base(i){return top+i*rg;}
+  var s='<defs>';
+  BANDS.forEach(function(b,i){var pts=arr(b.density).filter(function(p){return isNum(p.bpm)&&isNum(p.density);}),y=base(i);
+    var d='M'+sx(x0).toFixed(1)+' '+y.toFixed(1)+pts.map(function(p){return'L'+sx(p.bpm).toFixed(1)+' '+(y-p.density/dmax*A).toFixed(1);}).join("")+'L'+sx(x1).toFixed(1)+' '+y.toFixed(1)+'Z';b._path=d;
+    s+='<clipPath id="rc'+i+'"><path d="'+d+'"/></clipPath>';});
+  s+='</defs>';
+  // vertical grid
+  for(var v=40;v<=110;v+=10){s+='<line x1="'+sx(v)+'" x2="'+sx(v)+'" y1="'+(top-A-6)+'" y2="'+(base(n-1)+6)+'" stroke="rgba(244,238,225,.06)"/>';}
+  BANDS.forEach(function(b,i){var y=base(i),me=i===MYB,sel=i===selBand;
+    var fill=me?"#30281B":C.ink2,stroke=me?C.brass2:(sel?"rgba(244,238,225,.85)":"rgba(244,238,225,.38)");
+    s+='<g class="ridge" data-i="'+i+'">';
+    s+='<path d="'+b._path+'" fill="'+fill+'"/>';
+    if(isNum(b.mean)&&isNum(b.sd))s+='<rect clip-path="url(#rc'+i+')" x="'+sx(b.mean-b.sd).toFixed(1)+'" y="'+(y-A-2)+'" width="'+(sx(b.mean+b.sd)-sx(b.mean-b.sd)).toFixed(1)+'" height="'+(A+2)+'" fill="'+(me?"rgba(201,168,102,.28)":"rgba(244,238,225,.07)")+'"/>';
+    s+='<path d="'+b._path+'" fill="none" stroke="'+stroke+'" stroke-width="'+(me||sel?2:1.2)+'" stroke-linejoin="round"/>';
+    if(isNum(b.median)){var mx=sx(b.median),mh=densAt(b,b.median)/dmax*A;s+='<line x1="'+mx.toFixed(1)+'" x2="'+mx.toFixed(1)+'" y1="'+(y+4)+'" y2="'+(y-mh).toFixed(1)+'" stroke="'+(me?C.brass2:"rgba(244,238,225,.55)")+'" stroke-width="1.5"/>';}
+    s+=txt(L-8,y-3,bname(b),{anchor:"end",size:desk?12.5:11.5,fill:me?C.brass2:(sel?C.ivory:"rgba(244,238,225,.6)"),weight:me||sel?600:400});
+    s+='</g>';});
+  // goal + you lines
+  var yt=top-A-14,yb=base(n-1)+8;
+  if(isNum(GOAL)&&GOAL>=x0)s+='<line x1="'+sx(GOAL)+'" x2="'+sx(GOAL)+'" y1="'+yt+'" y2="'+yb+'" stroke="'+C.brass2+'" stroke-width="1.5"'+GDASH+'/>'+txt(sx(GOAL)-5,yt+4,GWORD+GOAL,{anchor:"end",size:11.5,fill:C.brass2,weight:600,halo:C.ink2});
+  if(isNum(NOW))s+='<line x1="'+sx(NOW).toFixed(1)+'" x2="'+sx(NOW).toFixed(1)+'" y1="'+yt+'" y2="'+yb+'" stroke="'+C.ember+'" stroke-width="2.2"/>'+txt(sx(NOW)+5,yt+4,"you "+fmt(NOW,1),{size:11.5,fill:C.ember,weight:600,halo:C.ink2});
+  // axis
+  var ya=base(n-1)+22;
+  for(v=40;v<=110;v+=10)s+=txt(sx(v),ya,String(v),{anchor:"middle",size:11});
+  s+=txt(L,ya+18,"← slower: athlete's heart",{size:11,fill:"rgba(244,238,225,.5)"})+txt(Wd-Rm,ya+18,"faster →",{anchor:"end",size:11,fill:"rgba(244,238,225,.5)"});
+  // scrubber
+  s+='<g id="scrub" style="pointer-events:none"><line id="scrL" y1="'+(top-A-2)+'" y2="'+(base(n-1)+4)+'" stroke="'+C.ivory+'" stroke-width="1" stroke-dasharray="2 3"/><circle id="scrD" r="5" fill="'+C.ink+'" stroke="'+C.ivory+'" stroke-width="2"/></g>';
+  el.innerHTML='<svg viewBox="0 0 '+Wd+' '+H+'" width="'+Wd+'" height="'+H+'">'+s+'</svg>';
+  G1={sx:sx,inv:function(px){return x0+(px-L)/(Wd-L-Rm)*(x1-x0);},base:base,A:A,dmax:dmax,top:top,rg:rg,n:n};
+  placeScrub();
+}
+function placeScrub(){var b=BANDS[selBand];if(!G1||!b)return;var _=0,v=isNum(R1.bpm)?R1.bpm:NOW;if(!isNum(v))v=b&&b.median;var x=G1.sx(v),l=$("scrL"),d=$("scrD");if(!l)return;
+  l.setAttribute("x1",x.toFixed(1));l.setAttribute("x2",x.toFixed(1));d.setAttribute("cx",x.toFixed(1));d.setAttribute("cy",(G1.base(selBand)-densAt(b,v)/G1.dmax*G1.A).toFixed(1));
+  $("ridges").setAttribute("aria-valuenow",String(Math.round(v)));$("ridges").setAttribute("aria-valuetext",fmt(v,isNum(R1.bpm)?0:1)+" bpm");}
+function card1(){var b=BANDS[selBand];if(!b){$("card1").innerHTML="";return;}
+  var isMe=!isNum(R1.bpm),v=isMe?NOW:R1.bpm,p=pctOf(b,v),sl=slower(p),bn=bname(b);
+  var say=isNum(sl)?('Slower than <em>'+sl+'%</em> of US men '+esc(bn)):'';
+  if(isNum(sl)&&sl>=90)say+='. That is an athlete\'s heart.';else if(say)say+='.';
+  $("card1").innerHTML='<div class="lbl">'+(isMe?'You · 7-cycle avg':'Scrubbed')+' · men '+esc(bn)+(selBand===MYB&&!isMe?' (your band)':'')+'</div>'+
+    '<div class="big"><b class="num" style="color:'+(isMe?C.ember:C.ivory)+'">'+fmt(v,isMe?1:0)+'</b><span>bpm</span></div>'+
+    '<div class="say">'+say+'</div>'+
+    '<div class="cells"><div><span>Percentile</span><b>'+esc(pctText(p))+'</b></div><div><span>Band median</span><b>'+fmt(b.median,1)+'<small>bpm</small></b></div>'+
+    '<div><span>Spread (1 SD)</span><b>±'+fmt(b.sd,1)+'<small>bpm</small></b></div><div><span>Middle 50%</span><b>'+(arr(b.iqr).length===2?fmt(b.iqr[0],0)+'–'+fmt(b.iqr[1],0):'–')+'<small>bpm</small></b></div></div>'+
+    (isMe?fitChip():'')+
+    '<div class="fine">Clinic population percentile (NHANES) = share of men '+esc(bn)+' with a slower clinic pulse. Lower is slower. '+(isMe?'Drag the curves to try other numbers.':'Press Esc or tap “you” to return to your number.')+'</div>';
+  // headline
+  var pm=pctOf(BANDS[MYB],NOW),sm=slower(pm);
+  $("sit-h").innerHTML=isNum(sm)?'Slower than <em>'+sm+'%</em> of men your age':'Where your heart <em>sits</em>';
+}
+function fitChip(){if(!FIT||!FIT.current)return"";var c=FIT.current,rec=isNum(c.recent)&&c.recent_category,v=rec?c.recent:c.value,cat=rec?c.recent_category:c.category;if(!isNum(v)||!cat)return"";
+  var win=String((rec?c.recent_window:c.window)||"").replace(/^(median|mean) of (?:the )?last (\d+).*$/i,function(m,a,n){return n+"-cycle "+(a.toLowerCase()==="mean"?"avg":"median");});
+  var src=String(FIT.source||"").split(/\s*[(;:]/)[0].replace(/(\d)\s*-\s*(\d)/g,"$1–$2");
+  return '<div class="fit"><div class="lbl">Arnold’s fitness category</div><div class="fitrow"><i></i><b>'+esc(String(cat).replace(/(\d)\s*-\s*(\d)/g,"$1–$2"))+'</b><small>'+fmt(v,1)+' bpm · '+esc(win)+'</small></div><div class="fsrc">A different yardstick from the clinic percentile above: fitness-chart bands, '+esc(src)+'</div></div>';}
+function legend1(){var b=BANDS[MYB];$("leg1").innerHTML='<span><i class="ln"></i>you · 7-cycle avg '+fmt(NOW,1)+'</span><span>'+(isNum(GOAL)?'<i class="'+(GDASH?'dash':'')+'" style="'+(GDASH?'':'background:'+C.brass2+';height:2px')+'"></i>'+GWORD+GOAL:'')+'</span><span><i style="background:#30281B;border:1.5px solid '+C.brass2+'"></i>'+(b?esc(bname(b))+' (your band)':'your band')+'</span><span><i class="tick"></i>median</span><span><i style="background:rgba(201,168,102,.28)"></i>±1 SD around the mean</span>';
+  $("bands").innerHTML=BANDS.map(function(b,i){return'<button type="button" data-i="'+i+'" aria-pressed="'+(i===selBand)+'"'+(i===MYB?' class="you"':'')+'>'+esc(bname(b))+'</button>';}).join("")+(isNum(NOW)?'<button type="button" data-me="1" aria-pressed="false" style="border-color:'+C.ember+';color:'+C.ember+'">you</button>':'');}
+function setBand(i){if(i<0||i>=BANDS.length)return;selBand=i;drawRidges();card1();legend1();}
+(function(){var el=$("ridges"),down=null;
+  function bpmAt(ev){var r=el.getBoundingClientRect();return Math.max(40,Math.min(110,Math.round(G1.inv(ev.clientX-r.left))));}
+  function rowAt(ev){var r=el.getBoundingClientRect(),y=ev.clientY-r.top;var i=Math.ceil((y-G1.base(0))/G1.rg-0.15);return Math.max(0,Math.min(G1.n-1,i));}
+  el.addEventListener("pointerdown",function(ev){if(!G1)return;down={x:ev.clientX,y:ev.clientY,moved:false};try{el.setPointerCapture(ev.pointerId);}catch(e){}R1.bpm=bpmAt(ev);placeScrub();card1();});
+  el.addEventListener("pointermove",function(ev){if(!G1)return;if(down&&Math.abs(ev.clientX-down.x)>6)down.moved=true;if(down||ev.pointerType==="mouse"){var v=bpmAt(ev);if(v!==R1.bpm){R1.bpm=v;placeScrub();card1();}}});
+  el.addEventListener("pointerup",function(ev){if(down&&!down.moved){var i=rowAt(ev);if(i!==selBand)setBand(i);}down=null;});
+  el.addEventListener("pointercancel",function(){down=null;});
+  el.addEventListener("keydown",function(ev){var k=ev.key,v=isNum(R1.bpm)?R1.bpm:Math.round(NOW||70);
+    if(k==="ArrowLeft"||k==="ArrowRight"){R1.bpm=Math.max(40,Math.min(110,v+(k==="ArrowLeft"?-1:1)*(ev.shiftKey?5:1)));placeScrub();card1();ev.preventDefault();}
+    else if(k==="ArrowUp"||k==="ArrowDown"){setBand(selBand+(k==="ArrowUp"?-1:1));ev.preventDefault();}
+    else if(k==="Escape"||k==="Home"){R1.bpm=null;placeScrub();card1();ev.preventDefault();}});
+  $("bands").addEventListener("click",function(ev){var t=ev.target.closest("button");if(!t)return;if(t.getAttribute("data-me")){R1.bpm=null;setBand(MYB);return;}setBand(+t.getAttribute("data-i"));});
+})();
+
+/* ---------- facts ---------- */
+(function(){var b=BANDS[MYB],F=arr(b&&b.facts).map(safe).filter(Boolean),pick=[],want=[/percentile/i,/below 60/i,/^Half/i];
+  want.forEach(function(re){for(var i=0;i<F.length;i++)if(re.test(F[i])&&pick.indexOf(F[i])<0){pick.push(F[i]);break;}});
+  for(var i=0;i<F.length&&pick.length<3;i++)if(pick.indexOf(F[i])<0)pick.push(F[i]);
+  $("facts").innerHTML=pick.slice(0,3).map(function(f){return'<div class="fact"><span>From the survey</span><p>'+esc(f)+'</p></div>';}).join("");
+})();
+
+/* ---------- section 2: the road ---------- */
+var PX=26,READ=0.68,DAY=864e5,R2={i:RH.length-1,pad:0,t0:0,scroll:null,lo:44,hi:90};
+var REF=BANDS[MYB]||{};
+function drawRoad(){
+  var road=$("road"),VW=road.clientWidth||340,H=VW>=600?320:270,padT=26,padB=40,yW=36;
+  if(!RH.length){road.innerHTML='<div style="padding:20px;color:var(--ivory3)">Your first scored cycle lands here.</div>';return;}
+  var t0=Date.UTC(RH[0]._w.y,RH[0]._w.mo,RH[0]._w.d),tEnd=RH[RH.length-1]._w.t+DAY*0.5;
+  PX=VW>=760?30:26;var RL=Math.round(VW*READ),pad=RL,padR=VW-RL,inner=Math.max(1,Math.round((tEnd-t0)/DAY*PX)),Wd=pad+padR+inner;
+  var vals=RH.map(function(x){return x.rhr;}),lo=Math.floor(Math.min(isNum(GOAL)?GOAL-3:1e9,Math.min.apply(null,vals)-3)),hi=Math.ceil(Math.max(Math.max.apply(null,vals)+3,isNum(REF.mean)&&isNum(REF.sd)?REF.mean+REF.sd+2:0));
+  lo=Math.floor(lo/5)*5;hi=Math.ceil(hi/5)*5;
+  function sx(t){return pad+(t-t0)/DAY*PX;}
+  function sy(v){return padT+(hi-v)/(hi-lo)*(H-padT-padB);}
+  var s='',xa=sx(t0)-PX*0.5,xb=sx(tEnd)+PX*0.5;
+  // gridlines across full width
+  for(var v=lo;v<=hi;v+=5)s+='<line x1="0" x2="'+Wd+'" y1="'+sy(v).toFixed(1)+'" y2="'+sy(v).toFixed(1)+'" stroke="rgba(244,238,225,'+(v%10===0?.07:.035)+')"/>';
+  // population bands (35-44)
+  if(isNum(REF.mean)&&isNum(REF.sd)){var a=Math.min(hi,REF.mean+REF.sd),b=Math.max(lo,REF.mean-REF.sd);s+='<rect x="0" width="'+Wd+'" y="'+sy(a).toFixed(1)+'" height="'+(sy(b)-sy(a)).toFixed(1)+'" fill="rgba(244,238,225,.05)"/>';}
+  if(arr(REF.iqr).length===2)s+='<rect x="0" width="'+Wd+'" y="'+sy(REF.iqr[1]).toFixed(1)+'" height="'+(sy(REF.iqr[0])-sy(REF.iqr[1])).toFixed(1)+'" fill="rgba(244,238,225,.06)"/>';
+  if(isNum(REF.median))s+='<line x1="0" x2="'+Wd+'" y1="'+sy(REF.median).toFixed(1)+'" y2="'+sy(REF.median).toFixed(1)+'" stroke="rgba(244,238,225,.5)" stroke-width="1.5"/>';
+  // goal
+  if(isNum(GOAL))s+='<line x1="0" x2="'+Wd+'" y1="'+sy(GOAL).toFixed(1)+'" y2="'+sy(GOAL).toFixed(1)+'" stroke="'+C.brass2+'" stroke-width="1.5"'+GDASH+'/>';
+  // day ticks
+  var yb=H-padB;
+  for(var t=t0;t<=tEnd;t+=DAY){var w=wall(new Date(t).toISOString()),x=sx(t+DAY/2);
+    s+='<line x1="'+sx(t).toFixed(1)+'" x2="'+sx(t).toFixed(1)+'" y1="'+yb+'" y2="'+(yb+4)+'" stroke="rgba(244,238,225,.25)"/>';
+    s+=txt(x,yb+16,String(w.d),{anchor:"middle",size:10.5,fill:w.dow===0?"rgba(244,238,225,.85)":"rgba(244,238,225,.5)"});
+    if(w.d===1||t===t0)s+=txt(sx(t)+2,yb+31,MON[w.mo]+" "+w.y,{size:10.5,fill:C.brass2,weight:600,ls:".04em"});}
+  // avg line
+  var ap=RH.filter(function(x){return isNum(x._avg);});
+  if(ap.length>1)s+='<polyline points="'+ap.map(function(x){return sx(x._w.t).toFixed(1)+','+sy(x._avg).toFixed(1);}).join(" ")+'" fill="none" stroke="'+C.ember+'" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>';
+  // daily line + dots
+  s+='<polyline points="'+RH.map(function(x){return sx(x._w.t).toFixed(1)+','+sy(x.rhr).toFixed(1);}).join(" ")+'" fill="none" stroke="rgba(244,238,225,.35)" stroke-width="1.2"/>';
+  RH.forEach(function(x,i){s+='<circle data-i="'+i+'" cx="'+sx(x._w.t).toFixed(1)+'" cy="'+sy(x.rhr).toFixed(1)+'" r="3.6" fill="'+C.ivory+'" stroke="'+C.ink3+'" stroke-width="1.5"/>';
+    if(noteOf(x))s+='<circle cx="'+sx(x._w.t).toFixed(1)+'" cy="'+(padT-12)+'" r="4.5" fill="none" stroke="'+C.brass2+'" stroke-width="1.5"/><line x1="'+sx(x._w.t).toFixed(1)+'" x2="'+sx(x._w.t).toFixed(1)+'" y1="'+(padT-7)+'" y2="'+(sy(x.rhr)-6).toFixed(1)+'" stroke="'+C.brass+'" stroke-opacity=".45" stroke-dasharray="2 3"/>';});
+  s+='<circle id="selD" r="7" fill="none" stroke="'+C.ivory+'" stroke-width="2"/>';
+  road.innerHTML='<svg viewBox="0 0 '+Wd+' '+H+'" width="'+Wd+'" height="'+H+'">'+s+'</svg>';
+  // sticky y axis overlay
+  var ys='<rect x="0" y="0" width="'+yW+'" height="'+H+'" fill="'+C.ink3+'"/><rect x="'+yW+'" y="0" width="14" height="'+H+'" fill="url(#yg)"/><defs><linearGradient id="yg"><stop offset="0" stop-color="'+C.ink3+'"/><stop offset="1" stop-color="'+C.ink3+'" stop-opacity="0"/></linearGradient></defs>';
+  for(v=lo;v<=hi;v+=10)ys+=txt(yW-6,sy(v)+4,String(v),{anchor:"end",size:10.5});
+  ys+=txt(yW-6,padT-12,"bpm",{anchor:"end",size:9.5,fill:"rgba(244,238,225,.45)"});
+  $("yaxis").innerHTML='<svg viewBox="0 0 '+(yW+14)+' '+H+'" width="'+(yW+14)+'" height="'+H+'">'+ys+'</svg>';
+  var ls='';if(isNum(REF.median))ls+=txt(8,sy(REF.median)-6,"median, men "+bname(REF)+" · "+fmt(REF.median,0),{size:10.5,fill:"rgba(244,238,225,.7)",halo:C.ink3});
+  if(isNum(GOAL))ls+=txt(8,sy(GOAL)+15,GWORD+GOAL,{size:10.5,fill:C.brass2,weight:600,halo:C.ink3});
+  var yl=$("ylab");yl.style.left=(yW+2)+"px";yl.innerHTML='<svg viewBox="0 0 158 '+H+'" width="158" height="'+H+'">'+ls+'</svg>';
+  var cl=$("cline");cl.style.left=RL+"px";cl.style.top=(padT-4)+"px";cl.style.height=(H-padT-padB+8)+"px";
+  R2.sx=sx;R2.sy=sy;R2.pad=pad;R2.VW=VW;R2.RL=RL;
+  scrollToI(R2.i,false);
+}
+function scrollToI(i,smooth){if(!RH.length)return;i=Math.max(0,Math.min(RH.length-1,i));R2.i=i;var road=$("road"),x=R2.sx(RH[i]._w.t)-R2.RL;
+  if(smooth&&road.scrollTo)road.scrollTo({left:x,behavior:"smooth"});else road.scrollLeft=x;markSel();card2();}
+function nearestI(){var road=$("road"),cx=road.scrollLeft+R2.RL,best=0,bd=1e9;RH.forEach(function(x,i){var d=Math.abs(R2.sx(x._w.t)-cx);if(d<bd){bd=d;best=i;}});return best;}
+function markSel(){var x=RH[R2.i],d=$("selD");if(!x||!d)return;d.setAttribute("cx",R2.sx(x._w.t).toFixed(1));d.setAttribute("cy",R2.sy(x.rhr).toFixed(1));}
+function card2(){var x=RH[R2.i];if(!x){$("card2").innerHTML="";return;}var p=pctOf(REF,x.rhr),sl=slower(p),n=noteOf(x);
+  $("card2").innerHTML='<div class="lbl" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">'+esc(dlong(x._w))+' · from '+esc(hhmm(x._w))+(x.ongoing?'<span style="letter-spacing:.02em;text-transform:none;font-weight:500;font-size:11px;color:var(--ink);background:var(--ember);border-radius:99px;padding:1px 8px">in progress</span>':'')+'</div>'+
+    '<div class="say" style="margin:6px 0 10px">'+(isNum(sl)?'Slower than <em>'+sl+'%</em> of US men '+esc(bname(REF))+' that day.':'')+'</div>'+
+    '<div class="cells c4"><div><span>Resting HR</span><b>'+fmt(x.rhr,0)+'<small>bpm</small></b></div><div><span>7-cycle avg</span><b style="color:'+C.ember+'">'+fmt(x._avg,1)+'<small>'+(isNum(x._avg)&&x._avgN<7?x._avgN+' cyc':'bpm')+'</small></b></div>'+
+    '<div><span>Percentile</span><b>'+esc(pctText(p))+'</b></div><div><span>To goal</span><b>'+(isNum(x.rhr)&&isNum(GOAL)?(x.rhr<=GOAL?'there':fmt(x.rhr-GOAL,0)+'<small>bpm</small>'):'–')+'</b></div></div>'+
+    (n?'<div class="note"><b>Note</b><span>'+esc(n)+'</span></div>':'');}
+function legend2(){$("leg2").innerHTML='<span><i style="background:'+C.ivory+';border-radius:50%;width:9px;height:9px"></i>your RHR per cycle</span><span><i class="ln"></i>7-cycle average</span><span>'+(isNum(GOAL)?'<i class="'+(GDASH?'dash':'')+'" style="'+(GDASH?'':'background:'+C.brass2+';height:2px')+'"></i>'+GWORD+GOAL:'')+'</span><span><i style="background:rgba(244,238,225,.5);height:2px;vertical-align:3px"></i>median, men '+esc(bname(REF))+'</span><span><i style="background:rgba(244,238,225,.11)"></i>middle 50%</span><span><i style="background:rgba(244,238,225,.05);border:1px solid rgba(244,238,225,.12)"></i>±1 SD around the mean</span><span><i style="background:none;border:1.5px solid '+C.brass2+';border-radius:50%;width:10px"></i>Arnold note</span>';}
+(function(){var road=$("road"),raf=0,drag=null;
+  road.addEventListener("scroll",function(){if(raf)return;raf=requestAnimationFrame(function(){raf=0;var i=nearestI();if(i!==R2.i){R2.i=i;markSel();card2();}});},{passive:true});
+  road.addEventListener("pointerdown",function(ev){if(ev.pointerType!=="mouse")return;drag={x:ev.clientX,s:road.scrollLeft,moved:false};road.classList.add("drag");try{road.setPointerCapture(ev.pointerId);}catch(e){}});
+  road.addEventListener("pointermove",function(ev){if(!drag)return;var dx=ev.clientX-drag.x;if(Math.abs(dx)>4)drag.moved=true;road.scrollLeft=drag.s-dx;});
+  function end(ev){if(drag&&!drag.moved){var r=road.getBoundingClientRect(),cx=road.scrollLeft+(ev.clientX-r.left),best=0,bd=1e9;RH.forEach(function(x,i){var d=Math.abs(R2.sx(x._w.t)-cx);if(d<bd){bd=d;best=i;}});scrollToI(best,true);}drag=null;road.classList.remove("drag");}
+  road.addEventListener("pointerup",end);road.addEventListener("pointercancel",function(){drag=null;road.classList.remove("drag");});
+  road.addEventListener("click",function(ev){var t=ev.target;if(t&&t.getAttribute&&t.getAttribute("data-i")!=null)scrollToI(+t.getAttribute("data-i"),true);});
+  road.addEventListener("keydown",function(ev){if(ev.key==="ArrowLeft"||ev.key==="ArrowRight"){scrollToI(R2.i+(ev.key==="ArrowLeft"?-1:1),true);ev.preventDefault();}else if(ev.key==="End"){scrollToI(RH.length-1,true);ev.preventDefault();}else if(ev.key==="Home"){scrollToI(0,true);ev.preventDefault();}});
+  $("prev").onclick=function(){scrollToI(R2.i-1,true);};$("next").onclick=function(){scrollToI(R2.i+1,true);};$("now").onclick=function(){scrollToI(RH.length-1,true);};
+})();
+
+function all(){drawRidges();card1();legend1();drawRoad();legend2();}
+all();
+var lw=window.innerWidth;window.addEventListener("resize",function(){if(Math.abs(window.innerWidth-lw)<2)return;lw=window.innerWidth;all();});
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){drawRidges();});
+window.__chrono={scrub:function(b){R1.bpm=b;placeScrub();card1();},road:function(i){scrollToI(i,false);},n:RH.length};
+})();
+</script>
+</body>
+</html>

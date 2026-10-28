@@ -1,0 +1,26 @@
+# WHOOP auth and raw pulls: never commit
+.env
+.env.*
+tokens.json
+*token*.json
+*.token
+client_id
+client_secret*
+state
+weekly/
+whoop/
+whoop_pull.py
+# build and OS junk
+__pycache__/
+*.pyc
+*.tmp
+.DS_Store
+# QA screenshots and scratch
+qa-*.png
+qa*.png
+chronographs-qa-*.png
+analyze.py
+summary.md
+# public CDC NHANES files, re-downloadable (see README)
+population/raw/
+*.xpt

@@ -1,0 +1,3270 @@
+{
+ "title": "Resting pulse (60-second) reference distributions, US males 18+, NHANES 2015-2018",
+ "generated": "2026-10-28",
+ "private_note": "Population reference only; contains no personal data.",
+ "source": {
+  "survey": "National Health and Nutrition Examination Survey (NHANES), CDC National Center for Health Statistics",
+  "cycles": [
+   "2015-2016",
+   "2017-2018"
+  ],
+  "files": [
+   {
+    "file": "BPX_I",
+    "cycle": "2015-2016",
+    "data_url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/BPX_I.xpt",
+    "doc_url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/BPX_I.htm"
+   },
+   {
+    "file": "DEMO_I",
+    "cycle": "2015-2016",
+    "data_url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/DEMO_I.xpt",
+    "doc_url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2015/DataFiles/DEMO_I.htm"
+   },
+   {
+    "file": "BPX_J",
+    "cycle": "2017-2018",
+    "data_url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/BPX_J.xpt",
+    "doc_url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/BPX_J.htm"
+   },
+   {
+    "file": "DEMO_J",
+    "cycle": "2017-2018",
+    "data_url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/DEMO_J.xpt",
+    "doc_url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/DEMO_J.htm"
+   }
+  ],
+  "homepage": "https://wwwn.cdc.gov/nchs/nhanes/Default.aspx",
+  "suggested_citation": "Centers for Disease Control and Prevention (CDC), National Center for Health Statistics (NCHS). National Health and Nutrition Examination Survey Data, 2015-2016 and 2017-2018. Hyattsville, MD: U.S. Department of Health and Human Services, CDC."
+ },
+ "variables": {
+  "BPXPLS": "60 sec. pulse (30 sec. pulse * 2), bpm; taken by MEC examiner, seated after 5 min rest. Values are even numbers.",
+  "BPXPULS": "Pulse regular/irregular (not used as a filter)",
+  "RIAGENDR": "Gender (1 = male)",
+  "RIDAGEYR": "Age in years at screening (top-coded at 80)",
+  "WTMEC2YR": "2-year MEC exam weight",
+  "SDMVPSU": "Masked variance PSU",
+  "SDMVSTRA": "Masked variance stratum"
+ },
+ "method": {
+  "population": "Males (RIAGENDR=1), age 18+ at screening, with non-missing BPXPLS; 75+ band includes top-coded age 80.",
+  "weighting": "4-year combined weight = WTMEC2YR / 2 (NCHS guidance for combining 2 cycles).",
+  "mean_sd": "Survey-weighted mean; weighted population SD (sqrt of weighted variance).",
+  "se_mean": "Taylor-series linearization for a domain ratio mean, strata x PSU, with-replacement; full exam sample kept in design; df = #PSU - #strata.",
+  "quantiles": "BPXPLS is recorded in 2-bpm steps (30-s count x 2). Each reported value v is treated as spread uniformly over [v-1, v+1); weighted CDF is piecewise-linear; percentiles invert that CDF (so they can be non-integer). percentile_lookup gives this CDF x 100 at each integer bpm 40-110.",
+  "density": "Survey-weighted Gaussian KDE on 40-110 bpm, 1-bpm grid. Bandwidth = Silverman's rule of thumb 0.9 * min(weighted SD, weighted IQR/1.34) * n_eff^(-1/5), n_eff = (sum w)^2 / sum(w^2) (Kish). Density units: per bpm."
+ },
+ "global_facts": [
+  "Across age bands, the median measured resting pulse ranges from about 66 bpm (75+) to about 72 bpm (18–24).",
+  "Medians by band: 18–24: 72, 25–34: 71, 35–44: 72, 45–54: 71, 55–64: 69, 65–74: 68, 75+: 66 bpm."
+ ],
+ "bands": [
+  {
+   "band": "18-24",
+   "age_min": 18,
+   "age_max": 24,
+   "n_unweighted": 627,
+   "n_examined_no_pulse": 67,
+   "weighted_population_estimate": 13754491,
+   "mean": 73.0,
+   "se_mean_taylor": 0.57,
+   "se_df": 30,
+   "sd": 11.8,
+   "median": 72.3,
+   "percentiles": {
+    "p5": 55.8,
+    "p10": 58.1,
+    "p25": 63.7,
+    "p50": 72.3,
+    "p75": 80.2,
+    "p90": 89.1,
+    "p95": 92.7
+   },
+   "iqr": [
+    63.7,
+    80.2
+   ],
+   "share_recorded_below_60_pct": 12.6,
+   "share_recorded_above_100_pct": 1.8,
+   "kde": {
+    "bandwidth_bpm": 3.34,
+    "effective_n": 328.2,
+    "mass_within_40_110": 0.9938,
+    "grid_integral_trapezoid": 0.9937
+   },
+   "density": [
+    {
+     "bpm": 40,
+     "density": 8.3e-05
+    },
+    {
+     "bpm": 41,
+     "density": 0.000105
+    },
+    {
+     "bpm": 42,
+     "density": 0.000152
+    },
+    {
+     "bpm": 43,
+     "density": 0.000236
+    },
+    {
+     "bpm": 44,
+     "density": 0.00037
+    },
+    {
+     "bpm": 45,
+     "density": 0.000572
+    },
+    {
+     "bpm": 46,
+     "density": 0.000867
+    },
+    {
+     "bpm": 47,
+     "density": 0.001293
+    },
+    {
+     "bpm": 48,
+     "density": 0.001896
+    },
+    {
+     "bpm": 49,
+     "density": 0.002734
+    },
+    {
+     "bpm": 50,
+     "density": 0.003864
+    },
+    {
+     "bpm": 51,
+     "density": 0.005334
+    },
+    {
+     "bpm": 52,
+     "density": 0.007161
+    },
+    {
+     "bpm": 53,
+     "density": 0.009321
+    },
+    {
+     "bpm": 54,
+     "density": 0.011737
+    },
+    {
+     "bpm": 55,
+     "density": 0.014292
+    },
+    {
+     "bpm": 56,
+     "density": 0.016842
+    },
+    {
+     "bpm": 57,
+     "density": 0.019244
+    },
+    {
+     "bpm": 58,
+     "density": 0.021384
+    },
+    {
+     "bpm": 59,
+     "density": 0.023194
+    },
+    {
+     "bpm": 60,
+     "density": 0.024655
+    },
+    {
+     "bpm": 61,
+     "density": 0.02578
+    },
+    {
+     "bpm": 62,
+     "density": 0.026599
+    },
+    {
+     "bpm": 63,
+     "density": 0.027149
+    },
+    {
+     "bpm": 64,
+     "density": 0.027482
+    },
+    {
+     "bpm": 65,
+     "density": 0.027679
+    },
+    {
+     "bpm": 66,
+     "density": 0.02785
+    },
+    {
+     "bpm": 67,
+     "density": 0.028118
+    },
+    {
+     "bpm": 68,
+     "density": 0.028573
+    },
+    {
+     "bpm": 69,
+     "density": 0.029228
+    },
+    {
+     "bpm": 70,
+     "density": 0.03
+    },
+    {
+     "bpm": 71,
+     "density": 0.030742
+    },
+    {
+     "bpm": 72,
+     "density": 0.031295
+    },
+    {
+     "bpm": 73,
+     "density": 0.031556
+    },
+    {
+     "bpm": 74,
+     "density": 0.031496
+    },
+    {
+     "bpm": 75,
+     "density": 0.031141
+    },
+    {
+     "bpm": 76,
+     "density": 0.030522
+    },
+    {
+     "bpm": 77,
+     "density": 0.029631
+    },
+    {
+     "bpm": 78,
+     "density": 0.028433
+    },
+    {
+     "bpm": 79,
+     "density": 0.026899
+    },
+    {
+     "bpm": 80,
+     "density": 0.025067
+    },
+    {
+     "bpm": 81,
+     "density": 0.02306
+    },
+    {
+     "bpm": 82,
+     "density": 0.021068
+    },
+    {
+     "bpm": 83,
+     "density": 0.019294
+    },
+    {
+     "bpm": 84,
+     "density": 0.017887
+    },
+    {
+     "bpm": 85,
+     "density": 0.016894
+    },
+    {
+     "bpm": 86,
+     "density": 0.01625
+    },
+    {
+     "bpm": 87,
+     "density": 0.015797
+    },
+    {
+     "bpm": 88,
+     "density": 0.015339
+    },
+    {
+     "bpm": 89,
+     "density": 0.014701
+    },
+    {
+     "bpm": 90,
+     "density": 0.01378
+    },
+    {
+     "bpm": 91,
+     "density": 0.012559
+    },
+    {
+     "bpm": 92,
+     "density": 0.011104
+    },
+    {
+     "bpm": 93,
+     "density": 0.009526
+    },
+    {
+     "bpm": 94,
+     "density": 0.007947
+    },
+    {
+     "bpm": 95,
+     "density": 0.006472
+    },
+    {
+     "bpm": 96,
+     "density": 0.005184
+    },
+    {
+     "bpm": 97,
+     "density": 0.004128
+    },
+    {
+     "bpm": 98,
+     "density": 0.003321
+    },
+    {
+     "bpm": 99,
+     "density": 0.002749
+    },
+    {
+     "bpm": 100,
+     "density": 0.002369
+    },
+    {
+     "bpm": 101,
+     "density": 0.002127
+    },
+    {
+     "bpm": 102,
+     "density": 0.001964
+    },
+    {
+     "bpm": 103,
+     "density": 0.001832
+    },
+    {
+     "bpm": 104,
+     "density": 0.001697
+    },
+    {
+     "bpm": 105,
+     "density": 0.001542
+    },
+    {
+     "bpm": 106,
+     "density": 0.001362
+    },
+    {
+     "bpm": 107,
+     "density": 0.001165
+    },
+    {
+     "bpm": 108,
+     "density": 0.000969
+    },
+    {
+     "bpm": 109,
+     "density": 0.000795
+    },
+    {
+     "bpm": 110,
+     "density": 0.000661
+    }
+   ],
+   "percentile_lookup": {
+    "40": 0.1,
+    "41": 0.1,
+    "42": 0.1,
+    "43": 0.1,
+    "44": 0.1,
+    "45": 0.1,
+    "46": 0.1,
+    "47": 0.2,
+    "48": 0.2,
+    "49": 0.3,
+    "50": 0.5,
+    "51": 0.8,
+    "52": 1.0,
+    "53": 1.2,
+    "54": 2.5,
+    "55": 3.7,
+    "56": 5.2,
+    "57": 6.7,
+    "58": 9.7,
+    "59": 12.6,
+    "60": 14.9,
+    "61": 17.2,
+    "62": 20.0,
+    "63": 22.8,
+    "64": 25.8,
+    "65": 28.8,
+    "66": 31.8,
+    "67": 34.9,
+    "68": 36.9,
+    "69": 38.9,
+    "70": 41.7,
+    "71": 44.5,
+    "72": 48.7,
+    "73": 53.0,
+    "74": 56.2,
+    "75": 59.4,
+    "76": 61.6,
+    "77": 63.7,
+    "78": 67.9,
+    "79": 72.1,
+    "80": 74.6,
+    "81": 77.0,
+    "82": 78.9,
+    "83": 80.8,
+    "84": 82.0,
+    "85": 83.2,
+    "86": 84.5,
+    "87": 85.8,
+    "88": 87.8,
+    "89": 89.7,
+    "90": 91.7,
+    "91": 93.7,
+    "92": 94.4,
+    "93": 95.2,
+    "94": 96.1,
+    "95": 97.0,
+    "96": 97.3,
+    "97": 97.6,
+    "98": 97.7,
+    "99": 97.7,
+    "100": 97.9,
+    "101": 98.2,
+    "102": 98.4,
+    "103": 98.7,
+    "104": 98.8,
+    "105": 98.9,
+    "106": 99.2,
+    "107": 99.4,
+    "108": 99.5,
+    "109": 99.5,
+    "110": 99.5
+   },
+   "facts": [
+    "Half of US men 18–24 have a measured resting pulse between 64 and 80 bpm (middle 50%).",
+    "The median measured resting pulse for men 18–24 is about 72 bpm; the weighted mean is 73.0 bpm (SD 11.8).",
+    "90% of men 18–24 fall between about 56 and 93 bpm.",
+    "A pulse of 60 bpm sits at about the 15th percentile for men 18–24; 70 bpm at about the 42nd.",
+    "About 13% of men 18–24 had a recorded pulse below 60 bpm, and about 2% above 100 bpm.",
+    "The median for men 18–24 is 2 bpm higher than the median for all men 18+ (70 bpm)."
+   ]
+  },
+  {
+   "band": "25-34",
+   "age_min": 25,
+   "age_max": 34,
+   "n_unweighted": 822,
+   "n_examined_no_pulse": 84,
+   "weighted_population_estimate": 21929362,
+   "mean": 71.8,
+   "se_mean_taylor": 0.49,
+   "se_df": 30,
+   "sd": 11.3,
+   "median": 71.0,
+   "percentiles": {
+    "p5": 55.1,
+    "p10": 58.0,
+    "p25": 62.9,
+    "p50": 71.0,
+    "p75": 79.0,
+    "p90": 86.4,
+    "p95": 90.7
+   },
+   "iqr": [
+    62.9,
+    79.0
+   ],
+   "share_recorded_below_60_pct": 12.1,
+   "share_recorded_above_100_pct": 1.0,
+   "kde": {
+    "bandwidth_bpm": 2.99,
+    "effective_n": 460.2,
+    "mass_within_40_110": 0.9968,
+    "grid_integral_trapezoid": 0.9968
+   },
+   "density": [
+    {
+     "bpm": 40,
+     "density": 0.000169
+    },
+    {
+     "bpm": 41,
+     "density": 0.000265
+    },
+    {
+     "bpm": 42,
+     "density": 0.000381
+    },
+    {
+     "bpm": 43,
+     "density": 0.000515
+    },
+    {
+     "bpm": 44,
+     "density": 0.000673
+    },
+    {
+     "bpm": 45,
+     "density": 0.000882
+    },
+    {
+     "bpm": 46,
+     "density": 0.001194
+    },
+    {
+     "bpm": 47,
+     "density": 0.001674
+    },
+    {
+     "bpm": 48,
+     "density": 0.002387
+    },
+    {
+     "bpm": 49,
+     "density": 0.003374
+    },
+    {
+     "bpm": 50,
+     "density": 0.004645
+    },
+    {
+     "bpm": 51,
+     "density": 0.006176
+    },
+    {
+     "bpm": 52,
+     "density": 0.007931
+    },
+    {
+     "bpm": 53,
+     "density": 0.009879
+    },
+    {
+     "bpm": 54,
+     "density": 0.012013
+    },
+    {
+     "bpm": 55,
+     "density": 0.014338
+    },
+    {
+     "bpm": 56,
+     "density": 0.016845
+    },
+    {
+     "bpm": 57,
+     "density": 0.019475
+    },
+    {
+     "bpm": 58,
+     "density": 0.022096
+    },
+    {
+     "bpm": 59,
+     "density": 0.024518
+    },
+    {
+     "bpm": 60,
+     "density": 0.026546
+    },
+    {
+     "bpm": 61,
+     "density": 0.028056
+    },
+    {
+     "bpm": 62,
+     "density": 0.029048
+    },
+    {
+     "bpm": 63,
+     "density": 0.02964
+    },
+    {
+     "bpm": 64,
+     "density": 0.030007
+    },
+    {
+     "bpm": 65,
+     "density": 0.030303
+    },
+    {
+     "bpm": 66,
+     "density": 0.030612
+    },
+    {
+     "bpm": 67,
+     "density": 0.030944
+    },
+    {
+     "bpm": 68,
+     "density": 0.031274
+    },
+    {
+     "bpm": 69,
+     "density": 0.031568
+    },
+    {
+     "bpm": 70,
+     "density": 0.03181
+    },
+    {
+     "bpm": 71,
+     "density": 0.031985
+    },
+    {
+     "bpm": 72,
+     "density": 0.032063
+    },
+    {
+     "bpm": 73,
+     "density": 0.031984
+    },
+    {
+     "bpm": 74,
+     "density": 0.03166
+    },
+    {
+     "bpm": 75,
+     "density": 0.031007
+    },
+    {
+     "bpm": 76,
+     "density": 0.029989
+    },
+    {
+     "bpm": 77,
+     "density": 0.028648
+    },
+    {
+     "bpm": 78,
+     "density": 0.027109
+    },
+    {
+     "bpm": 79,
+     "density": 0.025534
+    },
+    {
+     "bpm": 80,
+     "density": 0.024071
+    },
+    {
+     "bpm": 81,
+     "density": 0.022789
+    },
+    {
+     "bpm": 82,
+     "density": 0.021663
+    },
+    {
+     "bpm": 83,
+     "density": 0.020589
+    },
+    {
+     "bpm": 84,
+     "density": 0.019434
+    },
+    {
+     "bpm": 85,
+     "density": 0.018094
+    },
+    {
+     "bpm": 86,
+     "density": 0.016528
+    },
+    {
+     "bpm": 87,
+     "density": 0.014767
+    },
+    {
+     "bpm": 88,
+     "density": 0.012906
+    },
+    {
+     "bpm": 89,
+     "density": 0.01108
+    },
+    {
+     "bpm": 90,
+     "density": 0.009429
+    },
+    {
+     "bpm": 91,
+     "density": 0.008056
+    },
+    {
+     "bpm": 92,
+     "density": 0.006996
+    },
+    {
+     "bpm": 93,
+     "density": 0.006202
+    },
+    {
+     "bpm": 94,
+     "density": 0.005569
+    },
+    {
+     "bpm": 95,
+     "density": 0.004979
+    },
+    {
+     "bpm": 96,
+     "density": 0.004355
+    },
+    {
+     "bpm": 97,
+     "density": 0.003686
+    },
+    {
+     "bpm": 98,
+     "density": 0.00302
+    },
+    {
+     "bpm": 99,
+     "density": 0.002425
+    },
+    {
+     "bpm": 100,
+     "density": 0.001955
+    },
+    {
+     "bpm": 101,
+     "density": 0.001627
+    },
+    {
+     "bpm": 102,
+     "density": 0.001416
+    },
+    {
+     "bpm": 103,
+     "density": 0.001277
+    },
+    {
+     "bpm": 104,
+     "density": 0.001159
+    },
+    {
+     "bpm": 105,
+     "density": 0.001026
+    },
+    {
+     "bpm": 106,
+     "density": 0.000867
+    },
+    {
+     "bpm": 107,
+     "density": 0.000689
+    },
+    {
+     "bpm": 108,
+     "density": 0.000512
+    },
+    {
+     "bpm": 109,
+     "density": 0.000354
+    },
+    {
+     "bpm": 110,
+     "density": 0.000228
+    }
+   ],
+   "percentile_lookup": {
+    "40": 0.0,
+    "41": 0.0,
+    "42": 0.0,
+    "43": 0.0,
+    "44": 0.1,
+    "45": 0.3,
+    "46": 0.3,
+    "47": 0.4,
+    "48": 0.4,
+    "49": 0.4,
+    "50": 0.7,
+    "51": 1.0,
+    "52": 1.8,
+    "53": 2.6,
+    "54": 3.8,
+    "55": 4.9,
+    "56": 6.4,
+    "57": 7.9,
+    "58": 10.0,
+    "59": 12.1,
+    "60": 15.3,
+    "61": 18.6,
+    "62": 22.0,
+    "63": 25.4,
+    "64": 27.7,
+    "65": 30.1,
+    "66": 33.6,
+    "67": 37.1,
+    "68": 39.9,
+    "69": 42.7,
+    "70": 46.3,
+    "71": 49.9,
+    "72": 52.7,
+    "73": 55.4,
+    "74": 59.2,
+    "75": 62.9,
+    "76": 65.9,
+    "77": 68.9,
+    "78": 72.0,
+    "79": 75.0,
+    "80": 76.8,
+    "81": 78.5,
+    "82": 80.9,
+    "83": 83.3,
+    "84": 85.3,
+    "85": 87.3,
+    "86": 89.2,
+    "87": 91.1,
+    "88": 92.3,
+    "89": 93.6,
+    "90": 94.4,
+    "91": 95.2,
+    "92": 95.5,
+    "93": 95.7,
+    "94": 96.5,
+    "95": 97.3,
+    "96": 97.9,
+    "97": 98.5,
+    "98": 98.6,
+    "99": 98.7,
+    "100": 98.8,
+    "101": 99.0,
+    "102": 99.0,
+    "103": 99.1,
+    "104": 99.3,
+    "105": 99.5,
+    "106": 99.6,
+    "107": 99.7,
+    "108": 99.7,
+    "109": 99.7,
+    "110": 99.7
+   },
+   "facts": [
+    "Half of US men 25–34 have a measured resting pulse between 63 and 79 bpm (middle 50%).",
+    "The median measured resting pulse for men 25–34 is about 71 bpm; the weighted mean is 71.8 bpm (SD 11.3).",
+    "90% of men 25–34 fall between about 55 and 91 bpm.",
+    "A pulse of 60 bpm sits at about the 15th percentile for men 25–34; 70 bpm at about the 46th.",
+    "About 12% of men 25–34 had a recorded pulse below 60 bpm, and about 1% above 100 bpm.",
+    "The median for men 25–34 is 1 bpm higher than the median for all men 18+ (70 bpm)."
+   ]
+  },
+  {
+   "band": "35-44",
+   "age_min": 35,
+   "age_max": 44,
+   "n_unweighted": 738,
+   "n_examined_no_pulse": 64,
+   "weighted_population_estimate": 18111653,
+   "mean": 72.4,
+   "se_mean_taylor": 0.48,
+   "se_df": 30,
+   "sd": 11.7,
+   "median": 72.1,
+   "percentiles": {
+    "p5": 54.9,
+    "p10": 57.9,
+    "p25": 63.7,
+    "p50": 72.1,
+    "p75": 79.1,
+    "p90": 88.3,
+    "p95": 92.7
+   },
+   "iqr": [
+    63.7,
+    79.1
+   ],
+   "share_recorded_below_60_pct": 12.4,
+   "share_recorded_above_100_pct": 1.3,
+   "kde": {
+    "bandwidth_bpm": 3.15,
+    "effective_n": 375.5,
+    "mass_within_40_110": 0.9963,
+    "grid_integral_trapezoid": 0.9963
+   },
+   "density": [
+    {
+     "bpm": 40,
+     "density": 0.000206
+    },
+    {
+     "bpm": 41,
+     "density": 0.000321
+    },
+    {
+     "bpm": 42,
+     "density": 0.000472
+    },
+    {
+     "bpm": 43,
+     "density": 0.000666
+    },
+    {
+     "bpm": 44,
+     "density": 0.000918
+    },
+    {
+     "bpm": 45,
+     "density": 0.001255
+    },
+    {
+     "bpm": 46,
+     "density": 0.001707
+    },
+    {
+     "bpm": 47,
+     "density": 0.002306
+    },
+    {
+     "bpm": 48,
+     "density": 0.003075
+    },
+    {
+     "bpm": 49,
+     "density": 0.004023
+    },
+    {
+     "bpm": 50,
+     "density": 0.005153
+    },
+    {
+     "bpm": 51,
+     "density": 0.006468
+    },
+    {
+     "bpm": 52,
+     "density": 0.007975
+    },
+    {
+     "bpm": 53,
+     "density": 0.009682
+    },
+    {
+     "bpm": 54,
+     "density": 0.011587
+    },
+    {
+     "bpm": 55,
+     "density": 0.013664
+    },
+    {
+     "bpm": 56,
+     "density": 0.015853
+    },
+    {
+     "bpm": 57,
+     "density": 0.018065
+    },
+    {
+     "bpm": 58,
+     "density": 0.020199
+    },
+    {
+     "bpm": 59,
+     "density": 0.022163
+    },
+    {
+     "bpm": 60,
+     "density": 0.023892
+    },
+    {
+     "bpm": 61,
+     "density": 0.025358
+    },
+    {
+     "bpm": 62,
+     "density": 0.026554
+    },
+    {
+     "bpm": 63,
+     "density": 0.027491
+    },
+    {
+     "bpm": 64,
+     "density": 0.028196
+    },
+    {
+     "bpm": 65,
+     "density": 0.028715
+    },
+    {
+     "bpm": 66,
+     "density": 0.029125
+    },
+    {
+     "bpm": 67,
+     "density": 0.029518
+    },
+    {
+     "bpm": 68,
+     "density": 0.029988
+    },
+    {
+     "bpm": 69,
+     "density": 0.030601
+    },
+    {
+     "bpm": 70,
+     "density": 0.031377
+    },
+    {
+     "bpm": 71,
+     "density": 0.032266
+    },
+    {
+     "bpm": 72,
+     "density": 0.033141
+    },
+    {
+     "bpm": 73,
+     "density": 0.033805
+    },
+    {
+     "bpm": 74,
+     "density": 0.034035
+    },
+    {
+     "bpm": 75,
+     "density": 0.033649
+    },
+    {
+     "bpm": 76,
+     "density": 0.032573
+    },
+    {
+     "bpm": 77,
+     "density": 0.030864
+    },
+    {
+     "bpm": 78,
+     "density": 0.028695
+    },
+    {
+     "bpm": 79,
+     "density": 0.026305
+    },
+    {
+     "bpm": 80,
+     "density": 0.023924
+    },
+    {
+     "bpm": 81,
+     "density": 0.021727
+    },
+    {
+     "bpm": 82,
+     "density": 0.019799
+    },
+    {
+     "bpm": 83,
+     "density": 0.018151
+    },
+    {
+     "bpm": 84,
+     "density": 0.016744
+    },
+    {
+     "bpm": 85,
+     "density": 0.015528
+    },
+    {
+     "bpm": 86,
+     "density": 0.01446
+    },
+    {
+     "bpm": 87,
+     "density": 0.013506
+    },
+    {
+     "bpm": 88,
+     "density": 0.012634
+    },
+    {
+     "bpm": 89,
+     "density": 0.0118
+    },
+    {
+     "bpm": 90,
+     "density": 0.01096
+    },
+    {
+     "bpm": 91,
+     "density": 0.010075
+    },
+    {
+     "bpm": 92,
+     "density": 0.009137
+    },
+    {
+     "bpm": 93,
+     "density": 0.008165
+    },
+    {
+     "bpm": 94,
+     "density": 0.007204
+    },
+    {
+     "bpm": 95,
+     "density": 0.006296
+    },
+    {
+     "bpm": 96,
+     "density": 0.005458
+    },
+    {
+     "bpm": 97,
+     "density": 0.004685
+    },
+    {
+     "bpm": 98,
+     "density": 0.003957
+    },
+    {
+     "bpm": 99,
+     "density": 0.003267
+    },
+    {
+     "bpm": 100,
+     "density": 0.002634
+    },
+    {
+     "bpm": 101,
+     "density": 0.002102
+    },
+    {
+     "bpm": 102,
+     "density": 0.001718
+    },
+    {
+     "bpm": 103,
+     "density": 0.001503
+    },
+    {
+     "bpm": 104,
+     "density": 0.001436
+    },
+    {
+     "bpm": 105,
+     "density": 0.001463
+    },
+    {
+     "bpm": 106,
+     "density": 0.001507
+    },
+    {
+     "bpm": 107,
+     "density": 0.001502
+    },
+    {
+     "bpm": 108,
+     "density": 0.00141
+    },
+    {
+     "bpm": 109,
+     "density": 0.001234
+    },
+    {
+     "bpm": 110,
+     "density": 0.001004
+    }
+   ],
+   "percentile_lookup": {
+    "40": 0.0,
+    "41": 0.0,
+    "42": 0.0,
+    "43": 0.0,
+    "44": 0.1,
+    "45": 0.3,
+    "46": 0.3,
+    "47": 0.4,
+    "48": 0.5,
+    "49": 0.7,
+    "50": 1.2,
+    "51": 1.7,
+    "52": 2.4,
+    "53": 3.0,
+    "54": 4.1,
+    "55": 5.1,
+    "56": 6.6,
+    "57": 8.0,
+    "58": 10.2,
+    "59": 12.4,
+    "60": 15.2,
+    "61": 18.0,
+    "62": 20.3,
+    "63": 22.5,
+    "64": 26.1,
+    "65": 29.6,
+    "66": 32.2,
+    "67": 34.7,
+    "68": 37.7,
+    "69": 40.6,
+    "70": 43.8,
+    "71": 47.1,
+    "72": 49.7,
+    "73": 52.3,
+    "74": 57.0,
+    "75": 61.7,
+    "76": 65.0,
+    "77": 68.3,
+    "78": 71.6,
+    "79": 74.9,
+    "80": 76.7,
+    "81": 78.5,
+    "82": 80.4,
+    "83": 82.2,
+    "84": 84.0,
+    "85": 85.8,
+    "86": 87.0,
+    "87": 88.2,
+    "88": 89.6,
+    "89": 90.9,
+    "90": 91.9,
+    "91": 92.9,
+    "92": 94.2,
+    "93": 95.4,
+    "94": 95.8,
+    "95": 96.3,
+    "96": 96.7,
+    "97": 97.1,
+    "98": 97.8,
+    "99": 98.4,
+    "100": 98.5,
+    "101": 98.7,
+    "102": 98.7,
+    "103": 98.7,
+    "104": 98.7,
+    "105": 98.7,
+    "106": 99.0,
+    "107": 99.3,
+    "108": 99.6,
+    "109": 99.9,
+    "110": 99.9
+   },
+   "facts": [
+    "Half of US men 35–44 have a measured resting pulse between 64 and 79 bpm (middle 50%).",
+    "The median measured resting pulse for men 35–44 is about 72 bpm; the weighted mean is 72.4 bpm (SD 11.7).",
+    "90% of men 35–44 fall between about 55 and 93 bpm.",
+    "A pulse of 60 bpm sits at about the 15th percentile for men 35–44; 70 bpm at about the 44th.",
+    "About 12% of men 35–44 had a recorded pulse below 60 bpm, and about 1% above 100 bpm.",
+    "The median for men 35–44 is 2 bpm higher than the median for all men 18+ (70 bpm)."
+   ]
+  },
+  {
+   "band": "45-54",
+   "age_min": 45,
+   "age_max": 54,
+   "n_unweighted": 797,
+   "n_examined_no_pulse": 57,
+   "weighted_population_estimate": 19340038,
+   "mean": 71.9,
+   "se_mean_taylor": 0.65,
+   "se_df": 30,
+   "sd": 12.5,
+   "median": 70.9,
+   "percentiles": {
+    "p5": 54.4,
+    "p10": 57.5,
+    "p25": 62.7,
+    "p50": 70.9,
+    "p75": 79.0,
+    "p90": 88.1,
+    "p95": 94.4
+   },
+   "iqr": [
+    62.7,
+    79.0
+   ],
+   "share_recorded_below_60_pct": 14.0,
+   "share_recorded_above_100_pct": 2.4,
+   "kde": {
+    "bandwidth_bpm": 3.36,
+    "effective_n": 363.0,
+    "mass_within_40_110": 0.9884,
+    "grid_integral_trapezoid": 0.9884
+   },
+   "density": [
+    {
+     "bpm": 40,
+     "density": 0.000225
+    },
+    {
+     "bpm": 41,
+     "density": 0.000357
+    },
+    {
+     "bpm": 42,
+     "density": 0.000546
+    },
+    {
+     "bpm": 43,
+     "density": 0.000813
+    },
+    {
+     "bpm": 44,
+     "density": 0.001177
+    },
+    {
+     "bpm": 45,
+     "density": 0.001659
+    },
+    {
+     "bpm": 46,
+     "density": 0.00227
+    },
+    {
+     "bpm": 47,
+     "density": 0.003015
+    },
+    {
+     "bpm": 48,
+     "density": 0.00389
+    },
+    {
+     "bpm": 49,
+     "density": 0.004892
+    },
+    {
+     "bpm": 50,
+     "density": 0.006032
+    },
+    {
+     "bpm": 51,
+     "density": 0.007341
+    },
+    {
+     "bpm": 52,
+     "density": 0.008871
+    },
+    {
+     "bpm": 53,
+     "density": 0.010667
+    },
+    {
+     "bpm": 54,
+     "density": 0.012749
+    },
+    {
+     "bpm": 55,
+     "density": 0.015076
+    },
+    {
+     "bpm": 56,
+     "density": 0.017548
+    },
+    {
+     "bpm": 57,
+     "density": 0.020011
+    },
+    {
+     "bpm": 58,
+     "density": 0.022297
+    },
+    {
+     "bpm": 59,
+     "density": 0.024267
+    },
+    {
+     "bpm": 60,
+     "density": 0.025853
+    },
+    {
+     "bpm": 61,
+     "density": 0.027067
+    },
+    {
+     "bpm": 62,
+     "density": 0.027996
+    },
+    {
+     "bpm": 63,
+     "density": 0.028754
+    },
+    {
+     "bpm": 64,
+     "density": 0.029449
+    },
+    {
+     "bpm": 65,
+     "density": 0.030147
+    },
+    {
+     "bpm": 66,
+     "density": 0.030869
+    },
+    {
+     "bpm": 67,
+     "density": 0.031596
+    },
+    {
+     "bpm": 68,
+     "density": 0.032281
+    },
+    {
+     "bpm": 69,
+     "density": 0.032851
+    },
+    {
+     "bpm": 70,
+     "density": 0.033216
+    },
+    {
+     "bpm": 71,
+     "density": 0.033274
+    },
+    {
+     "bpm": 72,
+     "density": 0.03294
+    },
+    {
+     "bpm": 73,
+     "density": 0.032175
+    },
+    {
+     "bpm": 74,
+     "density": 0.03101
+    },
+    {
+     "bpm": 75,
+     "density": 0.029541
+    },
+    {
+     "bpm": 76,
+     "density": 0.027901
+    },
+    {
+     "bpm": 77,
+     "density": 0.026218
+    },
+    {
+     "bpm": 78,
+     "density": 0.024582
+    },
+    {
+     "bpm": 79,
+     "density": 0.023031
+    },
+    {
+     "bpm": 80,
+     "density": 0.021561
+    },
+    {
+     "bpm": 81,
+     "density": 0.020146
+    },
+    {
+     "bpm": 82,
+     "density": 0.018764
+    },
+    {
+     "bpm": 83,
+     "density": 0.017407
+    },
+    {
+     "bpm": 84,
+     "density": 0.016089
+    },
+    {
+     "bpm": 85,
+     "density": 0.014831
+    },
+    {
+     "bpm": 86,
+     "density": 0.013646
+    },
+    {
+     "bpm": 87,
+     "density": 0.012527
+    },
+    {
+     "bpm": 88,
+     "density": 0.011451
+    },
+    {
+     "bpm": 89,
+     "density": 0.01039
+    },
+    {
+     "bpm": 90,
+     "density": 0.009337
+    },
+    {
+     "bpm": 91,
+     "density": 0.008308
+    },
+    {
+     "bpm": 92,
+     "density": 0.007345
+    },
+    {
+     "bpm": 93,
+     "density": 0.006487
+    },
+    {
+     "bpm": 94,
+     "density": 0.005757
+    },
+    {
+     "bpm": 95,
+     "density": 0.005147
+    },
+    {
+     "bpm": 96,
+     "density": 0.004628
+    },
+    {
+     "bpm": 97,
+     "density": 0.004168
+    },
+    {
+     "bpm": 98,
+     "density": 0.003738
+    },
+    {
+     "bpm": 99,
+     "density": 0.003327
+    },
+    {
+     "bpm": 100,
+     "density": 0.002934
+    },
+    {
+     "bpm": 101,
+     "density": 0.00257
+    },
+    {
+     "bpm": 102,
+     "density": 0.002248
+    },
+    {
+     "bpm": 103,
+     "density": 0.00198
+    },
+    {
+     "bpm": 104,
+     "density": 0.001773
+    },
+    {
+     "bpm": 105,
+     "density": 0.001622
+    },
+    {
+     "bpm": 106,
+     "density": 0.001508
+    },
+    {
+     "bpm": 107,
+     "density": 0.001407
+    },
+    {
+     "bpm": 108,
+     "density": 0.001292
+    },
+    {
+     "bpm": 109,
+     "density": 0.001154
+    },
+    {
+     "bpm": 110,
+     "density": 0.001
+    }
+   ],
+   "percentile_lookup": {
+    "40": 0.0,
+    "41": 0.0,
+    "42": 0.0,
+    "43": 0.0,
+    "44": 0.1,
+    "45": 0.2,
+    "46": 0.3,
+    "47": 0.5,
+    "48": 0.6,
+    "49": 0.7,
+    "50": 1.7,
+    "51": 2.7,
+    "52": 3.0,
+    "53": 3.4,
+    "54": 4.5,
+    "55": 5.7,
+    "56": 7.1,
+    "57": 8.6,
+    "58": 11.3,
+    "59": 14.0,
+    "60": 17.2,
+    "61": 20.4,
+    "62": 23.1,
+    "63": 25.7,
+    "64": 28.4,
+    "65": 31.0,
+    "66": 34.3,
+    "67": 37.7,
+    "68": 40.9,
+    "69": 44.2,
+    "70": 47.2,
+    "71": 50.2,
+    "72": 54.5,
+    "73": 58.8,
+    "74": 62.0,
+    "75": 65.2,
+    "76": 67.8,
+    "77": 70.4,
+    "78": 72.7,
+    "79": 75.0,
+    "80": 77.3,
+    "81": 79.6,
+    "82": 81.3,
+    "83": 83.1,
+    "84": 84.9,
+    "85": 86.8,
+    "86": 87.6,
+    "87": 88.5,
+    "88": 89.8,
+    "89": 91.2,
+    "90": 92.5,
+    "91": 93.8,
+    "92": 93.9,
+    "93": 94.1,
+    "94": 94.7,
+    "95": 95.4,
+    "96": 95.9,
+    "97": 96.4,
+    "98": 96.7,
+    "99": 97.1,
+    "100": 97.3,
+    "101": 97.6,
+    "102": 97.8,
+    "103": 98.1,
+    "104": 98.2,
+    "105": 98.3,
+    "106": 98.3,
+    "107": 98.3,
+    "108": 98.7,
+    "109": 99.1,
+    "110": 99.1
+   },
+   "facts": [
+    "Half of US men 45–54 have a measured resting pulse between 63 and 79 bpm (middle 50%).",
+    "The median measured resting pulse for men 45–54 is about 71 bpm; the weighted mean is 71.9 bpm (SD 12.5).",
+    "90% of men 45–54 fall between about 54 and 94 bpm.",
+    "A pulse of 60 bpm sits at about the 17th percentile for men 45–54; 70 bpm at about the 47th.",
+    "About 14% of men 45–54 had a recorded pulse below 60 bpm, and about 2% above 100 bpm.",
+    "The median for men 45–54 is 1 bpm higher than the median for all men 18+ (70 bpm)."
+   ]
+  },
+  {
+   "band": "55-64",
+   "age_min": 55,
+   "age_max": 64,
+   "n_unweighted": 962,
+   "n_examined_no_pulse": 69,
+   "weighted_population_estimate": 20292554,
+   "mean": 70.1,
+   "se_mean_taylor": 0.65,
+   "se_df": 30,
+   "sd": 11.7,
+   "median": 69.3,
+   "percentiles": {
+    "p5": 53.9,
+    "p10": 56.6,
+    "p25": 61.6,
+    "p50": 69.3,
+    "p75": 76.4,
+    "p90": 85.8,
+    "p95": 91.1
+   },
+   "iqr": [
+    61.6,
+    76.4
+   ],
+   "share_recorded_below_60_pct": 15.8,
+   "share_recorded_above_100_pct": 1.5,
+   "kde": {
+    "bandwidth_bpm": 3.1,
+    "effective_n": 337.4,
+    "mass_within_40_110": 0.9897,
+    "grid_integral_trapezoid": 0.9897
+   },
+   "density": [
+    {
+     "bpm": 40,
+     "density": 0.000471
+    },
+    {
+     "bpm": 41,
+     "density": 0.00048
+    },
+    {
+     "bpm": 42,
+     "density": 0.000488
+    },
+    {
+     "bpm": 43,
+     "density": 0.000541
+    },
+    {
+     "bpm": 44,
+     "density": 0.000702
+    },
+    {
+     "bpm": 45,
+     "density": 0.001037
+    },
+    {
+     "bpm": 46,
+     "density": 0.001607
+    },
+    {
+     "bpm": 47,
+     "density": 0.002448
+    },
+    {
+     "bpm": 48,
+     "density": 0.003576
+    },
+    {
+     "bpm": 49,
+     "density": 0.004979
+    },
+    {
+     "bpm": 50,
+     "density": 0.006634
+    },
+    {
+     "bpm": 51,
+     "density": 0.008518
+    },
+    {
+     "bpm": 52,
+     "density": 0.010614
+    },
+    {
+     "bpm": 53,
+     "density": 0.012909
+    },
+    {
+     "bpm": 54,
+     "density": 0.015378
+    },
+    {
+     "bpm": 55,
+     "density": 0.017975
+    },
+    {
+     "bpm": 56,
+     "density": 0.020622
+    },
+    {
+     "bpm": 57,
+     "density": 0.023216
+    },
+    {
+     "bpm": 58,
+     "density": 0.025641
+    },
+    {
+     "bpm": 59,
+     "density": 0.027793
+    },
+    {
+     "bpm": 60,
+     "density": 0.029605
+    },
+    {
+     "bpm": 61,
+     "density": 0.031059
+    },
+    {
+     "bpm": 62,
+     "density": 0.032174
+    },
+    {
+     "bpm": 63,
+     "density": 0.032972
+    },
+    {
+     "bpm": 64,
+     "density": 0.033461
+    },
+    {
+     "bpm": 65,
+     "density": 0.033648
+    },
+    {
+     "bpm": 66,
+     "density": 0.033585
+    },
+    {
+     "bpm": 67,
+     "density": 0.033401
+    },
+    {
+     "bpm": 68,
+     "density": 0.033275
+    },
+    {
+     "bpm": 69,
+     "density": 0.033346
+    },
+    {
+     "bpm": 70,
+     "density": 0.033619
+    },
+    {
+     "bpm": 71,
+     "density": 0.033939
+    },
+    {
+     "bpm": 72,
+     "density": 0.034048
+    },
+    {
+     "bpm": 73,
+     "density": 0.033703
+    },
+    {
+     "bpm": 74,
+     "density": 0.032767
+    },
+    {
+     "bpm": 75,
+     "density": 0.031241
+    },
+    {
+     "bpm": 76,
+     "density": 0.029228
+    },
+    {
+     "bpm": 77,
+     "density": 0.026873
+    },
+    {
+     "bpm": 78,
+     "density": 0.024312
+    },
+    {
+     "bpm": 79,
+     "density": 0.021668
+    },
+    {
+     "bpm": 80,
+     "density": 0.019052
+    },
+    {
+     "bpm": 81,
+     "density": 0.01658
+    },
+    {
+     "bpm": 82,
+     "density": 0.014372
+    },
+    {
+     "bpm": 83,
+     "density": 0.012536
+    },
+    {
+     "bpm": 84,
+     "density": 0.011131
+    },
+    {
+     "bpm": 85,
+     "density": 0.010144
+    },
+    {
+     "bpm": 86,
+     "density": 0.009479
+    },
+    {
+     "bpm": 87,
+     "density": 0.008991
+    },
+    {
+     "bpm": 88,
+     "density": 0.008532
+    },
+    {
+     "bpm": 89,
+     "density": 0.008009
+    },
+    {
+     "bpm": 90,
+     "density": 0.007397
+    },
+    {
+     "bpm": 91,
+     "density": 0.006732
+    },
+    {
+     "bpm": 92,
+     "density": 0.006069
+    },
+    {
+     "bpm": 93,
+     "density": 0.005447
+    },
+    {
+     "bpm": 94,
+     "density": 0.004876
+    },
+    {
+     "bpm": 95,
+     "density": 0.004341
+    },
+    {
+     "bpm": 96,
+     "density": 0.003817
+    },
+    {
+     "bpm": 97,
+     "density": 0.00329
+    },
+    {
+     "bpm": 98,
+     "density": 0.002762
+    },
+    {
+     "bpm": 99,
+     "density": 0.002247
+    },
+    {
+     "bpm": 100,
+     "density": 0.001769
+    },
+    {
+     "bpm": 101,
+     "density": 0.00135
+    },
+    {
+     "bpm": 102,
+     "density": 0.001013
+    },
+    {
+     "bpm": 103,
+     "density": 0.000773
+    },
+    {
+     "bpm": 104,
+     "density": 0.000638
+    },
+    {
+     "bpm": 105,
+     "density": 0.00061
+    },
+    {
+     "bpm": 106,
+     "density": 0.000682
+    },
+    {
+     "bpm": 107,
+     "density": 0.000833
+    },
+    {
+     "bpm": 108,
+     "density": 0.00103
+    },
+    {
+     "bpm": 109,
+     "density": 0.001225
+    },
+    {
+     "bpm": 110,
+     "density": 0.001369
+    }
+   ],
+   "percentile_lookup": {
+    "40": 0.2,
+    "41": 0.3,
+    "42": 0.3,
+    "43": 0.3,
+    "44": 0.3,
+    "45": 0.3,
+    "46": 0.3,
+    "47": 0.3,
+    "48": 0.5,
+    "49": 0.6,
+    "50": 1.3,
+    "51": 2.0,
+    "52": 2.9,
+    "53": 3.8,
+    "54": 5.1,
+    "55": 6.5,
+    "56": 8.7,
+    "57": 11.0,
+    "58": 13.4,
+    "59": 15.8,
+    "60": 19.5,
+    "61": 23.2,
+    "62": 26.2,
+    "63": 29.3,
+    "64": 32.4,
+    "65": 35.4,
+    "66": 40.2,
+    "67": 44.9,
+    "68": 46.9,
+    "69": 49.0,
+    "70": 52.1,
+    "71": 55.2,
+    "72": 59.6,
+    "73": 64.0,
+    "74": 67.5,
+    "75": 71.0,
+    "76": 73.9,
+    "77": 76.7,
+    "78": 79.4,
+    "79": 82.1,
+    "80": 83.7,
+    "81": 85.4,
+    "82": 86.9,
+    "83": 88.4,
+    "84": 88.8,
+    "85": 89.2,
+    "86": 90.2,
+    "87": 91.2,
+    "88": 92.4,
+    "89": 93.5,
+    "90": 94.3,
+    "91": 95.0,
+    "92": 95.4,
+    "93": 95.8,
+    "94": 96.4,
+    "95": 97.0,
+    "96": 97.3,
+    "97": 97.7,
+    "98": 98.0,
+    "99": 98.3,
+    "100": 98.4,
+    "101": 98.5,
+    "102": 98.6,
+    "103": 98.7,
+    "104": 98.7,
+    "105": 98.7,
+    "106": 98.7,
+    "107": 98.7,
+    "108": 98.8,
+    "109": 98.8,
+    "110": 99.0
+   },
+   "facts": [
+    "Half of US men 55–64 have a measured resting pulse between 62 and 76 bpm (middle 50%).",
+    "The median measured resting pulse for men 55–64 is about 69 bpm; the weighted mean is 70.1 bpm (SD 11.7).",
+    "90% of men 55–64 fall between about 54 and 91 bpm.",
+    "A pulse of 60 bpm sits at about the 20th percentile for men 55–64; 70 bpm at about the 52nd.",
+    "About 16% of men 55–64 had a recorded pulse below 60 bpm, and about 2% above 100 bpm.",
+    "The median for men 55–64 is 1 bpm lower than the median for all men 18+ (70 bpm)."
+   ]
+  },
+  {
+   "band": "65-74",
+   "age_min": 65,
+   "age_max": 74,
+   "n_unweighted": 746,
+   "n_examined_no_pulse": 58,
+   "weighted_population_estimate": 13190373,
+   "mean": 68.9,
+   "se_mean_taylor": 0.77,
+   "se_df": 30,
+   "sd": 12.1,
+   "median": 67.9,
+   "percentiles": {
+    "p5": 52.1,
+    "p10": 54.4,
+    "p25": 60.2,
+    "p50": 67.9,
+    "p75": 75.7,
+    "p90": 84.4,
+    "p95": 89.8
+   },
+   "iqr": [
+    60.2,
+    75.7
+   ],
+   "share_recorded_below_60_pct": 21.9,
+   "share_recorded_above_100_pct": 0.9,
+   "kde": {
+    "bandwidth_bpm": 3.39,
+    "effective_n": 271.7,
+    "mass_within_40_110": 0.9927,
+    "grid_integral_trapezoid": 0.9927
+   },
+   "density": [
+    {
+     "bpm": 40,
+     "density": 0.000234
+    },
+    {
+     "bpm": 41,
+     "density": 0.000433
+    },
+    {
+     "bpm": 42,
+     "density": 0.00075
+    },
+    {
+     "bpm": 43,
+     "density": 0.001225
+    },
+    {
+     "bpm": 44,
+     "density": 0.001896
+    },
+    {
+     "bpm": 45,
+     "density": 0.002794
+    },
+    {
+     "bpm": 46,
+     "density": 0.003941
+    },
+    {
+     "bpm": 47,
+     "density": 0.005353
+    },
+    {
+     "bpm": 48,
+     "density": 0.007032
+    },
+    {
+     "bpm": 49,
+     "density": 0.008969
+    },
+    {
+     "bpm": 50,
+     "density": 0.011133
+    },
+    {
+     "bpm": 51,
+     "density": 0.013463
+    },
+    {
+     "bpm": 52,
+     "density": 0.015864
+    },
+    {
+     "bpm": 53,
+     "density": 0.018215
+    },
+    {
+     "bpm": 54,
+     "density": 0.020395
+    },
+    {
+     "bpm": 55,
+     "density": 0.022312
+    },
+    {
+     "bpm": 56,
+     "density": 0.023925
+    },
+    {
+     "bpm": 57,
+     "density": 0.025254
+    },
+    {
+     "bpm": 58,
+     "density": 0.026364
+    },
+    {
+     "bpm": 59,
+     "density": 0.027341
+    },
+    {
+     "bpm": 60,
+     "density": 0.028267
+    },
+    {
+     "bpm": 61,
+     "density": 0.029199
+    },
+    {
+     "bpm": 62,
+     "density": 0.030166
+    },
+    {
+     "bpm": 63,
+     "density": 0.031164
+    },
+    {
+     "bpm": 64,
+     "density": 0.032163
+    },
+    {
+     "bpm": 65,
+     "density": 0.033112
+    },
+    {
+     "bpm": 66,
+     "density": 0.033938
+    },
+    {
+     "bpm": 67,
+     "density": 0.034546
+    },
+    {
+     "bpm": 68,
+     "density": 0.034823
+    },
+    {
+     "bpm": 69,
+     "density": 0.034644
+    },
+    {
+     "bpm": 70,
+     "density": 0.033909
+    },
+    {
+     "bpm": 71,
+     "density": 0.032577
+    },
+    {
+     "bpm": 72,
+     "density": 0.030703
+    },
+    {
+     "bpm": 73,
+     "density": 0.028446
+    },
+    {
+     "bpm": 74,
+     "density": 0.026039
+    },
+    {
+     "bpm": 75,
+     "density": 0.02373
+    },
+    {
+     "bpm": 76,
+     "density": 0.021717
+    },
+    {
+     "bpm": 77,
+     "density": 0.020102
+    },
+    {
+     "bpm": 78,
+     "density": 0.018885
+    },
+    {
+     "bpm": 79,
+     "density": 0.017984
+    },
+    {
+     "bpm": 80,
+     "density": 0.017273
+    },
+    {
+     "bpm": 81,
+     "density": 0.016617
+    },
+    {
+     "bpm": 82,
+     "density": 0.0159
+    },
+    {
+     "bpm": 83,
+     "density": 0.015044
+    },
+    {
+     "bpm": 84,
+     "density": 0.01402
+    },
+    {
+     "bpm": 85,
+     "density": 0.012843
+    },
+    {
+     "bpm": 86,
+     "density": 0.011566
+    },
+    {
+     "bpm": 87,
+     "density": 0.010257
+    },
+    {
+     "bpm": 88,
+     "density": 0.00898
+    },
+    {
+     "bpm": 89,
+     "density": 0.007784
+    },
+    {
+     "bpm": 90,
+     "density": 0.006698
+    },
+    {
+     "bpm": 91,
+     "density": 0.005744
+    },
+    {
+     "bpm": 92,
+     "density": 0.004943
+    },
+    {
+     "bpm": 93,
+     "density": 0.004312
+    },
+    {
+     "bpm": 94,
+     "density": 0.003853
+    },
+    {
+     "bpm": 95,
+     "density": 0.003542
+    },
+    {
+     "bpm": 96,
+     "density": 0.003324
+    },
+    {
+     "bpm": 97,
+     "density": 0.00313
+    },
+    {
+     "bpm": 98,
+     "density": 0.002894
+    },
+    {
+     "bpm": 99,
+     "density": 0.002584
+    },
+    {
+     "bpm": 100,
+     "density": 0.002201
+    },
+    {
+     "bpm": 101,
+     "density": 0.001779
+    },
+    {
+     "bpm": 102,
+     "density": 0.001365
+    },
+    {
+     "bpm": 103,
+     "density": 0.001001
+    },
+    {
+     "bpm": 104,
+     "density": 0.00071
+    },
+    {
+     "bpm": 105,
+     "density": 0.000495
+    },
+    {
+     "bpm": 106,
+     "density": 0.000346
+    },
+    {
+     "bpm": 107,
+     "density": 0.000247
+    },
+    {
+     "bpm": 108,
+     "density": 0.000183
+    },
+    {
+     "bpm": 109,
+     "density": 0.000142
+    },
+    {
+     "bpm": 110,
+     "density": 0.000117
+    }
+   ],
+   "percentile_lookup": {
+    "40": 0.0,
+    "41": 0.0,
+    "42": 0.0,
+    "43": 0.0,
+    "44": 0.0,
+    "45": 0.0,
+    "46": 0.2,
+    "47": 0.5,
+    "48": 1.0,
+    "49": 1.6,
+    "50": 2.6,
+    "51": 3.5,
+    "52": 4.8,
+    "53": 6.1,
+    "54": 8.8,
+    "55": 11.5,
+    "56": 14.1,
+    "57": 16.7,
+    "58": 19.3,
+    "59": 21.9,
+    "60": 24.6,
+    "61": 27.2,
+    "62": 30.5,
+    "63": 33.7,
+    "64": 36.4,
+    "65": 39.1,
+    "66": 43.4,
+    "67": 47.7,
+    "68": 50.4,
+    "69": 53.1,
+    "70": 57.8,
+    "71": 62.5,
+    "72": 65.9,
+    "73": 69.4,
+    "74": 71.8,
+    "75": 74.2,
+    "76": 75.4,
+    "77": 76.7,
+    "78": 78.8,
+    "79": 80.8,
+    "80": 82.4,
+    "81": 84.0,
+    "82": 85.7,
+    "83": 87.4,
+    "84": 89.2,
+    "85": 91.0,
+    "86": 92.1,
+    "87": 93.2,
+    "88": 93.7,
+    "89": 94.2,
+    "90": 95.2,
+    "91": 96.2,
+    "92": 96.4,
+    "93": 96.7,
+    "94": 96.8,
+    "95": 97.0,
+    "96": 97.2,
+    "97": 97.5,
+    "98": 98.2,
+    "99": 98.9,
+    "100": 99.0,
+    "101": 99.1,
+    "102": 99.2,
+    "103": 99.2,
+    "104": 99.2,
+    "105": 99.2,
+    "106": 99.3,
+    "107": 99.3,
+    "108": 99.3,
+    "109": 99.3,
+    "110": 99.3
+   },
+   "facts": [
+    "Half of US men 65–74 have a measured resting pulse between 60 and 76 bpm (middle 50%).",
+    "The median measured resting pulse for men 65–74 is about 68 bpm; the weighted mean is 68.9 bpm (SD 12.1).",
+    "90% of men 65–74 fall between about 52 and 90 bpm.",
+    "A pulse of 60 bpm sits at about the 25th percentile for men 65–74; 70 bpm at about the 58th.",
+    "About 22% of men 65–74 had a recorded pulse below 60 bpm, and about 1% above 100 bpm.",
+    "The median for men 65–74 is 2 bpm lower than the median for all men 18+ (70 bpm)."
+   ]
+  },
+  {
+   "band": "75+",
+   "age_min": 75,
+   "age_max": null,
+   "n_unweighted": 562,
+   "n_examined_no_pulse": 74,
+   "weighted_population_estimate": 7755697,
+   "mean": 68.3,
+   "se_mean_taylor": 0.63,
+   "se_df": 30,
+   "sd": 11.8,
+   "median": 65.8,
+   "percentiles": {
+    "p5": 53.6,
+    "p10": 56.6,
+    "p25": 60.3,
+    "p50": 65.8,
+    "p75": 73.9,
+    "p90": 84.4,
+    "p95": 93.5
+   },
+   "iqr": [
+    60.3,
+    73.9
+   ],
+   "share_recorded_below_60_pct": 18.8,
+   "share_recorded_above_100_pct": 1.9,
+   "kde": {
+    "bandwidth_bpm": 2.87,
+    "effective_n": 334.3,
+    "mass_within_40_110": 0.9927,
+    "grid_integral_trapezoid": 0.9927
+   },
+   "density": [
+    {
+     "bpm": 40,
+     "density": 0.000144
+    },
+    {
+     "bpm": 41,
+     "density": 0.000298
+    },
+    {
+     "bpm": 42,
+     "density": 0.000559
+    },
+    {
+     "bpm": 43,
+     "density": 0.000954
+    },
+    {
+     "bpm": 44,
+     "density": 0.001495
+    },
+    {
+     "bpm": 45,
+     "density": 0.002172
+    },
+    {
+     "bpm": 46,
+     "density": 0.00296
+    },
+    {
+     "bpm": 47,
+     "density": 0.003829
+    },
+    {
+     "bpm": 48,
+     "density": 0.00476
+    },
+    {
+     "bpm": 49,
+     "density": 0.005766
+    },
+    {
+     "bpm": 50,
+     "density": 0.006913
+    },
+    {
+     "bpm": 51,
+     "density": 0.008331
+    },
+    {
+     "bpm": 52,
+     "density": 0.010207
+    },
+    {
+     "bpm": 53,
+     "density": 0.012735
+    },
+    {
+     "bpm": 54,
+     "density": 0.016037
+    },
+    {
+     "bpm": 55,
+     "density": 0.020092
+    },
+    {
+     "bpm": 56,
+     "density": 0.024686
+    },
+    {
+     "bpm": 57,
+     "density": 0.029437
+    },
+    {
+     "bpm": 58,
+     "density": 0.033891
+    },
+    {
+     "bpm": 59,
+     "density": 0.03765
+    },
+    {
+     "bpm": 60,
+     "density": 0.040479
+    },
+    {
+     "bpm": 61,
+     "density": 0.042326
+    },
+    {
+     "bpm": 62,
+     "density": 0.043255
+    },
+    {
+     "bpm": 63,
+     "density": 0.043347
+    },
+    {
+     "bpm": 64,
+     "density": 0.042658
+    },
+    {
+     "bpm": 65,
+     "density": 0.041259
+    },
+    {
+     "bpm": 66,
+     "density": 0.039306
+    },
+    {
+     "bpm": 67,
+     "density": 0.037061
+    },
+    {
+     "bpm": 68,
+     "density": 0.034803
+    },
+    {
+     "bpm": 69,
+     "density": 0.032724
+    },
+    {
+     "bpm": 70,
+     "density": 0.030859
+    },
+    {
+     "bpm": 71,
+     "density": 0.029135
+    },
+    {
+     "bpm": 72,
+     "density": 0.027451
+    },
+    {
+     "bpm": 73,
+     "density": 0.025757
+    },
+    {
+     "bpm": 74,
+     "density": 0.024049
+    },
+    {
+     "bpm": 75,
+     "density": 0.022327
+    },
+    {
+     "bpm": 76,
+     "density": 0.020565
+    },
+    {
+     "bpm": 77,
+     "density": 0.01871
+    },
+    {
+     "bpm": 78,
+     "density": 0.016737
+    },
+    {
+     "bpm": 79,
+     "density": 0.014697
+    },
+    {
+     "bpm": 80,
+     "density": 0.012729
+    },
+    {
+     "bpm": 81,
+     "density": 0.011016
+    },
+    {
+     "bpm": 82,
+     "density": 0.009691
+    },
+    {
+     "bpm": 83,
+     "density": 0.008774
+    },
+    {
+     "bpm": 84,
+     "density": 0.008159
+    },
+    {
+     "bpm": 85,
+     "density": 0.007667
+    },
+    {
+     "bpm": 86,
+     "density": 0.007141
+    },
+    {
+     "bpm": 87,
+     "density": 0.006514
+    },
+    {
+     "bpm": 88,
+     "density": 0.005827
+    },
+    {
+     "bpm": 89,
+     "density": 0.00519
+    },
+    {
+     "bpm": 90,
+     "density": 0.004718
+    },
+    {
+     "bpm": 91,
+     "density": 0.004468
+    },
+    {
+     "bpm": 92,
+     "density": 0.004412
+    },
+    {
+     "bpm": 93,
+     "density": 0.004459
+    },
+    {
+     "bpm": 94,
+     "density": 0.004495
+    },
+    {
+     "bpm": 95,
+     "density": 0.004442
+    },
+    {
+     "bpm": 96,
+     "density": 0.004275
+    },
+    {
+     "bpm": 97,
+     "density": 0.004023
+    },
+    {
+     "bpm": 98,
+     "density": 0.00373
+    },
+    {
+     "bpm": 99,
+     "density": 0.003424
+    },
+    {
+     "bpm": 100,
+     "density": 0.003105
+    },
+    {
+     "bpm": 101,
+     "density": 0.002754
+    },
+    {
+     "bpm": 102,
+     "density": 0.002358
+    },
+    {
+     "bpm": 103,
+     "density": 0.001933
+    },
+    {
+     "bpm": 104,
+     "density": 0.001524
+    },
+    {
+     "bpm": 105,
+     "density": 0.001187
+    },
+    {
+     "bpm": 106,
+     "density": 0.000967
+    },
+    {
+     "bpm": 107,
+     "density": 0.000881
+    },
+    {
+     "bpm": 108,
+     "density": 0.000911
+    },
+    {
+     "bpm": 109,
+     "density": 0.001011
+    },
+    {
+     "bpm": 110,
+     "density": 0.001118
+    }
+   ],
+   "percentile_lookup": {
+    "40": 0.0,
+    "41": 0.0,
+    "42": 0.0,
+    "43": 0.0,
+    "44": 0.0,
+    "45": 0.0,
+    "46": 0.4,
+    "47": 0.8,
+    "48": 1.1,
+    "49": 1.4,
+    "50": 2.3,
+    "51": 3.1,
+    "52": 3.8,
+    "53": 4.4,
+    "54": 5.5,
+    "55": 6.5,
+    "56": 8.7,
+    "57": 10.8,
+    "58": 14.8,
+    "59": 18.8,
+    "60": 23.7,
+    "61": 28.7,
+    "62": 32.6,
+    "63": 36.5,
+    "64": 41.6,
+    "65": 46.6,
+    "66": 51.0,
+    "67": 55.4,
+    "68": 57.9,
+    "69": 60.3,
+    "70": 63.9,
+    "71": 67.5,
+    "72": 70.2,
+    "73": 72.8,
+    "74": 75.2,
+    "75": 77.6,
+    "76": 79.5,
+    "77": 81.5,
+    "78": 83.6,
+    "79": 85.7,
+    "80": 86.7,
+    "81": 87.8,
+    "82": 88.2,
+    "83": 88.7,
+    "84": 89.6,
+    "85": 90.6,
+    "86": 91.5,
+    "87": 92.4,
+    "88": 93.0,
+    "89": 93.6,
+    "90": 93.7,
+    "91": 93.9,
+    "92": 94.3,
+    "93": 94.7,
+    "94": 95.3,
+    "95": 95.9,
+    "96": 96.4,
+    "97": 96.9,
+    "98": 97.2,
+    "99": 97.4,
+    "100": 97.8,
+    "101": 98.1,
+    "102": 98.5,
+    "103": 98.9,
+    "104": 98.9,
+    "105": 98.9,
+    "106": 98.9,
+    "107": 99.0,
+    "108": 99.0,
+    "109": 99.0,
+    "110": 99.2
+   },
+   "facts": [
+    "Half of US men 75+ have a measured resting pulse between 60 and 74 bpm (middle 50%).",
+    "The median measured resting pulse for men 75+ is about 66 bpm; the weighted mean is 68.3 bpm (SD 11.8).",
+    "90% of men 75+ fall between about 54 and 94 bpm.",
+    "A pulse of 60 bpm sits at about the 24th percentile for men 75+; 70 bpm at about the 64th.",
+    "About 19% of men 75+ had a recorded pulse below 60 bpm, and about 2% above 100 bpm.",
+    "The median for men 75+ is 4 bpm lower than the median for all men 18+ (70 bpm)."
+   ]
+  },
+  {
+   "band": "All 18+",
+   "age_min": 18,
+   "age_max": null,
+   "n_unweighted": 5254,
+   "n_examined_no_pulse": 473,
+   "weighted_population_estimate": 114374169,
+   "mean": 71.2,
+   "se_mean_taylor": 0.31,
+   "se_df": 30,
+   "sd": 11.9,
+   "median": 70.3,
+   "percentiles": {
+    "p5": 54.2,
+    "p10": 57.1,
+    "p25": 62.3,
+    "p50": 70.3,
+    "p75": 78.2,
+    "p90": 87.1,
+    "p95": 92.2
+   },
+   "iqr": [
+    62.3,
+    78.2
+   ],
+   "share_recorded_below_60_pct": 14.8,
+   "share_recorded_above_100_pct": 1.5,
+   "kde": {
+    "bandwidth_bpm": 2.26,
+    "effective_n": 2350.1,
+    "mass_within_40_110": 0.9933,
+    "grid_integral_trapezoid": 0.9933
+   },
+   "density": [
+    {
+     "bpm": 40,
+     "density": 0.000176
+    },
+    {
+     "bpm": 41,
+     "density": 0.000233
+    },
+    {
+     "bpm": 42,
+     "density": 0.000321
+    },
+    {
+     "bpm": 43,
+     "density": 0.000458
+    },
+    {
+     "bpm": 44,
+     "density": 0.000665
+    },
+    {
+     "bpm": 45,
+     "density": 0.000974
+    },
+    {
+     "bpm": 46,
+     "density": 0.001436
+    },
+    {
+     "bpm": 47,
+     "density": 0.002115
+    },
+    {
+     "bpm": 48,
+     "density": 0.003044
+    },
+    {
+     "bpm": 49,
+     "density": 0.004211
+    },
+    {
+     "bpm": 50,
+     "density": 0.005574
+    },
+    {
+     "bpm": 51,
+     "density": 0.007128
+    },
+    {
+     "bpm": 52,
+     "density": 0.008923
+    },
+    {
+     "bpm": 53,
+     "density": 0.011014
+    },
+    {
+     "bpm": 54,
+     "density": 0.013409
+    },
+    {
+     "bpm": 55,
+     "density": 0.016063
+    },
+    {
+     "bpm": 56,
+     "density": 0.018895
+    },
+    {
+     "bpm": 57,
+     "density": 0.021774
+    },
+    {
+     "bpm": 58,
+     "density": 0.024497
+    },
+    {
+     "bpm": 59,
+     "density": 0.026813
+    },
+    {
+     "bpm": 60,
+     "density": 0.028537
+    },
+    {
+     "bpm": 61,
+     "density": 0.029662
+    },
+    {
+     "bpm": 62,
+     "density": 0.030374
+    },
+    {
+     "bpm": 63,
+     "density": 0.030913
+    },
+    {
+     "bpm": 64,
+     "density": 0.031383
+    },
+    {
+     "bpm": 65,
+     "density": 0.031705
+    },
+    {
+     "bpm": 66,
+     "density": 0.031769
+    },
+    {
+     "bpm": 67,
+     "density": 0.031648
+    },
+    {
+     "bpm": 68,
+     "density": 0.03162
+    },
+    {
+     "bpm": 69,
+     "density": 0.031926
+    },
+    {
+     "bpm": 70,
+     "density": 0.032532
+    },
+    {
+     "bpm": 71,
+     "density": 0.033128
+    },
+    {
+     "bpm": 72,
+     "density": 0.033338
+    },
+    {
+     "bpm": 73,
+     "density": 0.032925
+    },
+    {
+     "bpm": 74,
+     "density": 0.031883
+    },
+    {
+     "bpm": 75,
+     "density": 0.030399
+    },
+    {
+     "bpm": 76,
+     "density": 0.028706
+    },
+    {
+     "bpm": 77,
+     "density": 0.026929
+    },
+    {
+     "bpm": 78,
+     "density": 0.025059
+    },
+    {
+     "bpm": 79,
+     "density": 0.023079
+    },
+    {
+     "bpm": 80,
+     "density": 0.021084
+    },
+    {
+     "bpm": 81,
+     "density": 0.019233
+    },
+    {
+     "bpm": 82,
+     "density": 0.017617
+    },
+    {
+     "bpm": 83,
+     "density": 0.016226
+    },
+    {
+     "bpm": 84,
+     "density": 0.015012
+    },
+    {
+     "bpm": 85,
+     "density": 0.013953
+    },
+    {
+     "bpm": 86,
+     "density": 0.013035
+    },
+    {
+     "bpm": 87,
+     "density": 0.012205
+    },
+    {
+     "bpm": 88,
+     "density": 0.011356
+    },
+    {
+     "bpm": 89,
+     "density": 0.01038
+    },
+    {
+     "bpm": 90,
+     "density": 0.009257
+    },
+    {
+     "bpm": 91,
+     "density": 0.008082
+    },
+    {
+     "bpm": 92,
+     "density": 0.00701
+    },
+    {
+     "bpm": 93,
+     "density": 0.006145
+    },
+    {
+     "bpm": 94,
+     "density": 0.005478
+    },
+    {
+     "bpm": 95,
+     "density": 0.004921
+    },
+    {
+     "bpm": 96,
+     "density": 0.004382
+    },
+    {
+     "bpm": 97,
+     "density": 0.003823
+    },
+    {
+     "bpm": 98,
+     "density": 0.003249
+    },
+    {
+     "bpm": 99,
+     "density": 0.002688
+    },
+    {
+     "bpm": 100,
+     "density": 0.00218
+    },
+    {
+     "bpm": 101,
+     "density": 0.001754
+    },
+    {
+     "bpm": 102,
+     "density": 0.001431
+    },
+    {
+     "bpm": 103,
+     "density": 0.001213
+    },
+    {
+     "bpm": 104,
+     "density": 0.001091
+    },
+    {
+     "bpm": 105,
+     "density": 0.001045
+    },
+    {
+     "bpm": 106,
+     "density": 0.001037
+    },
+    {
+     "bpm": 107,
+     "density": 0.001026
+    },
+    {
+     "bpm": 108,
+     "density": 0.000981
+    },
+    {
+     "bpm": 109,
+     "density": 0.000897
+    },
+    {
+     "bpm": 110,
+     "density": 0.000791
+    }
+   ],
+   "percentile_lookup": {
+    "40": 0.0,
+    "41": 0.1,
+    "42": 0.1,
+    "43": 0.1,
+    "44": 0.1,
+    "45": 0.2,
+    "46": 0.3,
+    "47": 0.4,
+    "48": 0.6,
+    "49": 0.7,
+    "50": 1.4,
+    "51": 2.0,
+    "52": 2.7,
+    "53": 3.4,
+    "54": 4.7,
+    "55": 6.1,
+    "56": 7.9,
+    "57": 9.7,
+    "58": 12.2,
+    "59": 14.8,
+    "60": 18.0,
+    "61": 21.1,
+    "62": 24.1,
+    "63": 27.1,
+    "64": 30.1,
+    "65": 33.1,
+    "66": 36.8,
+    "67": 40.4,
+    "68": 43.0,
+    "69": 45.7,
+    "70": 49.1,
+    "71": 52.5,
+    "72": 56.0,
+    "73": 59.5,
+    "74": 63.0,
+    "75": 66.4,
+    "76": 69.0,
+    "77": 71.6,
+    "78": 74.4,
+    "79": 77.3,
+    "80": 79.1,
+    "81": 81.0,
+    "82": 82.8,
+    "83": 84.5,
+    "84": 86.0,
+    "85": 87.5,
+    "86": 88.7,
+    "87": 89.9,
+    "88": 91.1,
+    "89": 92.3,
+    "90": 93.4,
+    "91": 94.4,
+    "92": 94.9,
+    "93": 95.4,
+    "94": 96.0,
+    "95": 96.6,
+    "96": 97.0,
+    "97": 97.4,
+    "98": 97.8,
+    "99": 98.1,
+    "100": 98.3,
+    "101": 98.5,
+    "102": 98.6,
+    "103": 98.7,
+    "104": 98.8,
+    "105": 98.9,
+    "106": 99.0,
+    "107": 99.1,
+    "108": 99.2,
+    "109": 99.4,
+    "110": 99.4
+   },
+   "facts": [
+    "Half of US men 18+ have a measured resting pulse between 62 and 78 bpm (middle 50%).",
+    "The median measured resting pulse for men 18+ is about 70 bpm; the weighted mean is 71.2 bpm (SD 11.9).",
+    "90% of men 18+ fall between about 54 and 92 bpm.",
+    "A pulse of 60 bpm sits at about the 18th percentile for men 18+; 70 bpm at about the 49th.",
+    "About 15% of men 18+ had a recorded pulse below 60 bpm, and about 2% above 100 bpm."
+   ]
+  }
+ ]
+}

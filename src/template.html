@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data:; script-src 'unsafe-inline'; style-src 'unsafe-inline'; font-src data:; img-src data:; connect-src 'none'">
+<title>Arnold Institute of Broscience · Daily Ledger</title>
+<style>
+@font-face{font-family:"AIB Serif";src:url(data:font/woff2;base64,/*CORM*/) format("woff2");font-weight:300 700;font-style:normal;font-display:block}
+@font-face{font-family:"AIB Serif";src:url(data:font/woff2;base64,/*CORMI*/) format("woff2");font-weight:300 700;font-style:italic;font-display:block}
+@font-face{font-family:"AIB Sans";src:url(data:font/woff2;base64,/*INTER*/) format("woff2");font-weight:400 700;font-style:normal;font-display:block}
+:root{
+  --ink:#12100D; --ink2:#1B1814; --ink3:#25211B; --line:#3A342B;
+  --ivory:#F4EEE1; --ivory2:rgba(244,238,225,.72); --ivory3:rgba(244,238,225,.52);
+  --brass:#A8874A; --brass2:#C9A866;
+  --ember:#E9814F; --sage:#9DB8A0; --water:#7FB2C2; --amber:#D9A441; --red:#D9603E; --green:#8FC08A;
+  --serif:"AIB Serif","Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --sans:"AIB Sans",Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ink);color:var(--ivory);font:15px/1.5 var(--sans);font-variant-numeric:lining-nums tabular-nums;font-feature-settings:"lnum","tnum";-webkit-font-smoothing:antialiased}
+.num,.serif{font-family:var(--serif);font-variant-numeric:lining-nums tabular-nums;font-feature-settings:"lnum","tnum"}
+.wrap{max-width:1180px;margin:0 auto;padding:22px 18px 40px}
+header.mast{display:flex;flex-direction:column;gap:6px;padding:4px 2px 20px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.mast .inst{font:600 11px/1.3 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--brass2)}
+.mast h1{font:500 40px/1.05 var(--serif);margin:2px 0 0;letter-spacing:-.005em}
+.mast h1 em{font-style:italic;color:var(--brass2);font-weight:500}
+.mast .motto{font:italic 400 17px/1.3 var(--serif);color:var(--ivory2)}
+.mast .meta{font:12px/1.4 var(--sans);color:var(--ivory3);display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:4px}
+.mast .meta b{color:var(--ivory2);font-weight:500}
+.grid{display:grid;grid-template-columns:1fr;gap:16px}
+.card{background:var(--ink2);border:1px solid var(--line);border-radius:18px;padding:20px 18px 18px;min-width:0;position:relative}
+.eyebrow{font:600 11px/1.3 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--brass2);display:flex;align-items:center;gap:8px}
+.eyebrow .pill{letter-spacing:.06em;text-transform:none;font-weight:500;font-size:11px;color:var(--ink);background:var(--brass2);border-radius:99px;padding:2px 8px}
+.eyebrow .pill.live{background:var(--ember)}
+h2{font:500 30px/1.12 var(--serif);margin:6px 0 4px;text-wrap:balance}
+h2 em{font-style:italic;color:var(--brass2)}
+.lede{color:var(--ivory2);margin:0 0 12px;font-size:14.5px;text-wrap:pretty}
+.chart{width:100%;display:block;margin-top:6px}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+svg text{font-family:var(--sans);font-variant-numeric:lining-nums tabular-nums}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--ivory2);margin-top:8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.legend i.dash{height:0;border-top:2px dashed var(--brass2);width:16px;border-radius:0;vertical-align:3px}
+.legend i.dot{border-radius:50%}
+.foot{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;color:var(--ivory2);font-size:13.5px}
+.foot .big{font:600 26px/1 var(--serif);color:var(--ember)}
+.notes{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:4px;font-size:12.5px;color:var(--ivory2)}
+.notes li{display:flex;gap:8px;align-items:baseline}
+.notes .k{flex:none;width:18px;height:18px;border-radius:50%;border:1px solid var(--brass);color:var(--brass2);font:600 10.5px/16px var(--sans);text-align:center}
+/* hero */
+.hero{padding-top:22px;background:radial-gradient(120% 90% at 85% 0%,rgba(233,129,79,.13),transparent 55%),var(--ink2)}
+.hero-top{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-top:8px}
+.hero .bignum{font:500 104px/.86 var(--serif);letter-spacing:-.02em;color:var(--ivory);padding-top:6px}
+.hero .unit{display:flex;flex-direction:column;gap:2px;padding-bottom:8px}
+.hero .unit b{font:600 13px/1.2 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ivory2)}
+.hero .unit span{font-size:13px;color:var(--ivory3)}
+.hero .goalbox{margin-left:auto;text-align:right;padding-bottom:8px}
+.hero .goalbox .g{font:500 56px/.9 var(--serif);color:var(--brass2)}
+.hero .goalbox span{display:block;font:600 11px/1.3 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--brass2);margin-top:4px}
+.hero .tag{font:italic 400 20px/1.3 var(--serif);color:var(--ivory);margin:12px 0 2px;text-wrap:balance}
+/* today */
+.today-body{display:flex;gap:16px;align-items:center;margin-top:10px}
+.ring{flex:none;width:132px;height:132px;position:relative}
+.ring svg{width:132px;height:132px;display:block}
+.ring .v{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring .v b{font:500 44px/1 var(--serif)}
+.ring .v span{font:600 10px/1.2 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ivory3);margin-top:4px}
+.stats{display:grid;grid-template-columns:1fr;gap:8px;flex:1;min-width:0}
+.stat{display:flex;justify-content:space-between;align-items:baseline;gap:8px;border-bottom:1px solid var(--line);padding-bottom:6px}
+.stat span{font-size:12.5px;color:var(--ivory2);white-space:nowrap}
+.stat b{font:500 26px/1 var(--serif);white-space:nowrap}
+.stat b small{font:500 12px/1 var(--sans);color:var(--ivory3);margin-left:3px}
+.call{margin-top:16px;border-radius:14px;padding:14px 16px;background:var(--ink3);border-left:4px solid var(--ember)}
+.call .lbl{font:600 10.5px/1.2 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--ivory3)}
+.call .what{font:600 30px/1.1 var(--serif);margin:4px 0 2px}
+.call p{margin:0;color:var(--ivory2);font-size:14px}
+/* chips + mini stats */
+.ladder{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:6px 10px;align-items:center;margin-top:8px}
+.ladder .lb{font-size:12.5px;color:var(--ivory2);white-space:nowrap}
+.ladder .tr{height:8px;border-radius:4px;background:rgba(244,238,225,.08);overflow:hidden}
+.ladder .tr i{display:block;height:100%;border-radius:4px;background:var(--sage)}
+.ladder .vl{font:600 17px/1 var(--serif);color:var(--ivory);white-space:nowrap}
+.ladder .vl small{font:400 11px var(--sans);color:var(--ivory3);margin-left:5px}
+.flagnote{margin-top:8px;font-size:12.5px;color:var(--ivory3);display:flex;gap:8px;align-items:baseline}
+.flagnote b{flex:none;font:600 10px/1.2 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:var(--brass2);border-radius:99px;padding:3px 7px}
+.sofar{margin-top:12px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;font-size:12.5px;color:var(--ivory2)}
+.sofar .pill{font:500 11px/1.3 var(--sans);color:var(--ink);background:var(--ember);border-radius:99px;padding:2px 8px}
+.sofar b{font:600 17px/1 var(--serif);color:var(--ivory);margin-right:3px}
+.chip{display:inline-flex;gap:8px;align-items:baseline;flex-wrap:wrap;background:rgba(157,184,160,.12);border:1px solid rgba(157,184,160,.4);color:var(--ivory);border-radius:12px;padding:10px 12px;font-size:13.5px;margin:4px 0 6px;line-height:1.35}
+.chip b{font:600 19px/1 var(--serif);color:var(--sage)}
+.minis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px}
+.mini{background:var(--ink3);border-radius:12px;padding:10px 10px 9px;min-width:0}
+.mini span{display:block;font-size:11.5px;color:var(--ivory2);line-height:1.25}
+.mini b{display:block;font:500 28px/1.05 var(--serif);margin-top:4px}
+.mini b small{font:500 12px/1 var(--sans);color:var(--ivory3);margin-left:2px}
+.mini em{display:block;font-style:normal;font-size:11px;color:var(--ivory3);margin-top:2px}
+.subhead{font:600 11px/1.3 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--ivory3);margin:18px 0 4px}
+/* training */
+.sessions{display:grid;gap:10px;margin-top:8px}
+.sess{background:var(--ink3);border-radius:12px;padding:11px 12px}
+.sess .row1{display:flex;align-items:center;gap:10px}
+.sess .ico{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center}
+.sess .ttl{font:600 14px/1.25 var(--sans)}
+.sess .sub{font-size:12px;color:var(--ivory3)}
+.sess .m{margin-left:auto;text-align:right;font:500 24px/1 var(--serif);white-space:nowrap}
+.sess .m small{font:500 11px var(--sans);color:var(--ivory3);margin-left:2px}
+.zbar{display:flex;height:9px;border-radius:5px;overflow:hidden;margin-top:9px;background:var(--line)}
+.zbar i{display:block;height:100%}
+.steady{margin-top:8px;font-size:12.5px;color:var(--ivory2);display:flex;gap:8px;align-items:baseline}
+.steady b{flex:none;font:600 10.5px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;border-radius:99px;padding:3px 8px;color:var(--ink)}
+.counters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:4px}
+.counter{border:1px solid var(--line);border-radius:14px;padding:12px}
+.counter b{display:block;font:500 44px/1 var(--serif)}
+.counter span{display:block;font-size:12.5px;color:var(--ivory2);margin-top:4px;line-height:1.3}
+.counter em{display:block;font-style:normal;font-size:11.5px;color:var(--ivory3);margin-top:3px}
+/* lungs */
+.levers{display:grid;gap:10px;margin-top:6px}
+.lever{background:var(--ink3);border-radius:14px;padding:12px 12px 8px;min-width:0}
+.lever .h{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.lever .t{font:600 13px/1.25 var(--sans)}
+.lever .t span{display:block;font-weight:400;font-size:11.5px;color:var(--ivory3)}
+.lever .v{font:500 30px/1 var(--serif);white-space:nowrap}
+.lever .v small{font:500 12px var(--sans);color:var(--ivory3);margin-left:2px}
+.lever .a{font-size:11.5px;color:var(--ivory2);text-align:right}
+.pull{display:grid;gap:8px;margin-top:12px}
+.pull div{display:flex;gap:10px;align-items:baseline;font-size:13.5px;color:var(--ivory2)}
+.pull div b{flex:none;font:600 20px/1 var(--serif);color:var(--brass2);width:22px}
+footer.end{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);color:var(--ivory3);font-size:12px;display:flex;flex-wrap:wrap;gap:4px 14px;justify-content:space-between}
+.mast .mtop{display:flex;justify-content:space-between;align-items:baseline;gap:6px 12px;flex-wrap:wrap}
+.xlink{font-size:12.5px;color:var(--brass2);text-decoration:none;border-bottom:1px solid rgba(201,168,102,.4)}
+.xlink:hover{border-bottom-color:var(--brass2)}
+footer.end .seal{font:italic 15px var(--serif);color:var(--brass2)}
+
+/* v1.3 VO2max estimate */
+.vo2top{margin-top:4px}
+.vo2n{font:500 54px/.95 var(--serif);font-variant-numeric:lining-nums;white-space:nowrap}
+.vo2n small{font:500 13px var(--sans);color:var(--ivory3);margin-left:4px}
+.estag{display:inline-block;font:600 9.5px/1.4 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ember);border:1px dashed rgba(233,129,79,.7);border-radius:10px;padding:1px 8px;margin-right:4px}
+.vo2rng{font-size:12.5px;color:var(--ivory2);line-height:1.6;margin-top:8px}
+.vo2rng b{color:var(--ivory);font-weight:600;font-variant-numeric:lining-nums}
+.vo2c{margin-top:12px}
+.labslot{margin-top:12px;border:1px dashed rgba(244,238,225,.22);border-radius:12px;padding:10px 12px;font-size:12.5px;color:var(--ivory3);line-height:1.45;display:flex;gap:10px;align-items:flex-start}
+.labslot .dm{flex:none;width:11px;height:11px;transform:rotate(45deg);border:1.2px solid rgba(201,168,102,.55);margin-top:4px}
+.labslot b{color:var(--ivory2);font-weight:600}
+.labslot.has{border:1px solid rgba(201,168,102,.6);background:rgba(201,168,102,.06);color:var(--ivory2)}
+.labslot.has .dm{background:var(--brass2);border-color:var(--brass2)}
+.labslot.has b{color:var(--brass2)}
+.meth{display:grid;grid-template-columns:1fr auto;gap:4px 12px;margin-top:12px;font-size:12px;color:var(--ivory2)}
+.meth span:nth-child(2n){font-variant-numeric:lining-nums tabular-nums;color:var(--ivory);text-align:right}
+.vcap{font-size:11.5px;color:var(--ivory3);margin-top:10px;line-height:1.5}
+/* v1.2 bands, chips, goals */
+.here{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 7px;margin-top:10px;font-size:12.5px;color:var(--ivory2);line-height:1.35}
+.here .lb{font:600 9.5px/1.4 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--brass2);display:inline-flex;align-items:center;gap:6px}
+.here .lb i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ember);box-shadow:0 0 0 2px rgba(233,129,79,.25)}
+.here b{font-weight:600;color:var(--ivory)}
+.here small{font-size:11.5px;color:var(--ivory3)}
+.here.muted .lb i{background:transparent;border:1px solid var(--ivory3);box-shadow:none}
+.src{font-size:10.5px;color:var(--ivory3);margin-top:3px;line-height:1.4}
+.goals{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;align-items:center}
+.gchip{display:inline-flex;align-items:baseline;gap:6px;font-size:11.5px;line-height:1.3;border-radius:12px;padding:3px 10px;max-width:100%}
+.gchip em{font:600 9px/1.3 var(--sans);font-style:normal;letter-spacing:.14em;text-transform:uppercase;opacity:.85;white-space:nowrap}
+.g-confirmed{border:1px solid var(--brass2);color:var(--brass2);background:rgba(201,168,102,.08)}
+.g-proposed{border:1px dashed rgba(201,168,102,.75);color:var(--brass2)}
+.g-ask{border:1px dotted rgba(244,238,225,.4);color:var(--ivory3)}
+.gq{font-size:11.5px;color:var(--ivory3);font-style:italic;font-family:var(--serif);font-size:13px;margin-top:4px}
+.chips2{display:grid;gap:10px;margin-top:12px}
+.chips2>div{background:var(--ink3);border-radius:12px;padding:9px 12px 10px}
+.chips2 .here{margin-top:2px}
+.chips2 .nm{font:600 12.5px var(--sans);color:var(--ivory)}
+.ledger{grid-column:1/-1}
+.vo2{grid-column:1/-1}
+@media (min-width:1024px){.vo2g{display:grid;grid-template-columns:5fr 7fr;grid-template-areas:"a b" "c b";gap:0 32px;align-items:start}.vo2g>.A{grid-area:a}.vo2g>.B{grid-area:b;padding-top:6px}.vo2g>.C{grid-area:c}}
+.mgroup{margin-top:16px}
+.mgroup>h3{font:600 10.5px/1.3 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ivory3);margin:0 0 8px}
+.mgrid{display:grid;grid-template-columns:1fr;gap:10px}
+.mt{background:var(--ink3);border-radius:14px;padding:12px 13px 12px;min-width:0}
+.mt .mh{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.mt .ml{font:600 13px/1.3 var(--sans);color:var(--ivory)}
+.mt .mv{font:500 26px/1 var(--serif);color:var(--ivory);white-space:nowrap}
+.mt .mv small{font:500 11.5px var(--sans);color:var(--ivory3);margin-left:3px}
+.mt .mv.add{font:500 12px/1.3 var(--sans);color:var(--brass2);border:1px dashed rgba(201,168,102,.6);border-radius:99px;padding:3px 9px}
+.bbar{position:relative;margin:14px 0 18px;height:8px}
+.bbar .seg{position:absolute;top:0;height:8px}
+.bbar .seg:first-child{border-radius:4px 0 0 4px}.bbar .seg:last-child{border-radius:0 4px 4px 0}
+.bbar .tk{position:absolute;top:12px;transform:translateX(-50%);font-size:10px;color:var(--ivory3);white-space:nowrap}
+.bbar .d{position:absolute;top:-4px;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:var(--ember);border:2px solid var(--ink3)}
+.bbar .r{position:absolute;top:-3px;width:14px;height:14px;margin-left:-7px;border-radius:50%;border:2px solid var(--ivory);background:transparent}
+.bsteps{display:flex;gap:3px;margin:12px 0 4px}
+.bsteps span{flex:1;min-width:0;font-size:10px;color:var(--ivory3);border-top:6px solid;padding-top:4px;line-height:1.25}
+.mt .cat{font-size:12.5px;color:var(--ivory2);line-height:1.4}
+.mt .cat b{color:var(--ivory);font-weight:600}
+.reftag{display:inline-block;font:600 8.5px/1.5 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ivory3);border:1px solid rgba(244,238,225,.22);border-radius:8px;padding:0 6px;margin-left:6px;vertical-align:2px;white-space:nowrap}
+.bax{font:600 9px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ivory3);margin:12px 0 -6px}
+.bax+.bbar{margin-top:12px}
+.rows{display:flex;gap:6px;margin:12px 0 8px}
+.rw{flex:1;min-width:0;border:1px solid rgba(201,168,102,.25);border-radius:10px;padding:6px 4px 5px;text-align:center}
+.rw b{display:block;font:500 20px/1.1 var(--serif);color:var(--ivory3)}
+.rw span{display:block;font-size:10px;color:var(--ivory3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rw.on{background:rgba(201,168,102,.16);border-color:rgba(201,168,102,.6)}.rw.on b{color:var(--brass2)}
+.rw.now{border-style:dashed}
+.mt .ex{font-size:11.5px;color:var(--ivory3);margin-top:3px;line-height:1.4}
+.mt details{margin-top:6px;font-size:10.5px;color:var(--ivory3);line-height:1.45}
+.mt summary{cursor:pointer;list-style:none;color:var(--ivory3)}
+.mt summary::-webkit-details-marker{display:none}
+.mt details p{margin:4px 0 0}
+.lkey{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:11.5px;color:var(--ivory3);margin-top:8px}
+.lkey span{display:inline-flex;align-items:center;gap:6px}
+/* lining figures everywhere: the font shorthand above resets them, so pin them last */
+body *{font-variant-numeric:lining-nums tabular-nums!important;font-feature-settings:"lnum","tnum"!important}
+@media (min-width:760px){
+  .wrap{padding:34px 28px 56px}
+  .mast h1{font-size:54px}
+  .grid{grid-template-columns:repeat(12,minmax(0,1fr));gap:18px;align-items:start}
+  .hero{grid-column:1/-1;padding:26px 28px 22px}
+  .hero .bignum{font-size:150px}
+  .hero .goalbox .g{font-size:76px}
+  .today{grid-column:span 5}
+  .sleep{grid-column:span 7}
+  .train{grid-column:span 7}
+  .lungs{grid-column:span 5}
+  .card{padding:22px 22px 20px}
+  .mgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .chips2{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (min-width:1024px){.mgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:760px) and (max-width:1023px){.today,.sleep,.train,.lungs{grid-column:1/-1}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <div class="mtop"><div class="inst">Arnold Institute of Broscience</div><a class="xlink" href="chronographs-health.html">Chronographs: Health →</a></div>
+    <h1>The Daily <em>Ledger</em></h1>
+    <div class="motto">Cor lentum, animus fortis. A slow heart, a strong spirit.</div>
+    <div class="meta" id="meta"></div>
+  </header>
+  <main class="grid">
+    <section class="card hero" id="road"></section>
+    <section class="card today" id="today"></section>
+    <section class="card sleep" id="sleep"></section>
+    <section class="card train" id="train"></section>
+    <section class="card lungs" id="lungs"></section>
+    <section class="card vo2" id="vo2"></section>
+    <section class="card ledger" id="ledger"></section>
+  </main>
+  <footer class="end">
+    <span class="seal">Arnold Institute of Broscience · Field edition, v1.4</span>
+    <a class="xlink" href="chronographs-health.html">Chronographs: Health →</a>
+    <span>Published for viewing only. A self-contained page: it loads nothing from the network. General reference ranges are population figures, not personal targets. VO₂max, percentiles and categories are estimates, not a measurement or medical advice.</span>
+  </footer>
+</div>
+<!-- SNAPSHOT:BEGIN (managed by build_dashboard.py; do not edit by hand) -->
+<script id="snapshot" type="application/json">{}</script>
+<!-- SNAPSHOT:END -->
+<script>
+(function(){
+"use strict";
+var C={ink:"#12100D",ink2:"#1B1814",ink3:"#25211B",line:"#3A342B",ivory:"#F4EEE1",brass:"#A8874A",brass2:"#C9A866",ember:"#E9814F",sage:"#9DB8A0",water:"#7FB2C2",amber:"#D9A441",red:"#D9603E",green:"#8FC08A"};
+var MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],DOW=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+/* Off-limits wording filter for free-text notes (pattern only, never rendered). */
+var OFF=new RegExp(["sm"+"ok","ci"+"gar","nic"+"otin","tob"+"acco","va"+"pe","cut.?b"+"ack","qu"+"it"].join("|"),"i");
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function isNum(x){return typeof x==="number"&&isFinite(x);}
+function arr(x){return Array.isArray(x)?x:[];}
+function fmt(x,d){return isNum(x)?x.toFixed(d==null?0:d):"–";}
+function mean(a){a=a.filter(isNum);return a.length?a.reduce(function(s,x){return s+x;},0)/a.length:null;}
+// parse an ISO local time (any offset is ignored) into a wall-clock object without relying on the viewer's zone
+function wall(iso){
+  if(typeof iso!=="string")return null;
+  var m=iso.match(/^(\d{4})-(\d{2})-(\d{2})(?:T(\d{2}):(\d{2}))?/);if(!m)return null;
+  var y=+m[1],mo=+m[2]-1,d=+m[3],h=m[4]?+m[4]:0,mi=m[5]?+m[5]:0;
+  var t=Date.UTC(y,mo,d,h,mi);var dt=new Date(t);
+  return{t:t,y:y,mo:mo,d:d,h:h,mi:mi,dow:dt.getUTCDay()};
+}
+function dlabel(w){return w?MON[w.mo]+" "+w.d:"";}
+function dlong(w){return w?DOW[w.dow]+" "+w.d+" "+MON[w.mo]:"";}
+function hhmm(w){return w?(w.h<10?"0":"")+w.h+":"+(w.mi<10?"0":"")+w.mi:"";}
+function W(el){var w=el.clientWidth||340;return Math.max(280,Math.round(w));}
+function svg(w,h,inner){return '<svg viewBox="0 0 '+w+' '+h+'" width="'+w+'" height="'+h+'" role="img">'+inner+'</svg>';}
+function txt(x,y,s,o){o=o||{};return '<text x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" font-size="'+(o.size||11)+'" fill="'+(o.fill||"rgba(244,238,225,.6)")+'"'+(o.anchor?' text-anchor="'+o.anchor+'"':'')+(o.weight?' font-weight="'+o.weight+'"':'')+(o.family?' font-family="'+o.family+'"':'')+(o.ls?' letter-spacing="'+o.ls+'"':'')+(o.halo?' stroke="'+o.halo+'" stroke-width="3" paint-order="stroke" stroke-linejoin="round"':'')+'>'+esc(s)+'</text>';}
+var SERIF='AIB Serif, Cormorant Garamond, Georgia, serif';
+
+function render(D,src){
+  D=D||{};var meta=D.meta||{},prof=D.profile||{},goals=prof.goals||{};
+  // v1.2: reference bands + goals come from data only (anything touching the off-limits topic is dropped whole)
+  function offEntry(v){try{return OFF.test(JSON.stringify(v));}catch(e){return true;}}
+  var RB={},GL={};
+  Object.keys(D.reference_bands||{}).forEach(function(k){var v=D.reference_bands[k];if(k.charAt(0)!=="_"&&v&&typeof v==="object"&&!Array.isArray(v)&&!offEntry(v)){v._k=k;RB[k]=v;}});
+  Object.keys(D.goals||{}).forEach(function(k){var v=D.goals[k];if(k.charAt(0)!=="_"&&v&&typeof v==="object"&&!Array.isArray(v)&&!offEntry(v))GL[k]=v;});
+  function dash(x){return String(x==null?"":x).replace(/(\d)\s*-\s*(\d)/g,"$1–$2");}
+  function goalOf(k){var rb=RB[k]||{},emb=rb.goal||{},id=emb.id||rb.goal_id,g=(id&&GL[id])||(!rb.label&&GL[k])||null;
+    if(!g&&!emb.target&&!rb.goal_status)return null;g=g||{};
+    var st=String(rb.goal_status||g.status||emb.status||"").toLowerCase();
+    return {id:id||k,status:st,target:g.target||emb.target||"",value:isNum(g.value)?g.value:null,timeframe:g.timeframe||emb.timeframe||"",q:(g.question&&safe(g.question.q))||"",milestones:arr(g.milestones),unit:g.unit||""};}
+  function goalChip(gi,o){o=o||{};if(!gi)return"";var t=esc(dash(safe(gi.target)));
+    if(gi.status==="confirmed")return '<span class="gchip g-confirmed"><em>goal</em>'+t+(gi.timeframe&&!o.short&&/\d{4}-\d{2}-\d{2}/.test(gi.timeframe)?' · '+esc(byDate(gi.timeframe)):'')+'</span>';
+    if(gi.status==="proposed")return '<span class="gchip g-proposed"><em>proposed</em>'+t+(gi.timeframe&&!o.short?' · '+esc(byDate(gi.timeframe)):'')+'</span>';
+    return '<span class="gchip g-ask">goal pending: your call</span>';}
+  function byDate(t){t=safe(String(t||""));var only=/^\s*\d{4}-\d{2}-\d{2}\s*$/.test(t);t=t.replace(/\d{4}-\d{2}-\d{2}/g,function(d){var w=wall(d);return w?dlabel(w)+", "+w.y:d;});return only?"by "+t.trim():t;}
+  function goalBlock(k,o){var gi=goalOf(k);if(!gi)return"";o=o||{};return '<div class="goals">'+goalChip(gi,o)+'</div>'+(o.q!==false&&gi.q?'<div class="gq">Arnie asks: '+esc(gi.q)+'</div>':'');}
+  function srcShort(rb){var l=safe(((rb||{}).source||{}).label||"");return dash(l.split(/\s*[(;:]/)[0]);}
+  function winShort(w){w=safe(w||"");var m=w.match(/(median|mean) of (?:the )?last (\d+)(.*)$/i);if(m)return m[2]+(/week/i.test(m[3])?"-week ":"-cycle ")+(m[1].toLowerCase()==="mean"?"avg":"median");return w;}
+  // v1.4: one rounding rule per metric, shared by tiles, chips and charts
+  var DEC={rhr:1,hrv:1,recovery:0,sleep_total:1,sleep_efficiency:0,sleep_consistency:0,sleep_performance:0,resp_rate:1,spo2_overnight:1,spo2_fingertip:0,skin_temp:1,blood_pressure:0,day_strain:1,weekly_cardio:0,bmi:1,vo2max:1,row_steady:2};
+  function fmtV(rb,v){if(!isNum(v))return"–";var u=String(rb.unit||"");
+    if(rb._k&&DEC[rb._k]!=null)return v.toFixed(DEC[rb._k]);
+    if(/^s(\/|$)/.test(u)){var mm=Math.floor(v/60),ss=v-mm*60;return mm+":"+(ss<10?"0":"")+(Math.round(ss*10)/10);}
+    if(/step/.test(u))return Math.round(v).toLocaleString("en-US");
+    if(/ratio/.test(u))return v.toFixed(2);
+    var d=Math.abs(v-Math.round(v))<1e-9?0:(Math.abs(v*10-Math.round(v*10))<1e-9?1:(u.indexOf("C")>=0?2:1));return v.toFixed(d);}
+  function fmtB(rb,v){var u=String(rb.unit||"");if(/step/.test(u))return (Math.round(v/100)/10)+"k";return fmtV(rb,v);}
+  function uShort(rb){var u=String(rb.unit||"");if(/^s\//.test(u))return "/500m";if(u==="s")return "";if(/step/.test(u))return "steps";if(/ratio|whoop/i.test(u))return "";if(/^breaths\/min$/.test(u))return "/min";if(/min\/week/.test(u))return "min/wk";return u;}
+  function bandList(k){return arr((RB[k]||{}).bands).filter(function(b){return b&&(isNum(b.min)||isNum(b.max))&&!OFF.test(String(b.label||""));});}
+  function shortLabel(l){l=String(l||"");var pre=l.split(/\s*[:(]/)[0],par=l.match(/\(([^)]*)\)/);if(/chart/i.test(pre)&&par)pre=par[1].charAt(0).toUpperCase()+par[1].slice(1);return dash(pre);}
+  function wrapL(t,n){var out=[],cur="";String(t).split(/\s+/).forEach(function(wd){if(!cur)cur=wd;else if((cur+" "+wd).length<=n)cur+=" "+wd;else{out.push(cur);cur=wd;}});if(cur)out.push(cur);return out;}
+  var TONE_A={good:.16,ok:.10,watch:.055,flag:.028},TONE_B={good:.62,ok:.40,watch:.24,flag:.12};
+  function shade(k,sy,vLo,vHi,L,R,hue,o){o=o||{};var s="";bandList(k).forEach(function(b){
+      var a=isNum(b.min)?b.min:-1e9,c=isNum(b.max)?b.max:1e9,lo=Math.max(a,vLo),hi=Math.min(c,vHi);if(hi<=lo)return;var y1=sy(hi),y2=sy(lo);
+      s+='<rect x="'+L+'" width="'+(R-L)+'" y="'+y1.toFixed(1)+'" height="'+(y2-y1).toFixed(1)+'" fill="rgba('+hue+','+(TONE_A[b.tone]||.05)+')"/>';
+      if(isNum(b.min)&&b.min>vLo&&b.min<vHi)s+='<line x1="'+L+'" x2="'+R+'" y1="'+sy(b.min).toFixed(1)+'" y2="'+sy(b.min).toFixed(1)+'" stroke="rgba('+hue+',.22)" stroke-width=".8"/>';
+      if(o.gx){var ln=wrapL(shortLabel(b.label),o.maxc||12),lh=(o.size||10)+1.5,need=ln.length*lh+2;if(y2-y1>=need){var y0=(y1+y2)/2-(ln.length-1)*lh/2+3.4;ln.forEach(function(t,j){s+=txt(o.gx,y0+j*lh,t,{size:o.size||10,fill:"rgba("+hue+",.92)"});});}}
+      else if(y2-y1>=(o.minH||12))s+=txt(R-4,(y1+y2)/2+3.4,shortLabel(b.label),{anchor:"end",size:o.size||10,fill:"rgba("+hue+",.9)",halo:o.halo||"#1E1B16",ls:".02em"});});
+    return s;}
+  function here(k,useRecent,o){o=o||{};var rb=RB[k];if(!rb||!rb.current)return"";var c=rb.current,rec=useRecent&&isNum(c.recent)&&c.recent_category;
+    var v=rec?c.recent:c.value,cat=safe(rec?c.recent_category:c.category),win=rec?c.recent_window:c.window,u=uShort(rb);
+    if(!isNum(v))return '<div class="here muted"><span class="lb"><i></i>add a reading</span><small>'+esc(safe(rb.label))+': '+esc(safe(c.window)||"not logged yet")+'</small></div>';
+    if(!cat)return"";
+    return '<div class="here"><span class="lb"><i></i>you are here</span><b>'+esc(dash(cat))+'</b><small>'+esc(fmtV(rb,v)+(u&&u!=="%"?" "+u:u))+' · '+esc(winShort(win))+'</small></div>'+(o.src===false?'':'<div class="src">Bands: '+esc(srcShort(rb))+'</div>');}
+  var NUMW=["","one","two","three","four","five","six","seven","eight","nine"],TENW={4:"Forty",5:"Fifty",6:"Sixty"};
+  function words(n){var t=Math.floor(n/10),u=n%10;return (TENW[t]&&n===Math.round(n))?TENW[t]+(u?"-"+NUMW[u]:""):String(n);}
+  var gR=goalOf("rhr")||(isNum(goals.rhr_bpm)?{status:"confirmed",value:goals.rhr_bpm,target:"RHR "+goals.rhr_bpm+" bpm",milestones:[]}:null);
+  var GOAL=gR&&gR.status!=="ask"&&isNum(gR.value)?gR.value:null,GPROP=!!(gR&&gR.status==="proposed");
+  var gRow=GL.row_min&&GL.row_min.status==="confirmed"&&isNum(GL.row_min.value)?GL.row_min.value:(isNum(goals.row_min_minutes)?goals.row_min_minutes:null);
+  var ROWMIN=isNum(gRow)?gRow:null;
+  var days=arr(D.days).filter(function(x){return x&&wall(x.cycle_start);}).sort(function(a,b){return wall(a.cycle_start).t-wall(b.cycle_start).t;});
+  days.forEach(function(x){x._w=wall(x.cycle_start);if(typeof x.note==="string"&&OFF.test(x.note))x.note=null;});
+  var workouts=arr(D.workouts).filter(function(w){return w&&wall(w.start);});
+  var HZ=D.hr_zones||{};
+  var ZR=[0,1,2,3,4,5].map(function(i){var k=Object.keys(HZ).filter(function(k){return k.indexOf("zone"+i+"_")===0;})[0];var a=k?arr(HZ[k]):[];return isNum(a[0])&&isNum(a[1])?a:null;});
+  function safe(s){return (typeof s==="string"&&!OFF.test(s))?s:"";}
+  function noteLabel(x){var n=x.note;if(/long whoop cycle/i.test(n)&&isNum(x.cycle_hours))return Math.round(x.cycle_hours)+" h cycle: naps only";return n;}
+  function isAuto(x){return /long whoop cycle/i.test(x.note||"");}
+
+  // ---- meta
+  var g=wall(meta.generated);
+  document.getElementById("meta").innerHTML=
+    (g?'<span>Data pulled <b>'+esc(dlong(g)+", "+hhmm(g))+'</b> (local time)</span>':'')+
+    '<span>'+esc(days.length)+' cycles since '+esc(dlabel(wall(meta.history_from)||(days[0]&&days[0]._w)))+'</span>'+
+    '<span>'+"Offline snapshot, inlined at build; no live data loading"+'</span>';
+
+  // ---- time scale helpers (x keyed on cycle_start)
+  var t0=days.length?days[0]._w.t:0,t1=days.length?days[days.length-1]._w.t:1;if(t1<=t0)t1=t0+864e5;
+  function xs(L,R){return function(t){return L+(t-t0)/(t1-t0)*(R-L);};}
+  function weekTicks(){var out=[];if(!days.length)return out;var s=new Date(t0);var dow=s.getUTCDay();var first=t0+((8-dow)%7)*864e5;first=Math.floor(first/864e5)*864e5;for(var t=first;t<=t1;t+=7*864e5)out.push(t);return out;}
+  function xAxis(sx,y,w){var s="";weekTicks().forEach(function(t){var x=sx(t);var dd=new Date(t);s+='<line x1="'+x+'" x2="'+x+'" y1="'+(y-4)+'" y2="'+y+'" stroke="'+C.line+'"/>'+txt(x,y+14,MON[dd.getUTCMonth()]+" "+dd.getUTCDate(),{anchor:"middle",size:11});});return s;}
+  function noteMarks(sx,yTop){var s="",k=0,list=[],rowsX=[[],[],[]];days.forEach(function(x){if(x.note&&!/first WHOOP cycle|still open/i.test(x.note)){k++;list.push([k,x]);var X=sx(x._w.t);
+    var row=0;while(row<2&&rowsX[row].some(function(o){return Math.abs(o-X)<19;}))row++;rowsX[row].push(X);var yT=yTop-row*19;
+    var auto=isAuto(x),sc=auto?"rgba(244,238,225,.45)":C.brass,tc=auto?"rgba(244,238,225,.7)":C.brass2;
+    s+='<line x1="'+X+'" x2="'+X+'" y1="'+(yT+9)+'" y2="'+(yTop+400)+'" stroke="'+sc+'" stroke-opacity="'+(auto?'.25':'.35')+'" stroke-dasharray="2 3" class="nm"/>'+'<circle cx="'+X+'" cy="'+yT+'" r="8" fill="'+C.ink2+'" stroke="'+sc+'"/>'+txt(X,yT+3.6,String(k),{anchor:"middle",size:10.5,fill:tc,weight:600});}});return{svg:s,list:list};}
+  function notesList(list){if(!list.length)return"";return '<ul class="notes">'+list.map(function(p){return '<li><span class="k">'+p[0]+'</span><span>'+esc(dlabel(p[1]._w))+' · '+esc(noteLabel(p[1]))+'</span></li>';}).join("")+'</ul>';}
+
+  // ---- RHR series
+  var rh=days.filter(function(x){return isNum(x.rhr);});
+  rh.forEach(function(x,i){var win=rh.slice(Math.max(0,i-6),i+1).map(function(y){return y.rhr;});x._avg=win.length>=3?mean(win):null;});
+  var nowAvg=rh.length?mean(rh.slice(-7).map(function(x){return x.rhr;})):null;
+  var startAvg=rh.length>=7?mean(rh.slice(0,7).map(function(x){return x.rhr;})):null;
+  var best=rh.length?Math.min.apply(null,rh.map(function(x){return x.rhr;})):null;
+  var bestDay=rh.filter(function(x){return x.rhr===best;});
+  var GV=isNum(GOAL)?GOAL:(isNum(best)?best-2:50);var togo=isNum(nowAvg)&&isNum(GOAL)?Math.max(0,nowAvg-GOAL):null;
+  var MS=arr(gR&&gR.milestones).map(function(m){var t=String((m&&m.target)||""),mm=t.match(/avg\s+(\d+(?:\.\d+)?)/i)||t.match(/(\d+(?:\.\d+)?)\s*(?:bpm|or lower)/i);return mm?{v:+mm[1],by:m.by||m.timeframe||"",st:m.status||"proposed"}:null;}).filter(Boolean);
+
+  (function road(){
+    var el=document.getElementById("road");
+    el.innerHTML='<div class="eyebrow">'+(isNum(GOAL)?'The Road to '+GOAL:'The road down')+' <span class="pill">hero</span></div>'+
+      '<div class="hero-top"><div class="bignum num">'+fmt(nowAvg,1)+'</div><div class="unit"><b>bpm resting</b><span>7-cycle average</span></div>'+
+      (isNum(GOAL)?'<div class="goalbox"><div class="g num">'+GOAL+'</div><span>'+(GPROP?'proposed goal':'the goal')+'</span></div>':'')+'</div>'+
+      here("rhr",true)+goalBlock("rhr")+
+      '<div class="tag">'+(isNum(best)&&isNum(GOAL)?'Your heart has already touched <span class="num" style="font-style:normal">'+best+'</span>. '+words(GOAL)+' is the next town down the road.':'Every steady row is a mile marker.')+'</div>'+
+      '<div class="chart" id="roadStrip"></div><div class="chart" id="rhrChart"></div>'+
+      '<div class="legend"><span><i style="background:'+C.ember+'"></i>7-cycle average</span><span><i class="dot" style="background:rgba(244,238,225,.75)"></i>each cycle</span><span>'+(isNum(GOAL)?'<i class="'+(GPROP?'dash':'')+'" style="'+(GPROP?'':'background:'+C.brass2)+'"></i>'+(GPROP?'proposed goal ':'goal ')+GOAL:'')+'</span>'+(RB.rhr?'<span><i style="background:rgba(201,168,102,.16);border:1px solid rgba(201,168,102,.35)"></i>fitness bands: '+esc(srcShort(RB.rhr))+'</span>':'')+'</div>'+
+      '<div id="rhrNotes"></div>'+
+      (isNum(togo)?'<div class="foot"><span class="big num">'+fmt(togo,1)+'</span><span>bpm to go on the 7-cycle average</span>'+'</div>':'')+(isNum(best)&&isNum(GOAL)?'<div style="font-size:13.5px;color:var(--ivory2);margin-top:6px">Best single day: <b class="num" style="font-size:19px;color:var(--ivory);font-family:var(--serif)">'+best+'</b>, only '+(best-GOAL)+' from the goal.</div>':'');
+    // strip
+    var sEl=document.getElementById("roadStrip"),w=W(sEl),h=104,L=14,R=w-14;
+    var hiV=Math.max(66,Math.ceil((Math.max(startAvg||0,nowAvg||0))+2)),loV=Math.min(GV,isNum(best)?best:GV)-1;
+    var sx=function(v){return L+(hiV-v)/(hiV-loV)*(R-L);};
+    var y=50,s="";
+    s+='<defs><linearGradient id="rg" x1="0" x2="1"><stop offset="0" stop-color="'+C.line+'"/><stop offset="1" stop-color="'+C.brass+'"/></linearGradient></defs>';
+    s+='<line x1="'+L+'" x2="'+R+'" y1="'+y+'" y2="'+y+'" stroke="url(#rg)" stroke-width="6" stroke-linecap="round"/>';
+    s+='<line x1="'+L+'" x2="'+R+'" y1="'+y+'" y2="'+y+'" stroke="'+C.ink+'" stroke-width="1.2" stroke-dasharray="6 7"/>';
+    if(isNum(nowAvg))s+='<line x1="'+sx(nowAvg)+'" x2="'+R+'" y1="'+y+'" y2="'+y+'" stroke="'+C.ember+'" stroke-opacity=".0"/>';
+    var ticks=[];for(var v=Math.floor(hiV/2)*2;v>GV;v-=2)ticks.push(v);
+    ticks.forEach(function(v){var X=sx(v);if(X<L+10||(isNum(GOAL)&&Math.abs(v-GOAL)<2))return;s+='<line x1="'+X+'" x2="'+X+'" y1="'+(y+6)+'" y2="'+(y+11)+'" stroke="rgba(244,238,225,.35)"/>'+txt(X,y+25,String(v),{anchor:"middle",size:11,fill:"rgba(244,238,225,.55)"});});
+    // milestone flags 52/50 + goal
+    MS.forEach(function(m){if(m.v>=hiV||m.v<=loV)return;var X=sx(m.v);s+=m.st==="confirmed"?'<circle cx="'+X+'" cy="'+y+'" r="3.4" fill="'+C.brass2+'"/>':'<circle cx="'+X+'" cy="'+y+'" r="4.2" fill="'+C.ink2+'" stroke="'+C.brass2+'" stroke-width="1.3" stroke-dasharray="2 1.6"/>';});
+    if(isNum(GOAL)){var GX=sx(GOAL);s+='<circle cx="'+GX+'" cy="'+y+'" r="9" fill="'+C.brass2+'"/><circle cx="'+GX+'" cy="'+y+'" r="4" fill="'+C.ink+'"/>'+txt(GX,y+27,String(GOAL),{anchor:"end",size:13,fill:C.brass2,weight:700});}
+    // callouts above (greedy rows)
+    var calls=[];
+    if(isNum(startAvg))calls.push({v:startAvg,l:"start "+startAvg.toFixed(1),c:"rgba(244,238,225,.6)",r:4});
+    if(isNum(nowAvg))calls.push({v:nowAvg,l:"now "+nowAvg.toFixed(1),c:C.ember,r:7,now:1});
+    if(isNum(best))calls.push({v:best,l:"best "+best,c:C.ivory,r:5,ring:1});
+    calls.sort(function(a,b){return sx(a.v)-sx(b.v);});
+    var rows=[[],[]];
+    calls.forEach(function(cn){var X=sx(cn.v),tw=cn.l.length*6.6+4;var x0=Math.max(L,Math.min(R-tw,X-tw/2));cn.x0=x0;cn.tw=tw;cn.row=0;
+      if(rows[0].some(function(o){return !(x0>o.x0+o.tw+6||x0+tw+6<o.x0);}))cn.row=1;rows[cn.row].push(cn);});
+    calls.forEach(function(cn){var X=sx(cn.v),ty=cn.row?12:28;
+      s+='<line x1="'+X+'" x2="'+X+'" y1="'+(ty+4)+'" y2="'+(y-cn.r-1)+'" stroke="'+cn.c+'" stroke-opacity=".55"/>';
+      s+=cn.ring?'<circle cx="'+X+'" cy="'+y+'" r="'+cn.r+'" fill="'+C.ink2+'" stroke="'+cn.c+'" stroke-width="2"/>':'<circle cx="'+X+'" cy="'+y+'" r="'+cn.r+'" fill="'+cn.c+'"'+(cn.now?' stroke="'+C.ink2+'" stroke-width="2"':'')+'/>';
+      s+=txt(cn.x0+cn.tw/2,ty,cn.l,{anchor:"middle",size:11.5,fill:cn.c,weight:cn.now?700:500});});
+    s+=txt(L,h-3,"← higher",{size:10.5,fill:"rgba(244,238,225,.45)"})+txt(R,h-3,"lower is the win →",{size:10.5,fill:"rgba(244,238,225,.45)",anchor:"end"});
+    sEl.innerHTML=svg(w,h,s);
+    // line chart
+    var cEl=document.getElementById("rhrChart");w=W(cEl);h=w<500?230:260;var pl=30,pr=8,pt=50,pb=24,GUT=w<500?70:96;
+    var vals=rh.map(function(x){return x.rhr;});var yMin=Math.min(GV-2,Math.min.apply(null,vals.concat([GV]))-1),yMax=Math.max(72,Math.max.apply(null,vals.concat([0]))+2);
+    var sxx=xs(pl+6,w-pr-GUT-8),sy=function(v){return pt+(yMax-v)/(yMax-yMin)*(h-pt-pb);};
+    s="";
+    s+=shade("rhr",sy,yMin,yMax,pl,w-pr,"201,168,102",{gx:w-pr-GUT+4,maxc:w<500?11:16,size:10});
+    for(var gv=Math.ceil(yMin/5)*5;gv<=yMax;gv+=5){s+='<line x1="'+pl+'" x2="'+(w-pr)+'" y1="'+sy(gv)+'" y2="'+sy(gv)+'" stroke="rgba(244,238,225,.07)"/>'+txt(pl-6,sy(gv)+3.5,String(gv),{anchor:"end",size:10.5});}
+    if(isNum(GOAL))s+='<line x1="'+pl+'" x2="'+(w-pr-GUT)+'" y1="'+sy(GOAL)+'" y2="'+sy(GOAL)+'" stroke="'+C.brass2+'" stroke-width="1.6"'+(GPROP?' stroke-dasharray="6 5"':'')+'/>'+txt(pl+4,sy(GOAL)-5,(GPROP?"proposed goal ":"goal ")+GOAL,{size:11,fill:C.brass2,weight:700,halo:"#1E1B16"});
+    if(isNum(best))s+='<line x1="'+pl+'" x2="'+(w-pr-GUT)+'" y1="'+sy(best)+'" y2="'+sy(best)+'" stroke="rgba(244,238,225,.28)" stroke-dasharray="1 4"/>';
+    var nm=noteMarks(sxx,pt-14);s+=nm.svg.replace(/y2="[\d.]+"/g,'y2="'+(h-pb)+'"');
+    rh.forEach(function(x){s+='<circle cx="'+sxx(x._w.t)+'" cy="'+sy(x.rhr)+'" r="2.6" fill="rgba(244,238,225,.72)"/>';});
+    var pts=rh.filter(function(x){return isNum(x._avg);}).map(function(x){return sxx(x._w.t).toFixed(1)+","+sy(x._avg).toFixed(1);});
+    if(pts.length>1)s+='<polyline points="'+pts.join(" ")+'" fill="none" stroke="'+C.ember+'" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>';
+    if(bestDay.length){var bd=bestDay[0];s+='<circle cx="'+sxx(bd._w.t)+'" cy="'+sy(best)+'" r="5.5" fill="none" stroke="'+C.ivory+'" stroke-width="1.5"/>'+txt(sxx(bd._w.t),sy(best)+18,"best "+best,{anchor:"middle",size:11,fill:C.ivory,weight:600});}
+    s+=xAxis(sxx,h-pb+4,w);
+    cEl.innerHTML=svg(w,h,s);
+    document.getElementById("rhrNotes").innerHTML=notesList(nm.list);
+  })();
+
+  // ---- TODAY
+  (function(){
+    var el=document.getElementById("today");
+    var rec=days.filter(function(x){return isNum(x.recovery_pct);});var t=rec[rec.length-1];
+    if(!t){el.innerHTML='<div class="eyebrow">Today</div><h2>Waiting for the first recovery score</h2>';return;}
+    var r=t.recovery_pct,col=r>=67?C.green:(r>=34?C.amber:C.red);
+    // coach call precedence: active status flag > pending recovery > recovery bands (copy comes from data, verbatim)
+    var cc=D.coach_copy||{},ccs=cc.status||{},lastDay=days[days.length-1];
+    var flag=arr(D.status_active).filter(function(s){return s&&s.active!==false&&ccs[s.flag];})[0];
+    var pick,callCol=col,flagNote="";
+    if(flag){pick=ccs[flag.flag];callCol=C.brass2;flagNote=safe(flag.note);}
+    else if(lastDay&&!isNum(lastDay.recovery_pct)&&lastDay!==days[0]){pick=cc.pending;callCol=C.brass;}
+    else pick=cc[r<34?"red":(r>=67?"green":"amber")];
+    pick=pick||{};var callW=safe(pick.title),callP=safe(pick.body);
+    var live=days[days.length-1]===t?t:null;
+    var R=56,Cc=2*Math.PI*R,f=Math.max(0,Math.min(100,r))/100;
+    var ring='<svg viewBox="0 0 132 132"><circle cx="66" cy="66" r="'+R+'" fill="none" stroke="'+C.line+'" stroke-width="10"/><circle cx="66" cy="66" r="'+R+'" fill="none" stroke="'+col+'" stroke-width="10" stroke-linecap="round" stroke-dasharray="'+(Cc*f).toFixed(1)+' '+Cc.toFixed(1)+'" transform="rotate(-90 66 66)"/></svg>';
+    var sl=isNum(t.total_sleep_h)?t.total_sleep_h:t.main_sleep_h;
+    el.innerHTML='<div class="eyebrow">Today</div>'+
+      '<h2>'+esc(dlong(t._w))+'<span style="color:var(--ivory3);font-size:.6em"> · from '+esc(hhmm(t._w))+'</span></h2>'+
+      '<div class="today-body"><div class="ring">'+ring+'<div class="v"><b class="num">'+fmt(r)+'<span style="font-size:.5em;letter-spacing:0;color:var(--ivory2);text-transform:none">%</span></b><span>recovery</span></div></div>'+
+      '<div class="stats"><div class="stat"><span>Resting HR</span><b class="num">'+fmt(t.rhr)+'<small>bpm</small></b></div>'+
+      '<div class="stat"><span>HRV</span><b class="num">'+fmt(t.hrv_ms,1)+'<small>ms</small></b></div>'+
+      '<div class="stat"><span>Last sleep</span><b class="num">'+fmt(sl,1)+'<small>h</small></b></div></div></div>'+
+      '<div style="font-size:12px;color:var(--ivory3);margin-top:8px">'+(isNum(t.main_sleep_h)?'Main block '+fmt(t.main_sleep_h,1)+' h':'')+(isNum(t.nap_h)&&t.nap_h>0?' + naps '+fmt(t.nap_h,1)+' h':'')+'</div>'+
+      (RB.recovery?'<div class="chips2" style="grid-template-columns:1fr"><div><div class="nm">Recovery</div>'+here("recovery",true)+goalBlock("recovery")+'</div></div>':'')+
+      (live&&(isNum(live.day_strain)||isNum(live.steps))?'<div class="subhead" style="margin-top:14px;display:flex;gap:8px;align-items:center">'+(live.ongoing?'This cycle so far <span class="pill" style="font:500 11px/1.3 var(--sans);letter-spacing:.02em;text-transform:none;color:var(--ink);background:var(--ember);border-radius:99px;padding:2px 8px">in progress</span>':'This cycle')+'</div><div class="sofar" style="margin-top:4px">'+(isNum(live.day_strain)?'<span><b class="num">'+fmt(live.day_strain,1)+'</b>strain</span>':'')+(isNum(live.steps)?'<span><b class="num">'+live.steps.toLocaleString("en-US")+'</b>steps</span>':'')+'<span><b class="num">'+fmt(isNum(live.workout_min)?live.workout_min:0)+'</b>min training</span></div>':'')+
+      (callW||callP?'<div class="call" style="border-left-color:'+callCol+'"><div class="lbl">Coach’s call</div>'+(callW?'<div class="what">'+esc(callW)+'</div>':'')+(callP?'<p>'+esc(callP)+'</p>':'')+(flagNote?'<div class="flagnote"><b>'+esc(String(flag.flag).replace(/_/g," "))+'</b><span>'+esc(flagNote)+'</span></div>':'')+'</div>':'');
+  })();
+
+  // ---- SLEEP
+  (function(){
+    var el=document.getElementById("sleep");
+    var sd=days.filter(function(x){return isNum(x.main_sleep_h)||isNum(x.nap_h);});
+    // insight buckets recomputed
+    var SV=(D.insights||{}).sleep_vs_recovery||{},rr=SV.r_main_sleep_vs_recovery;
+    var bk=arr(SV.buckets).filter(function(b){return b&&b.show===true&&isNum(b.avg_recovery);}).sort(function(a,b){return (b.min_h||0)-(a.min_h||0);});
+    var head=isNum(rr)?((rr>=.3?"Longer main sleep, higher recovery":(rr<=-.3?"Longer main sleep, lower recovery":"Main sleep and recovery"))+" (r\u00a0=\u00a0"+rr.toFixed(2)+(isNum(SV.n)?", "+SV.n+"\u00a0nights":"")+")"):"";
+    var chip=(head||bk.length)?'<div class="chip" style="display:block">'+(head?'<div style="font-size:14px">'+esc(head)+'</div>':'')+
+      (bk.length?'<div class="ladder">'+bk.map(function(b){return '<span class="lb">'+esc(String(b.label||"").replace(/(\d)-(\d)/g,"$1–$2"))+'</span><span class="tr"><i style="width:'+Math.max(2,Math.min(100,b.avg_recovery))+'%"></i></span><span class="vl num">'+fmt(b.avg_recovery)+'%<small>'+(isNum(b.n)?b.n+" nights":"")+'</small></span>';}).join("")+'</div>':'')+
+      '<div style="font-size:11.5px;color:var(--ivory3);margin-top:8px">Average recovery by main-sleep length'+(isNum(SV.min_n_to_show)?'; groups with fewer than '+SV.min_n_to_show+' nights stay hidden':'')+'.</div></div>':'';
+    var last7=days.slice(-7);
+    var sChip=function(k,nm){return RB[k]?'<div><div class="nm">'+nm+'</div>'+here(k,true)+goalBlock(k)+'</div>':'';};
+    var cons=mean(last7.map(function(x){return x.sleep_consistency_pct;})),eff=mean(last7.map(function(x){return x.sleep_eff_pct;})),main7=mean(last7.map(function(x){return x.main_sleep_h;}));
+    // v1.4: minis show the same 7-cycle numbers as the chips, with the same rounding
+    var rc=function(k){var r=RB[k];return r&&r.current&&isNum(r.current.recent)?r.current.recent:null;};
+    if(isNum(rc("sleep_efficiency")))eff=rc("sleep_efficiency");if(isNum(rc("sleep_consistency")))cons=rc("sleep_consistency");
+    el.innerHTML='<div class="eyebrow">The big lever · sleep</div>'+
+      '<h2>One long block is <em>your</em> superpower</h2>'+
+      '<p class="lede">Bars are sleep per cycle; dots are the recovery it bought.</p>'+
+      chip+
+      '<div class="chart" id="sleepChart"></div>'+
+      '<div class="legend"><span><i style="background:rgba(244,238,225,.85)"></i>main sleep</span><span><i style="background:rgba(244,238,225,.28)"></i>naps</span><span><i class="dot" style="background:'+C.sage+'"></i>recovery %</span>'+(function(){var g=goalOf("sleep_total");return g&&g.status!=="ask"&&isNum(g.value)?'<span><i class="'+(g.status==="confirmed"?'':'dash')+'" style="'+(g.status==="confirmed"?'background:'+C.brass2:'')+'"></i>'+(g.status==="confirmed"?'goal ':'proposed goal ')+g.value+' h</span>':'';})()+'<span><i style="background:rgba(201,168,102,.16);border:1px solid rgba(201,168,102,.35)"></i>bands: '+esc(srcShort(RB.sleep_total)||"sleep duration reference")+'</span><span style="color:var(--ivory3)">numbered markers: see notes above</span></div>'+
+      '<div class="minis"><div class="mini"><span>Main block</span><b class="num">'+fmt(main7,1)+'<small>h</small></b><em>7-cycle avg</em></div><div class="mini"><span>Consistency</span><b class="num">'+(isNum(cons)?(RB.sleep_consistency?fmtV(RB.sleep_consistency,cons):fmt(cons))+'<small>%</small>':'–')+'</b><em>7-cycle avg</em></div><div class="mini"><span>Efficiency</span><b class="num">'+(RB.sleep_efficiency?fmtV(RB.sleep_efficiency,eff):fmt(eff))+'<small>%</small></b><em>7-cycle avg</em></div></div>'+
+      '<div class="chips2">'+sChip("sleep_total","Total sleep")+sChip("sleep_efficiency","Efficiency")+sChip("sleep_consistency","Consistency")+sChip("sleep_performance","Sleep performance")+'</div>'+
+      '<div class="subhead">Sleep window · last 10</div><div class="chart" id="bedStrip"></div>';
+    var cEl=document.getElementById("sleepChart"),w=W(cEl),h=w<500?232:262,pl=34,pr=4,pt=50,pb=24,GUT=w<500?62:96;
+    var maxH=Math.max(10,Math.ceil(Math.max.apply(null,sd.map(function(x){return (x.main_sleep_h||0)+(x.nap_h||0);}).concat([0]))));maxH=Math.ceil(maxH/3)*3;
+    var sx=xs(pl+6,w-pr-GUT-6),sy=function(v){return pt+(maxH-v)/maxH*(h-pt-pb);},sr=function(v){return pt+(100-v)/100*(h-pt-pb);};
+    var bw=Math.max(3,Math.min(14,(w-pl-pr)/Math.max(1,(t1-t0)/864e5+1)*.62)),s="";
+    s+=shade("sleep_total",sy,0,maxH,pl,w-pr,"201,168,102",{gx:w-pr-GUT+4,maxc:w<500?11:16,size:10});
+    for(var v=0;v<=maxH;v+=3){s+='<line x1="'+pl+'" x2="'+(w-pr)+'" y1="'+sy(v)+'" y2="'+sy(v)+'" stroke="rgba(244,238,225,.07)"/>'+txt(pl-6,sy(v)+3.5,v+"h",{anchor:"end",size:10.5});}
+    [50,100].forEach(function(p){s+=txt(pl-6,sr(p)+15,p+"%",{anchor:"end",size:9.5,fill:"rgba(157,184,160,.9)"});});
+    var nm=noteMarks(sx,pt-14);s+=nm.svg.replace(/y2="[\d.]+"/g,'y2="'+(h-pb)+'"');
+    var sg=goalOf("sleep_total"),sgv=sg&&sg.status!=="ask"&&isNum(sg.value)?sg.value:null;
+    sd.forEach(function(x){var X=sx(x._w.t)-bw/2,m=x.main_sleep_h||0,n=x.nap_h||0;
+      if(m>0)s+='<rect x="'+X.toFixed(1)+'" y="'+sy(m).toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+(sy(0)-sy(m)).toFixed(1)+'" rx="1.5" fill="rgba(244,238,225,.85)"/>';
+      if(n>0)s+='<rect x="'+X.toFixed(1)+'" y="'+sy(m+n).toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+(sy(m)-sy(m+n)-1).toFixed(1)+'" rx="1.5" fill="rgba(244,238,225,.28)"/>';});
+    if(isNum(sgv)&&sgv<=maxH)s+='<line x1="'+pl+'" x2="'+(w-pr-GUT)+'" y1="'+sy(sgv)+'" y2="'+sy(sgv)+'" stroke="'+C.brass2+'" stroke-width="1.6"'+(sg.status==="confirmed"?'':' stroke-dasharray="6 5"')+'/>'+txt(pl+4,sy(sgv)-5,(sg.status==="confirmed"?"goal ":"proposed ")+sgv+" h",{size:11,fill:C.brass2,weight:700,halo:"#1E1B16"});
+    days.filter(function(x){return isNum(x.recovery_pct);}).forEach(function(x){s+='<circle cx="'+sx(x._w.t)+'" cy="'+sr(x.recovery_pct)+'" r="3.6" fill="'+C.sage+'" stroke="'+C.ink2+'" stroke-width="1.2"/>';});
+    s+=xAxis(sx,h-pb+4,w);
+    cEl.innerHTML=svg(w,h,s)+notesList(nm.list).replace('class="notes"','class="notes" style="display:none"');
+    // bed strip: 12:00 -> 06:00 next day
+    var bEl=document.getElementById("bedStrip");w=W(bEl);var rowsD=days.filter(function(x){return x.bedtime&&x.wake;}).slice(-10);var rh_=15,lab=50,top=4;h=top+rowsD.length*rh_+22;
+    var A=12*60,B=30*60,bx=function(m){return lab+(Math.max(A,Math.min(B,m))-A)/(B-A)*(w-lab-8);};s="";
+    [12,15,18,21,24,27,30].forEach(function(hh){var X=bx(hh*60);s+='<line x1="'+X+'" x2="'+X+'" y1="'+top+'" y2="'+(h-18)+'" stroke="rgba(244,238,225,'+(hh===24?'.18':'.07')+')"/>';if(hh%6===0)s+=txt(X,h-4,(hh%24===0?"midnight":(hh%24===12?"noon":((hh%12)||12)+(hh%24<12?" am":" pm"))),{anchor:hh===12?"start":(hh===30?"end":"middle"),size:10.5});});
+    rowsD.forEach(function(x,i){var bm=+x.bedtime.slice(0,2)*60+ +x.bedtime.slice(3,5),wm=+x.wake.slice(0,2)*60+ +x.wake.slice(3,5);if(bm<A)bm+=0;if(wm<=bm)wm+=1440;var y=top+i*rh_+rh_/2;
+      s+=txt(0,y+3.8,dlabel(x._w),{size:10.5,fill:"rgba(244,238,225,.6)"})+'<line x1="'+bx(bm)+'" x2="'+bx(wm)+'" y1="'+y+'" y2="'+y+'" stroke="'+(x.main_sleep_h>=6?C.sage:"rgba(244,238,225,.75)")+'" stroke-width="6" stroke-linecap="round"/>';});
+    bEl.innerHTML=svg(w,h,s);
+  })();
+
+  // ---- TRAINING
+  (function(){
+    var el=document.getElementById("train");
+    function cat(sp){sp=String(sp||"").toLowerCase();return sp.indexOf("row")>=0?"row":(sp.indexOf("swim")>=0?"swim":(sp.indexOf("yoga")>=0?"yoga":"other"));}
+    var COL={row:C.ember,swim:C.water,yoga:"rgba(201,168,102,.55)",other:"rgba(244,238,225,.22)"};
+    function wk(t){var d=new Date(t);var dow=(d.getUTCDay()+6)%7;return Math.floor(t/864e5)*864e5-dow*864e5;}
+    var weeks={};workouts.forEach(function(w){var k=wk(wall(w.start).t);weeks[k]=weeks[k]||{row:0,swim:0,yoga:0,other:0,swims:0};weeks[k][cat(w.sport)]+=isNum(w.minutes)?w.minutes:0;if(cat(w.sport)==="swim")weeks[k].swims++;});
+    var gNow=wall(meta.generated);var curWk=wk(gNow?gNow.t:(days.length?days[days.length-1]._w.t:0));
+    if(days.length){for(var t=wk(t0);t<=curWk;t+=7*864e5)weeks[t]=weeks[t]||{row:0,swim:0,yoga:0,other:0,swims:0};}
+    var keys=Object.keys(weeks).map(Number).sort();
+    var rows30=workouts.filter(function(w){return cat(w.sport)==="row"&&isNum(w.minutes)&&w.minutes>=(isNum(ROWMIN)?ROWMIN:0);}).length;
+    var swimsWk=(weeks[curWk]||{}).swims||0,bestSw=Math.max.apply(null,keys.map(function(k){return weeks[k].swims;}).concat([0]));
+    var lastSwim=workouts.filter(function(w){return cat(w.sport)==="swim";}).map(function(w){return wall(w.start);}).sort(function(a,b){return b.t-a.t;})[0];
+    var heroes=workouts.filter(function(w){var c=cat(w.sport);return c==="row"||c==="swim";}).sort(function(a,b){return wall(b.start).t-wall(a.start).t;});
+    var tot={row:0,swim:0,yoga:0,other:0};workouts.forEach(function(w){tot[cat(w.sport)]+=w.minutes||0;});
+    el.innerHTML='<div class="eyebrow">Training log · water &amp; oars first</div>'+
+      '<h2>Rows and swims are the <em>engine room</em></h2>'+
+      '<div class="counters"><div class="counter"><b class="num" style="color:var(--ember)">'+rows30+'</b><span>'+(isNum(ROWMIN)?ROWMIN+'-minute rows banked':'rows banked')+'</span><em>'+(isNum(GOAL)?'every one counts toward '+GOAL:'every one counts')+'</em></div>'+
+      '<div class="counter"><b class="num" style="color:var(--water)">'+swimsWk+'</b><span>swims this week</span><em>'+(bestSw?'best week: '+bestSw+(lastSwim?' · last swim '+dlabel(lastSwim):''):'first lap pending')+'</em></div></div>'+
+      '<div class="subhead" style="display:flex;gap:8px;align-items:center">Minutes per week'+(days.length&&days[days.length-1].ongoing?' <span style="font:500 11px/1.3 var(--sans);letter-spacing:.02em;text-transform:none;color:var(--ink);background:var(--ember);border-radius:99px;padding:2px 8px">this week in progress</span>':'')+'</div><div class="chart" id="wkChart"></div>'+
+      (RB.weekly_cardio?'<div class="chips2" style="grid-template-columns:1fr"><div><div class="nm">Weekly cardio, moderate-equivalent</div>'+here("weekly_cardio",false)+goalBlock("weekly_cardio")+'</div></div>':'')+
+      '<div class="legend"><span><i style="background:'+COL.row+'"></i>rowing</span><span><i style="background:'+COL.swim+'"></i>swimming</span><span><i style="background:'+COL.yoga+'"></i>yoga</span><span><i style="background:'+COL.other+'"></i>other</span></div>'+
+      '<div class="subhead">Hero sessions</div><div class="sessions" id="sess"></div>'+
+      '<div class="legend" id="zleg"></div>';
+    var cEl=document.getElementById("wkChart"),w=W(cEl),h=170,pl=30,pr=4,pt=10,pb=22;
+    var mx=Math.max(60,Math.max.apply(null,keys.map(function(k){var o=weeks[k];return o.row+o.swim+o.yoga+o.other;})));mx=Math.ceil(mx/60)*60;
+    var sy=function(v){return pt+(mx-v)/mx*(h-pt-pb);},n=keys.length||1,slot=(w-pl-pr)/n,bw=Math.min(46,slot*.6),s="";
+    for(var v=0;v<=mx;v+=60){s+='<line x1="'+pl+'" x2="'+(w-pr)+'" y1="'+sy(v)+'" y2="'+sy(v)+'" stroke="rgba(244,238,225,.07)"/>'+txt(pl-6,sy(v)+3.5,String(v),{anchor:"end",size:10.5});}
+    keys.forEach(function(k,i){var o=weeks[k],X=pl+slot*i+(slot-bw)/2,acc=0;["row","swim","yoga","other"].forEach(function(c){if(o[c]>0){s+='<rect x="'+X.toFixed(1)+'" y="'+sy(acc+o[c]).toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+Math.max(0,(sy(acc)-sy(acc+o[c])-1)).toFixed(1)+'" rx="2" fill="'+COL[c]+'"/>';acc+=o[c];}});
+      var d=new Date(k);s+=txt(X+bw/2,h-6,MON[d.getUTCMonth()]+" "+d.getUTCDate(),{anchor:"middle",size:10.5,fill:k===curWk?C.ivory:"rgba(244,238,225,.6)",weight:k===curWk?600:400});});
+    cEl.innerHTML=svg(w,h,s);
+    var ZC=["#4A4237","#6F8F86",C.sage,C.amber,C.ember,"#B8432C"],ZK=["zone_zero","zone_one","zone_two","zone_three","zone_four","zone_five"];
+    function icon(c){return c==="row"?'<svg width="18" height="18" viewBox="0 0 18 18"><path d="M3 15 L15 3" stroke="'+C.ink+'" stroke-width="2" stroke-linecap="round"/><path d="M12 2.5 l3.5 3.5 -2 1.2 -2.7-2.7z" fill="'+C.ink+'"/></svg>':'<svg width="18" height="18" viewBox="0 0 18 18"><path d="M2 7 q2.3-2.4 4.6 0 t4.6 0 t4.6 0 M2 12 q2.3-2.4 4.6 0 t4.6 0 t4.6 0" stroke="'+C.ink+'" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>';}
+    document.getElementById("sess").innerHTML=heroes.length?heroes.map(function(wo){var c=cat(wo.sport),wt=wall(wo.start),z=wo.zones_min||{};var tz=ZK.reduce(function(s,k){return s+(isNum(z[k])?z[k]:0);},0);
+      var bar=tz>0?'<div class="zbar">'+ZK.map(function(k,i){return isNum(z[k])&&z[k]>0?'<i style="width:'+(z[k]/tz*100).toFixed(2)+'%;background:'+ZC[i]+'"></i>':'';}).join("")+'</div>':'';
+      var steady="";if(c==="row"&&tz>0){var easy=((isNum(z.zone_one)?z.zone_one:0)+(isNum(z.zone_two)?z.zone_two:0))/tz;var ok=easy>0.5;
+        var band=(ZR[1]&&ZR[2])?' <span style="white-space:nowrap">('+ZR[1][0]+'–'+ZR[2][1]+'&nbsp;bpm)</span>':'';
+        steady='<div class="steady"><b style="background:'+(ok?C.green:C.amber)+'">'+(ok?'steady ✓':'spicy')+'</b><span>'+(ok?Math.round(easy*100)+'% in zones 1–2. Textbook engine work.':Math.round(easy*100)+'% in zones 1–2; this one was a race. Next time cruise in zones 1–2'+band+' and let the engine build.')+'</span></div>';}
+      return '<div class="sess"><div class="row1"><div class="ico" style="background:'+COL[c]+'">'+icon(c)+'</div><div><div class="ttl">'+(c==="row"?"Row":"Swim")+'</div><div class="sub">'+esc(dlong(wt))+' · '+esc(hhmm(wt))+(isNum(wo.avg_hr)?' · avg '+wo.avg_hr+' bpm':'')+'</div></div><div class="m num">'+fmt(wo.minutes)+'<small>min</small></div></div>'+bar+steady+'</div>';}).join(""):'<div class="sess"><div class="sub">The first row or swim lands here.</div></div>';
+    document.getElementById("zleg").innerHTML=["easy","zone 1","zone 2","zone 3","zone 4","zone 5"].map(function(l,i){var z=ZR[i];var rg=z?(i===0?" · under "+z[1]:(i===5?" · "+z[0]+"+":" · "+z[0]+"–"+z[1])):"";return '<span><i style="background:'+ZC[i]+'"></i>'+l+rg+'</span>';}).join("")+(ZR.some(Boolean)?'<span style="color:var(--ivory3)">bpm, estimated from heart-rate reserve</span>':'')+'<span style="color:var(--ivory3)">Also logged: yoga '+fmt(tot.yoga)+' min · other '+fmt(tot.other)+' min</span>';
+  })();
+
+  // ---- LUNG LEVERS
+  (function(){
+    var el=document.getElementById("lungs");
+    var fing=arr((D.manual_logs||{}).spo2_fingertip).filter(function(e){return e&&wall(e.datetime)&&isNum(e.spo2_pct);});
+    var defs=[
+      {k:"resp_rate",rb:"resp_rate",t:"Breathing rate",sub:"breaths per minute, overnight",u:"/min",d:1,col:C.sage,hue:"157,184,160"},
+      {k:"spo2_pct",rb:"spo2_overnight",t:"Oxygen (SpO₂)",sub:"overnight, wrist sensor",u:"%",d:1,col:C.water,hue:"127,178,194",fing:fing},
+      {k:"hrv_ms",rb:"hrv",t:"Engine (HRV)",sub:"heart-rate variability",u:"ms",d:1,col:C.ember,hue:"201,168,102"}
+    ];
+    el.innerHTML='<div class="eyebrow">Lung levers</div><h2>Breath is a <em>trainable</em> engine</h2>'+
+      '<p class="lede">Your lungs get stronger every time you pull one of these. The water and the long sleep do the heavy lifting.</p>'+
+      '<div class="levers">'+defs.map(function(d,i){return '<div class="lever"><div class="h"><div class="t">'+d.t+'<span>'+d.sub+'</span></div><div><div class="v num" id="lv'+i+'"></div><div class="a" id="la'+i+'"></div></div></div><div style="margin-top:-4px">'+here(d.rb,true,{src:false})+goalBlock(d.rb,{short:1})+'</div><div class="chart" id="lc'+i+'" style="margin-top:8px"></div>'+(RB[d.rb]?'<div class="src">Bands: '+esc(srcShort(RB[d.rb]))+'</div>':'')+'</div>';}).join("")+'</div>'+
+      '<div class="pull"><div><b class="num">1</b><span><strong style="color:var(--ivory)">Swim</strong>: breath control, rhythm, full exhales.</span></div><div><b class="num">2</b><span><strong style="color:var(--ivory)">Zone-2 row</strong>: '+'grows cardio capacity and pulls the resting HR down.</span></div><div><b class="num">3</b><span><strong style="color:var(--ivory)">Long sleep</strong>: steadier overnight breathing and oxygen.</span></div></div>'+
+      '<div class="legend" style="margin-top:12px">'+(fing.length?'<span><i class="dot" style="background:'+C.ivory+'"></i>fingertip check</span>':'<span style="color:var(--ivory3)">Fingertip SpO₂ checks will appear as ivory dots once logged.</span>')+'</div>';
+    defs.forEach(function(d,i){
+      var ser=days.filter(function(x){return isNum(x[d.k]);});var last=ser[ser.length-1],a7=mean(ser.slice(-7).map(function(x){return x[d.k];}));
+      document.getElementById("lv"+i).innerHTML=last?fmt(last[d.k],d.d)+'<small>'+d.u+'</small>':"–";
+      document.getElementById("la"+i).textContent=(isNum(a7)?"7-cycle avg "+fmt(a7,d.d):"");
+      var cEl=document.getElementById("lc"+i),w=W(cEl),h=w<500?100:92,pl=28,pr=4,pt=8,pb=18,GUT=w<500?76:96;
+      var vs=ser.map(function(x){return x[d.k];}).concat(d.fing?d.fing.map(function(e){return e.spo2_pct;}):[]);
+      var gi=goalOf(d.rb),gv=gi&&gi.status!=="ask"&&isNum(gi.value)?gi.value:null;
+      var dmin=Math.min.apply(null,vs.concat(isNum(gv)?[gv]:[])),dmax=Math.max.apply(null,vs.concat(isNum(gv)?[gv]:[]));
+      var BB=[];bandList(d.rb).forEach(function(b){[b.min,b.max].forEach(function(v){if(isNum(v)&&BB.indexOf(v)<0)BB.push(v);});});BB.sort(function(a,b){return a-b;});
+      var below=BB.filter(function(v){return v<=dmin;}),above=BB.filter(function(v){return v>=dmax;});
+      var lo=below.length?below[below.length-1]:dmin,hi=above.length?above[0]:dmax;
+      if(d.k==="spo2_pct"){hi=Math.min(100,Math.max(hi,dmax));lo=Math.floor(Math.min(lo,dmin)-.5);}var pad=(hi-lo)*.06;lo-=pad;hi+=pad;
+      var sx=xs(pl+4,w-pr-GUT-4),sy=function(v){return pt+(hi-v)/(hi-lo)*(h-pt-pb);},s="";
+      s+=shade(d.rb,sy,lo,hi,pl,w-pr,d.hue,{gx:w-pr-GUT+4,maxc:w<500?14:18,size:9.5});
+      var lastY=-99;BB.filter(function(v){return v>lo&&v<hi;}).sort(function(a,b){return b-a;}).forEach(function(v){var Y=sy(v);if(Y-lastY<11)return;lastY=Y;s+=txt(pl-5,Y+3.5,String(v),{anchor:"end",size:10});});
+      if(isNum(gv)){var GY=sy(gv);s+='<line x1="'+pl+'" x2="'+(w-pr-GUT)+'" y1="'+GY.toFixed(1)+'" y2="'+GY.toFixed(1)+'" stroke="'+C.brass2+'" stroke-width="1.3"'+(gi.status==="confirmed"?'':' stroke-dasharray="5 4"')+'/>';}
+      var p=ser.map(function(x){return sx(x._w.t).toFixed(1)+","+sy(x[d.k]).toFixed(1);});
+      if(p.length>1)s+='<polyline points="'+p.join(" ")+'" fill="none" stroke="'+d.col+'" stroke-opacity=".4" stroke-width="1.4"/>';
+      var av=ser.map(function(x,j){var win=ser.slice(Math.max(0,j-6),j+1).map(function(y){return y[d.k];});return win.length>=3?sx(x._w.t).toFixed(1)+","+sy(mean(win)).toFixed(1):null;}).filter(Boolean);
+      if(av.length>1)s+='<polyline points="'+av.join(" ")+'" fill="none" stroke="'+d.col+'" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>';
+      if(isNum(gv))s+=txt(pl+4,sy(gv)-4,(gi.status==="confirmed"?"goal ":"proposed ")+gv,{size:10,fill:C.brass2,weight:700,halo:"#25211B"});
+      if(d.fing)d.fing.forEach(function(e){var X=sx(wall(e.datetime).t);if(X>=pl&&X<=w)s+='<circle cx="'+X+'" cy="'+sy(e.spo2_pct)+'" r="3.5" fill="'+C.ivory+'" stroke="'+C.ink3+'"/>';});
+      s+=xAxis(sx,h-pb+2,w).replace(/font-size="11"/g,'font-size="10"');
+      cEl.innerHTML=svg(w,h,s);
+    });
+  })();
+
+  // ---- VO2MAX (v1.3): estimate only until a lab result is logged
+  (function(){
+    var el=document.getElementById("vo2");var VE=D.vo2max_est,rb=RB.vo2max;
+    if(!VE||!VE.headline||!isNum(VE.headline.value)||!rb){el.style.display="none";return;}
+    var hd=VE.headline,c=rb.current||{};var HO=VE.hr_only&&safe(VE.hr_only.label)?dash(safe(VE.hr_only.label)):"heart-rate method only";
+    var labs=arr(VE.lab).concat(arr((D.manual_logs||{}).vo2max_lab)).filter(function(e){return e&&wall(e.date)&&isNum(e.ml_kg_min);});
+    var seen={};labs=labs.filter(function(e){var k=e.date+"|"+e.ml_kg_min;if(seen[k])return false;seen[k]=1;return true;}).sort(function(a,b){return wall(a.date).t-wall(b.date).t;});
+    var lab=labs[labs.length-1]||null;
+    var ser=arr(VE.series).filter(function(x){return x&&isNum(x.est)&&wall(x.cycle_start||x.date);});
+    var wk=arr(VE.weekly).filter(function(x){return x&&isNum(x.est)&&wall(x.week);});
+    function catOf(v){var b=bandList("vo2max").filter(function(b){return (!isNum(b.min)||v>=b.min)&&(!isNum(b.max)||v<b.max);})[0];return b?safe(b.label):"";}
+    var estAt=function(t){var best=null;ser.forEach(function(x){var d=Math.abs(wall(x.cycle_start||x.date).t-t);if(!best||d<best.d)best={d:d,v:x.est};});return best&&best.d<4*864e5?best.v:hd.value;};
+    var labTxt="";
+    if(lab){var dl=lab.ml_kg_min-estAt(wall(lab.date).t);labTxt='<div class="labslot has"><i class="dm"></i><div><b>Lab · '+fmt(lab.ml_kg_min,1)+' ml/kg/min</b> · '+esc(byDate(lab.date).replace(/^by /,""))+'<br>'+(Math.abs(dl)<.05?"Right on the estimate.":(dl>0?"+":"−")+fmt(Math.abs(dl),1)+' vs the estimate that week ('+fmt(estAt(wall(lab.date).t),1)+')'+(dl>0?". The engine is bigger than the maths thought.":". Now we know the real starting line."))+(catOf(lab.ml_kg_min)?' Category: '+esc(dash(catOf(lab.ml_kg_min)))+'.':'')+'</div></div>';}
+    else labTxt='<div class="labslot"><i class="dm"></i><div><b>Lab test pending.</b> When a result is logged it lands on the chart as a solid brass ◆ with its date, and the chip switches to the measured number.</div></div>';
+    var ms=arr(VE.methods).filter(function(m){return m&&m.in_headline!==false&&isNum(m.value)&&safe(m.name);});
+    var SHORT={uth_sorensen:"Heart-rate ratio (Uth–Sørensen)",jackson_1990_bmi:"Non-exercise, BMI (Jackson 1990)",jurca_2005_nasa:"Non-exercise, with RHR (Jurca 2005)"};
+    el.innerHTML='<div class="vo2g"><div class="A"><div class="eyebrow">Engine size</div><h2>VO₂max, <em>estimated</em></h2>'+
+      '<p class="lede">How much oxygen the engine can burn at full tilt. This is an estimate from your own numbers; every point off your resting heart rate moves it up.</p>'+
+      
+      '<div class="vo2top"><div class="vo2n num">'+fmt(hd.value,1)+'<small>ml/kg/min</small></div>'+
+      '<div class="vo2rng"><span class="estag">estimate</span> likely range <b>'+fmt(hd.low,0)+'–'+fmt(hd.high,0)+'</b>'+(c.estimated_range_categories&&c.estimated_range_categories.length===2?' <span style="color:var(--ivory3)">· '+esc(dash(safe(c.estimated_range_categories[0])))+' to '+esc(dash(safe(c.estimated_range_categories[1])))+'</span>':'')+'</div></div>'+
+      here("vo2max")+goalBlock("vo2max")+'</div><div class="B">'+
+      '<div class="vo2c" id="vo2c"></div>'+
+      '<div class="legend"><span><i style="height:0;border-radius:0;background:none;border-top:2px dashed '+C.ember+';display:inline-block;width:16px;vertical-align:middle;margin-right:5px"></i>estimated, 7-cycle</span><span><i class="dot" style="background:'+C.ember+'"></i>weekly est.</span>'+(ser.some(function(x){return isNum(x.est_hr_only);})?'<span><i style="height:0;border-radius:0;background:none;border-top:1px solid rgba(244,238,225,.5);width:16px;vertical-align:3px"></i>'+esc(HO.replace(/\s*\(.*\)$/,""))+'</span>':'')+'<span><i class="dot" style="background:transparent;border:1.2px solid '+C.ember+'"></i>week in progress</span><span><i style="display:inline-block;width:14px;height:9px;background:rgba(233,129,79,.16);vertical-align:middle;margin-right:5px;border-radius:2px"></i>likely range</span>'+(lab?'<span><i style="display:inline-block;width:8px;height:8px;background:'+C.brass2+';border-radius:0;transform:rotate(45deg);margin-right:6px"></i>lab</span>':'')+'</div>'+
+      labTxt+'</div><div class="C">'+
+      (ms.length?'<div class="meth">'+ms.map(function(m){return '<span>'+esc(SHORT[m.id]||safe(m.name))+'</span><span>'+fmt(m.value,1)+'</span>';}).join("")+'<span style="color:var(--ivory3)">Headline: mean of '+ms.length+'</span><span>'+fmt(hd.value,1)+'</span></div>':'')+
+      '<p class="vcap">Estimate from resting HR, age, BMI and activity, typically ±5 ml/kg/min. A lab test is the real number. Estimate, not a measurement or medical advice.</p></div></div>';
+    var cEl=document.getElementById("vo2c"),w=W(cEl),h=w<500?190:200,pl=28,pr=4,pt=10,pb=20,GUT=w<500?70:96;
+    var hoS=ser.filter(function(x){return isNum(x.est_hr_only);});
+    var vs=ser.map(function(x){return x.est;}).concat(hoS.map(function(x){return x.est_hr_only;}),wk.map(function(x){return x.est;}),[hd.low,hd.high],lab?[lab.ml_kg_min]:[]);
+    var dmin=Math.min.apply(null,vs),dmax=Math.max.apply(null,vs);
+    var BB=[];bandList("vo2max").forEach(function(b){[b.min,b.max].forEach(function(v){if(isNum(v)&&BB.indexOf(v)<0)BB.push(v);});});BB.sort(function(a,b){return a-b;});
+    var below=BB.filter(function(v){return v<=dmin;}),above=BB.filter(function(v){return v>=dmax;});
+    var lo=below.length?below[below.length-1]:dmin-2,hi=above.length?above[0]:dmax+2;var pad=(hi-lo)*.05;lo-=pad;hi+=pad;
+    var sx0=xs(pl+4,w-pr-GUT-6),sx=function(t){return Math.max(pl+4,Math.min(w-pr-GUT-6,sx0(t)));},sy=function(v){return pt+(hi-v)/(hi-lo)*(h-pt-pb);},s="";
+    var HUE="127,178,194";
+    s+=shade("vo2max",sy,lo,hi,pl,w-pr,HUE,{gx:w-pr-GUT+4,maxc:w<500?12:16,size:9.5});
+    var lastY=-99;BB.filter(function(v){return v>lo&&v<hi;}).sort(function(a,b){return b-a;}).forEach(function(v){var Y=sy(v);if(Y-lastY<11)return;lastY=Y;s+=txt(pl-5,Y+3.5,String(v),{anchor:"end",size:10});});
+    var R0=pl+4,R1=w-pr-GUT-6;
+    s+='<rect x="'+R0+'" width="'+(R1-R0)+'" y="'+sy(hd.high).toFixed(1)+'" height="'+(sy(hd.low)-sy(hd.high)).toFixed(1)+'" fill="rgba(233,129,79,.075)"/>';
+    s+='<line x1="'+R0+'" x2="'+R1+'" y1="'+sy(hd.value).toFixed(1)+'" y2="'+sy(hd.value).toFixed(1)+'" stroke="'+C.ember+'" stroke-opacity=".35" stroke-width="1" stroke-dasharray="1 3"/>';
+    var hp=hoS.map(function(x){var t=wall(x.cycle_start||x.date).t;return sx(t).toFixed(1)+","+sy(x.est_hr_only).toFixed(1);});
+    if(hp.length>1)s+='<polyline points="'+hp.join(" ")+'" fill="none" stroke="'+C.ivory+'" stroke-opacity=".38" stroke-width="1" stroke-linejoin="round"/>';
+    var p=ser.map(function(x){var t=wall(x.cycle_start||x.date).t;return sx(t).toFixed(1)+","+sy(x.est).toFixed(1);});
+    if(p.length>1)s+='<polyline points="'+p.join(" ")+'" fill="none" stroke="'+C.ember+'" stroke-width="2.2" stroke-dasharray="6 4" stroke-linejoin="round" stroke-linecap="round"/>';
+    wk.forEach(function(x){var t=wall(x.week).t+3.5*864e5,X=sx(t),Y=sy(x.est);s+='<circle cx="'+X.toFixed(1)+'" cy="'+Y.toFixed(1)+'" r="3.6" fill="'+(x.partial?C.ink2:C.ember)+'" stroke="'+C.ember+'" stroke-width="1.4"/>';});
+    s+=txt(R0+2,sy(hd.high)-4>pt+8?sy(hd.high)-4:sy(hd.high)+11,"likely "+fmt(hd.low,0)+"–"+fmt(hd.high,0),{size:10,fill:"rgba(233,129,79,.85)",halo:"#25211B"});
+    s+=txt(R0+(R1-R0)*.42,sy(hd.value)+(sy(hd.value)+13<sy(hd.low)?13:-5),"est. "+fmt(hd.value,1),{size:10,fill:C.ember,weight:700,halo:"#25211B"});
+    labs.forEach(function(e){var X=sx(wall(e.date).t),Y=sy(e.ml_kg_min),r=6;s+='<path d="M'+X.toFixed(1)+' '+(Y-r).toFixed(1)+' L'+(X+r).toFixed(1)+' '+Y.toFixed(1)+' L'+X.toFixed(1)+' '+(Y+r).toFixed(1)+' L'+(X-r).toFixed(1)+' '+Y.toFixed(1)+' Z" fill="'+C.brass2+'" stroke="'+C.ink2+'" stroke-width="1.5"/>';
+      var lt="lab "+fmt(e.ml_kg_min,1),anc=X>(R0+R1)/2?"end":"start";s+=txt(X+(anc==="end"?-9:9),Y+4,lt,{size:10.5,fill:C.brass2,weight:700,anchor:anc,halo:"#25211B"});});
+    s+=xAxis(sx0,h-pb+2,w).replace(/font-size="11"/g,'font-size="10"');
+    cEl.innerHTML=svg(w,h,s);
+  })();
+
+  // ---- LEDGER (every metric, chip + band bar; metrics without a chart live only here)
+  document.getElementById("ledger").innerHTML=ledgerHTML(RB,{safe:safe,fmtV:fmtV,fmtB:fmtB,uShort:uShort,winShort:winShort,srcShort:srcShort,goalOf:goalOf,goalBlock:goalBlock,dash:dash,TONE_B:TONE_B});
+}
+
+function ledgerHTML(RB,api){var dash=api.dash,TONE_B=api.TONE_B;var GROUPS=[["heart","Heart"],["recovery","Recovery"],["sleep","Sleep"],["lungs","Lungs & vitals"],["activity","Activity"],["body","Body"],["fitness","Fitness"]];
+  var keys=Object.keys(RB);if(!keys.length)return "";
+  function rowSteady(c){var MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    function md(x){var m=String(x||"").match(/^(\d{4})-(\d{2})-(\d{2})/);return m?MON[+m[2]-1]+" "+(+m[3]):"";}
+    var wk=arr(c.weeks).filter(function(w){return Array.isArray(w)&&isNum(w[1])&&md(w[0]);});
+    var cells=wk.map(function(w){return '<div class="rw'+(w[1]>0?' on':'')+'"><b class="num">'+w[1]+'</b><span>'+md(w[0])+'</span></div>';});
+    if(isNum(c.this_week_so_far))cells.push('<div class="rw now'+(c.this_week_so_far>0?' on':'')+'"><b class="num">'+c.this_week_so_far+'</b><span>now</span></div>');
+    var streak=0;for(var j=wk.length-1;j>=0&&wk[j][1]>0;j--)streak++;
+    var hit=wk.filter(function(w){return w[1]>0;}).length;
+    var line=(wk.length?hit+' of the last '+wk.length+' weeks had one':'')+(c.last_row&&md(c.last_row)?(wk.length?' · ':'')+'last one '+md(c.last_row):'')+(streak>1?' · '+streak+'-week streak':'');
+    return (cells.length?'<div class="rows">'+cells.join("")+'</div>':'')+(line?'<div class="ex" style="margin-bottom:4px">'+esc(line)+'. Every one counts.</div>':'');}
+  function tile(k){var rb=RB[k],c=rb.current||{},v=c.value,u=api.uShort(rb),bands=arr(rb.bands).filter(function(b){return b&&!OFF.test(String(b.label||""));});
+    var disp=(k==="blood_pressure"&&isNum(v)&&typeof c.display==="string"&&/^\d{2,3}\/\d{2,3}$/.test(c.display))?c.display:null;
+    var refOnly=rb.role==="reference_only";
+    var hv=k==="row_steady"&&isNum(c.total_banked)?'<b class="mv num">'+c.total_banked+'<small>banked</small></b>':(isNum(v)?'<b class="mv num">'+esc(disp||api.fmtV(rb,v))+(u?'<small>'+esc(u)+'</small>':'')+'</b>':'<span class="mv add">add a reading</span>');
+    var head='<div class="mh"><span class="ml">'+esc(api.safe(rb.label))+(refOnly?' <span class="reftag">reference only</span>':'')+'</span>'+hv+'</div>';
+    function mkBar(bands,v,rec,lab){var bar="";
+    var numeric=bands.filter(function(b){return isNum(b.min)||isNum(b.max);});
+    if(numeric.length){var B=[];numeric.forEach(function(b){[b.min,b.max].forEach(function(x){if(isNum(x)&&B.indexOf(x)<0)B.push(x);});});B.sort(function(a,b){return a-b;});
+      var span=B.length>1?B[B.length-1]-B[0]:Math.max(1,Math.abs(B[0])*.2),ext=span*.35;var lo=B[0]-ext,hi=B[B.length-1]+ext;
+      numeric.forEach(function(b){if(isNum(b.min)&&!isNum(b.max)){}if(!isNum(b.min)&&isNum(b.max)){}});
+      if(numeric.some(function(b){return b.min===0;}))lo=0;
+      [v,rec].forEach(function(x){if(isNum(x)){lo=Math.min(lo,x-ext*.15);hi=Math.max(hi,x+ext*.15);}});
+      if(String(rb.unit)==="%"){hi=Math.min(hi,100);lo=Math.max(lo,0);}
+      var P=function(x){return Math.max(0,Math.min(100,(x-lo)/(hi-lo)*100));};
+      bar='<div class="bbar">'+numeric.map(function(b){var a=P(isNum(b.min)?b.min:lo),z=P(isNum(b.max)?b.max:hi);return z>a?'<i class="seg" title="'+esc(dash(b.label))+'" style="left:'+a.toFixed(2)+'%;width:'+(z-a).toFixed(2)+'%;background:rgba(201,168,102,'+(TONE_B[b.tone]||.2)+')"></i>':'';}).join("");
+      var lastP=-99;B.forEach(function(x){var p=P(x);if(p<=2||p>=98||p-lastP<9)return;lastP=p;bar+='<span class="tk" style="left:'+p.toFixed(2)+'%">'+esc(api.fmtB(rb,x))+'</span>';});
+      var Q=function(x){return Math.max(1.8,Math.min(98.2,P(x))).toFixed(2);};
+      if(isNum(v))bar+='<i class="d" style="left:'+Q(v)+'%"></i>';
+      if(isNum(rec))bar+='<i class="r" style="left:'+Q(rec)+'%" title="last 7"></i>';
+      bar+='</div>';}
+    else if(bands.length){bar='<div class="bsteps">'+bands.map(function(b){return '<span style="border-top-color:rgba(201,168,102,'+(TONE_B[b.tone]||.2)+')">'+esc(dash(b.label))+'</span>';}).join("")+'</div>';}
+      if(bar&&lab)bar='<div class="bax">'+esc(lab)+'</div>'+bar;return bar;}
+    var bar=mkBar(bands,v,c.recent,k==="blood_pressure"?"systolic":"");
+    if(k==="blood_pressure"){var bd=arr(rb.bands_diastolic).filter(function(b){return b&&(isNum(b.min)||isNum(b.max))&&!OFF.test(String(b.label||""));});
+      if(bar&&bd.length&&bd.length===arr(rb.bands_diastolic).length)bar+=mkBar(bd,c.value_diastolic,null,"diastolic");}
+    if(k==="row_steady")bar=rowSteady(c);
+    var cat="";
+    if(isNum(v)&&c.category)cat='<div class="cat"><b>'+esc(dash(api.safe(c.category)))+'</b> · '+esc(api.winShort(c.window))+'</div>';
+    else if(!isNum(v))cat='<div class="cat">'+esc(api.safe(c.window)||"not logged yet")+'</div>';
+    var ex="";if(isNum(c.recent)&&c.recent_category)ex+='<div class="ex">'+esc(api.winShort(c.recent_window))+': '+esc(api.fmtV(rb,c.recent))+(u&&u!=="%"?" "+esc(u):u)+' · '+esc(dash(api.safe(c.recent_category)))+'</div>';
+    if(k==="vo2max"&&c.basis!=="lab")ex+='<div class="ex">Estimate, not a measurement or medical advice.</div>';
+    if(k==="sleep_total"&&isNum(c.main_block_median_h))ex+='<div class="ex">Main block alone: '+c.main_block_median_h.toFixed(1)+' h median</div>';
+    if(k==="weekly_cardio"&&isNum(c.this_week_so_far))ex+='<div class="ex">This week so far: '+Math.round(c.this_week_so_far)+' min'+(isNum(c.weeks_meeting_150)?' · '+c.weeks_meeting_150+' of the last 4 weeks at 150+':'')+'</div>';
+    if(k==="rhr"){var gi=api.goalOf("rhr");var ms=arr(gi&&gi.milestones).filter(function(m){return m&&m.target;});if(ms.length)ex+='<div class="ex">Milestones ('+esc(api.safe(ms[0].status)||"proposed")+'): '+ms.map(function(m){return esc(dash(api.safe(m.target)))+(m.by?' by '+esc((function(w){return w?dlabel(w)+", "+w.y:m.by;})(wall(m.by))):'');}).join(" · ")+'</div>';}
+    var src=api.safe(((rb.source||{}).label)||"");var note=api.safe(rb.note||"");
+    var det=(src||note)?'<details><summary>ⓘ '+(src?'Bands: '+esc(api.srcShort(rb)):'How it is counted')+'</summary>'+(src?'<p>'+esc(dash(src))+'</p>':'')+(note?'<p>'+esc(note)+'</p>':'')+'</details>':'';
+    return '<div class="mt">'+head+bar+cat+ex+api.goalBlock(k)+det+'</div>';}
+  var out="";GROUPS.concat([["_other","More"]]).forEach(function(g){var ks=keys.filter(function(k){var gr=RB[k].group;return g[0]==="_other"?!GROUPS.some(function(x){return x[0]===gr;}):gr===g[0];});if(!ks.length)return;
+    out+='<div class="mgroup"><h3>'+esc(g[1])+'</h3><div class="mgrid">'+ks.map(tile).join("")+'</div></div>';});
+  return '<div class="eyebrow">Where you stand</div><h2>Every metric on <em>one honest ruler</em></h2>'+
+    '<p class="lede">Each bar is a published reference band, darker where the band is stronger. The ember dot is your current reading; the ring is your last 7 cycles. Every band is a starting line, not a verdict.</p>'+
+    '<div class="lkey"><span><i style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--ember)"></i>current</span><span><i style="display:inline-block;width:9px;height:9px;border-radius:50%;border:2px solid var(--ivory)"></i>last 7 cycles</span><span class="gchip g-confirmed"><em>goal</em>confirmed</span><span class="gchip g-proposed"><em>proposed</em>Arnie’s suggestion</span>'+(keys.some(function(k){var g=api.goalOf(k);return g&&g.status!=="confirmed"&&g.status!=="proposed";})?'<span class="gchip g-ask">goal pending: your call</span>':'')+'</div>'+out;}
+var DATA=null,SRC="snapshot";
+try{DATA=JSON.parse(document.getElementById("snapshot").textContent||"{}");}catch(e){DATA={};}
+function draw(){try{render(DATA,SRC);}catch(e){console.error(e);}}
+draw();
+var rt;window.addEventListener("resize",function(){clearTimeout(rt);rt=setTimeout(draw,150);});
+})();
+</script>
+</body>
+</html>

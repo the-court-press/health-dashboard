@@ -1,0 +1,1228 @@
+{
+ "_about": "Hand-maintained inputs merged into data.json by build.py. Edit this file, not data.json.",
+ "profile": {
+  "age": 41,
+  "sex": "male",
+  "goals": {
+   "rhr_bpm": 49,
+   "row_min_minutes": 30
+  }
+ },
+ "annotations": [
+  {
+   "cycle_start_prefix": "2026-10-21T16:20",
+   "note": "Stomach bug starts"
+  },
+  {
+   "cycle_start_prefix": "2026-10-24T19:48",
+   "note": "Stomach bug: recovery 1%, highest resp rate of the month"
+  },
+  {
+   "cycle_start_prefix": "2026-10-26T19:02",
+   "note": "RHR 69 / recovery 1% spike, ~1h main sleep, day after hot 40-min laundry haul"
+  }
+ ],
+ "manual_logs": {
+  "blood_pressure": [],
+  "spo2_fingertip": [],
+  "body_weight": [],
+  "erg": [],
+  "swim": [],
+  "_schema": {
+   "blood_pressure": {
+    "datetime": "ISO local time, no offset",
+    "period": "am|pm",
+    "sys1": 0,
+    "dia1": 0,
+    "pulse1": 0,
+    "sys2": 0,
+    "dia2": 0,
+    "pulse2": 0
+   },
+   "spo2_fingertip": {
+    "datetime": "",
+    "spo2_pct": 0,
+    "pulse": 0
+   },
+   "body_weight": {
+    "datetime": "",
+    "kg": 0
+   },
+   "erg": {
+    "datetime": "",
+    "minutes": 0,
+    "meters": 0,
+    "avg_split_500m": "m:ss",
+    "avg_spm": 0,
+    "avg_hr": 0,
+    "whoop_workout_id": "",
+    "test": "optional: '2k' for a max 2k test (then meters=2000, time_s)",
+    "time_s": 0
+   },
+   "swim": {
+    "datetime": "",
+    "minutes": 0,
+    "meters": 0,
+    "stroke": "",
+    "whoop_workout_id": ""
+   },
+   "status": {
+    "date": "YYYY-MM-DD (local)",
+    "until": "YYYY-MM-DD or null (open until cleared)",
+    "active": true,
+    "flag": "recovery_day|rest_day|sick|travel",
+    "note": "short, non-graphic"
+   },
+   "waist": {
+    "datetime": "",
+    "cm": 0
+   },
+   "vo2max_lab": {
+    "date": "YYYY-MM-DD",
+    "ml_kg_min": 0,
+    "vo2max_l_min": 0,
+    "hrmax_measured": 0,
+    "provider": "",
+    "protocol": "treadmill|bike",
+    "weight_kg": 0,
+    "note": ""
+   }
+  },
+  "status": [
+   {
+    "date": "2026-10-28",
+    "until": null,
+    "active": true,
+    "flag": "recovery_day",
+    "note": "Post-illness, no erg until seat soreness clears; swim easy."
+   }
+  ],
+  "waist": [],
+  "vo2max_lab": []
+ },
+ "coach_copy": {
+  "_rules": "Pick the first that applies: 1) an active manual_logs.status entry covering today -> status[flag]; 2) recovery_pct null -> pending; 3) recovery_pct < 34 -> red; 4) 34-66 -> amber; 5) >= 67 -> green.",
+  "status": {
+   "recovery_day": {
+    "title": "Recovery day: swim easy, skip the erg",
+    "body": "The erg will miss you, but it'll wait. Easy laps, long smooth exhales, then home to rest. Healing is training too."
+   },
+   "rest_day": {
+    "title": "Rest day",
+    "body": "No pool, no erg, no guilt. Water, food, a long sleep. Tomorrow we pull."
+   },
+   "sick": {
+    "title": "Off the clock: get well",
+    "body": "Today's only workout is rest. Fluids, easy food, sleep. The pool and the erg will be right there when you're back."
+   },
+   "travel": {
+    "title": "On the road",
+    "body": "Find a pool or a rowing machine if you can; a brisk walk if you can't. Keep moving, keep it easy."
+   }
+  },
+  "pending": {
+   "title": "Recovery's still cooking",
+   "body": "Your sleep hasn't scored yet. Check back once the strap syncs."
+  },
+  "red": {
+   "title": "Row easy 30",
+   "body": "Low battery today, so we keep it gentle: 30 minutes at an easy, conversational pace, or an easy swim. Skip the extras and chase a long sleep tonight."
+  },
+  "amber": {
+   "title": "Plan as written",
+   "body": "Solid day to pull. Your 30-minute steady row is on, plus a swim if it's a pool day. Legs, back, arms; smooth and steady."
+  },
+  "green": {
+   "title": "Green light: full plan",
+   "body": "The body's ready. Swim, 30 steady minutes on the erg, then the weights. Stay smooth in zone 2; the engine grows when you cruise."
+  }
+ },
+ "reference_bands": {
+  "_about": "Reference categories for a man aged 41. Population/vendor figures from the cited source, NOT your data. Band rule: min inclusive, max exclusive, null = open-ended. build.py adds current (your value + window) and category. tone: good|ok|watch|flag for colouring. role 'reference_only' = shown for context, no goal attached.",
+  "rhr": {
+   "label": "Resting heart rate",
+   "unit": "bpm",
+   "better": "lower",
+   "group": "heart",
+   "source": {
+    "label": "Resting heart rate chart, men 36-45 (Top End Sports, general fitness chart)",
+    "url": "https://www.topendsports.com/testing/heart-rate-resting-chart.htm"
+   },
+   "bands": [
+    {
+     "min": null,
+     "max": 50,
+     "label": "Below chart (under 50)",
+     "tone": "good"
+    },
+    {
+     "min": 50,
+     "max": 57,
+     "label": "Athlete",
+     "tone": "good"
+    },
+    {
+     "min": 57,
+     "max": 63,
+     "label": "Excellent",
+     "tone": "good"
+    },
+    {
+     "min": 63,
+     "max": 67,
+     "label": "Good",
+     "tone": "ok"
+    },
+    {
+     "min": 67,
+     "max": 71,
+     "label": "Above average",
+     "tone": "ok"
+    },
+    {
+     "min": 71,
+     "max": 76,
+     "label": "Average",
+     "tone": "watch"
+    },
+    {
+     "min": 76,
+     "max": 83,
+     "label": "Below average",
+     "tone": "watch"
+    },
+    {
+     "min": 83,
+     "max": null,
+     "label": "Poor",
+     "tone": "flag"
+    }
+   ],
+   "current_from": {
+    "field": "rhr",
+    "agg": "median",
+    "window": 30,
+    "recent_agg": "mean",
+    "recent_window": 7
+   },
+   "goal_id": "rhr"
+  },
+  "hrv": {
+   "label": "HRV (RMSSD, overnight)",
+   "unit": "ms",
+   "better": "higher",
+   "group": "heart",
+   "source": {
+    "label": "WHOOP member HRV by age and gender (age 40 middle 50% about 35-65 ms); ECG context: Lifelines men 40-44 median 29 ms, Nunan 2010 short-term RMSSD mean 42 (SD 15)",
+    "url": "https://www.whoop.com/us/en/thelocker/normal-hrv-range-age-gender/",
+    "extra_urls": [
+     "https://pubmed.ncbi.nlm.nih.gov/20663071/",
+     "https://www.differenthealth.com/blog/what-is-a-good-hrv"
+    ]
+   },
+   "bands": [
+    {
+     "min": null,
+     "max": 35,
+     "label": "Below WHOOP middle 50%",
+     "tone": "watch"
+    },
+    {
+     "min": 35,
+     "max": 50,
+     "label": "Typical, lower half",
+     "tone": "ok"
+    },
+    {
+     "min": 50,
+     "max": 65,
+     "label": "Typical, upper half",
+     "tone": "good"
+    },
+    {
+     "min": 65,
+     "max": null,
+     "label": "Top quarter for age",
+     "tone": "good"
+    }
+   ],
+   "current_from": {
+    "field": "hrv_ms",
+    "agg": "median",
+    "window": 30,
+    "recent_agg": "mean",
+    "recent_window": 7
+   },
+   "goal_id": "hrv",
+   "note": "Typical lower/upper half split at 50 ms is the midpoint of WHOOP's 35-65 range, a display split, not a published cut."
+  },
+  "recovery": {
+   "label": "WHOOP recovery",
+   "unit": "%",
+   "better": "higher",
+   "group": "recovery",
+   "source": {
+    "label": "WHOOP recovery colours (developer docs + The Locker); member average about 58%",
+    "url": "https://developer.whoop.com/docs/whoop-101/",
+    "extra_urls": [
+     "https://www.whoop.com/us/en/thelocker/how-does-whoop-recovery-work-101/"
+    ]
+   },
+   "bands": [
+    {
+     "min": 0,
+     "max": 34,
+     "label": "Red",
+     "tone": "flag"
+    },
+    {
+     "min": 34,
+     "max": 67,
+     "label": "Yellow",
+     "tone": "ok"
+    },
+    {
+     "min": 67,
+     "max": null,
+     "label": "Green",
+     "tone": "good"
+    }
+   ],
+   "current_from": {
+    "field": "recovery_pct",
+    "agg": "mean",
+    "window": 30,
+    "recent_agg": "mean",
+    "recent_window": 7
+   },
+   "goal_id": "recovery"
+  },
+  "sleep_total": {
+   "label": "Sleep per 24 h (main + naps)",
+   "unit": "h",
+   "better": "range",
+   "group": "sleep",
+   "source": {
+    "label": "National Sleep Foundation duration recommendations, adults 26-64 (Hirshkowitz 2015)",
+    "url": "https://doi.org/10.1016/j.sleh.2014.12.010"
+   },
+   "bands": [
+    {
+     "min": null,
+     "max": 6,
+     "label": "Not recommended (under 6 h)",
+     "tone": "flag"
+    },
+    {
+     "min": 6,
+     "max": 7,
+     "label": "May be appropriate",
+     "tone": "ok"
+    },
+    {
+     "min": 7,
+     "max": 9,
+     "label": "Recommended",
+     "tone": "good"
+    },
+    {
+     "min": 9,
+     "max": 10,
+     "label": "May be appropriate",
+     "tone": "ok"
+    },
+    {
+     "min": 10,
+     "max": null,
+     "label": "Not recommended (over 10 h)",
+     "tone": "watch"
+    }
+   ],
+   "current_from": {
+    "field": "sleep_per_24h",
+    "agg": "special",
+    "window": 30,
+    "recent_window": 7
+   },
+   "goal_id": "sleep",
+   "note": "The goal is checked against your last-7-cycle average, naps included."
+  },
+  "sleep_efficiency": {
+   "label": "Sleep efficiency",
+   "unit": "%",
+   "better": "higher",
+   "group": "sleep",
+   "source": {
+    "label": "National Sleep Foundation sleep quality recommendations (Ohayon 2017): 85%+ good, 74% or less not good for most ages",
+    "url": "https://doi.org/10.1016/j.sleh.2016.11.006"
+   },
+   "bands": [
+    {
+     "min": null,
+     "max": 75,
+     "label": "Not good quality (74% or less)",
+     "tone": "flag"
+    },
+    {
+     "min": 75,
+     "max": 85,
+     "label": "Uncertain",
+     "tone": "ok"
+    },
+    {
+     "min": 85,
+     "max": null,
+     "label": "Good quality",
+     "tone": "good"
+    }
+   ],
+   "current_from": {
+    "field": "sleep_eff_pct",
+    "agg": "median",
+    "window": 30,
+    "recent_agg": "mean",
+    "recent_window": 7
+   },
+   "goal_id": "sleep_efficiency"
+  },
+  "sleep_consistency": {
+   "label": "Sleep consistency",
+   "unit": "%",
+   "better": "higher",
+   "group": "sleep",
+   "source": {
+    "label": "WHOOP sleep consistency: member average 67.9%, aim for 80%+",
+    "url": "https://www.whoop.com/us/en/thelocker/new-feature-sleep-consistency-why-we-track-it/"
+   },
+   "bands": [
+    {
+     "min": null,
+     "max": 68,
+     "label": "Below WHOOP member average",
+     "tone": "watch"
+    },
+    {
+     "min": 68,
+     "max": 80,
+     "label": "Around member average",
+     "tone": "ok"
+    },
+    {
+     "min": 80,
+     "max": null,
+     "label": "WHOOP target (80%+)",
+     "tone": "good"
+    }
+   ],
+   "current_from": {
+    "field": "sleep_consistency_pct",
+    "agg": "mean",
+    "window": 30,
+    "recent_agg": "mean",
+    "recent_window": 7
+   },
+   "goal_id": "sleep_consistency"
+  },
+  "sleep_performance": {
+   "label": "WHOOP sleep performance",
+   "unit": "%",
+   "better": "higher",
+   "group": "sleep",
+   "source": {
+    "label": "WHOOP guidance, unofficial: Optimal 85%+, Sufficient 70-84%, Poor under 70%. WHOOP's own pages name the 85% and 70% levels (Sleep Planner 'perform' and 'get by') but no WHOOP support page with these tiers could be opened",
+    "url": "https://www.whoop.com/us/en/thelocker/feature-update-whoop-app-sleep-planner/",
+    "extra_urls": [
+     "https://www.whoop.com/us/en/thelocker/how-well-whoop-measures-sleep/",
+     "https://www.linkedin.com/posts/willahmed_sleep-performance-science-activity-7325156341780549634-WTRY"
+    ]
+   },
+   "bands": [
+    {
+     "min": null,
+     "max": 70,
+     "label": "Poor",
+     "tone": "flag"
+    },
+    {
+     "min": 70,
+     "max": 85,
+     "label": "Sufficient",
+     "tone": "ok"
+    },
+    {
+     "min": 85,
+     "max": null,
+     "label": "Optimal",
+     "tone": "good"
+    }
+   ],
+   "current_from": {
+    "field": "sleep_perf_pct",
+    "agg": "median",
+    "window": 30,
+    "recent_agg": "mean",
+    "recent_window": 7
+   },
+   "goal_id": "sleep_performance"
+  },
+  "resp_rate": {
+   "label": "Respiratory rate (sleep)",
+   "unit": "breaths/min",
+   "better": "range",
+   "group": "lungs",
+   "source": {
+    "label": "Adult resting normal 12-20; most WHOOP members 13-18 during sleep",
+    "url": "https://www.whoop.com/us/en/thelocker/understanding-respiratory-rate-what-it-is-whats-normal-and-why-you-should/"
+   },
+   "bands": [
+    {
+     "min": null,
+     "max": 12,
+     "label": "Below adult resting range",
+     "tone": "watch"
+    },
+    {
+     "min": 12,
+     "max": 13,
+     "label": "Normal, low end",
+     "tone": "good"
+    },
+    {
+     "min": 13,
+     "max": 18,
+     "label": "Normal (where most WHOOP members sit)",
+     "tone": "good"
+    },
+    {
+     "min": 18,
+     "max": 20,
+     "label": "Normal, high end",
+     "tone": "ok"
+    },
+    {
+     "min": 20,
+     "max": null,
+     "label": "Above adult resting range",
+     "tone": "flag"
+    }
+   ],
+   "current_from": {
+    "field": "resp_rate",
+    "agg": "median",
+    "window": 30,
+    "recent_agg": "mean",
+    "recent_window": 7
+   },
+   "goal_id": "resp_rate"
+  },
+  "spo2_overnight": {
+   "label": "SpO2 overnight (WHOOP)",
+   "unit": "%",
+   "better": "higher",
+   "group": "lungs",
+   "source": {
+    "label": "Cleveland Clinic: normal 95-100%, 92% or lower at home call a provider (pulse oximeter, awake). Healthy-sleeper references: Gries & Brooks 1996 mean nocturnal 96.5% (SD 1.5); Apple Heart & Movement study (mean age 41) mean nocturnal 95.4%",
+    "url": "https://my.clevelandclinic.org/health/diagnostics/pulse-oximetry",
+    "extra_urls": [
+     "https://pubmed.ncbi.nlm.nih.gov/8989066/",
+     "https://pmc.ncbi.nlm.nih.gov/articles/PMC10374661/"
+    ]
+   },
+   "bands": [
+    {
+     "min": null,
+     "max": 92.5,
+     "label": "Low (92% or lower): confirm with fingertip, see a doctor if sustained",
+     "tone": "flag"
+    },
+    {
+     "min": 92.5,
+     "max": 95,
+     "label": "Below the 95% normal floor",
+     "tone": "watch"
+    },
+    {
+     "min": 95,
+     "max": null,
+     "label": "Normal",
+     "tone": "good"
+    }
+   ],
+   "current_from": {
+    "field": "spo2_pct",
+    "agg": "median",
+    "window": 30,
+    "recent_agg": "mean",
+    "recent_window": 7
+   },
+   "goal_id": "spo2",
+   "note": "Wrist sensor reads low; confirm with your fingertip reader."
+  },
+  "spo2_fingertip": {
+   "label": "SpO2 resting (fingertip)",
+   "unit": "%",
+   "better": "higher",
+   "group": "lungs",
+   "source": {
+    "label": "Cleveland Clinic pulse oximetry: normal 95-100%, 92% or lower call a provider",
+    "url": "https://my.clevelandclinic.org/health/diagnostics/pulse-oximetry"
+   },
+   "bands": [
+    {
+     "min": null,
+     "max": 92.5,
+     "label": "Low (92% or lower)",
+     "tone": "flag"
+    },
+    {
+     "min": 92.5,
+     "max": 95,
+     "label": "Below normal floor",
+     "tone": "watch"
+    },
+    {
+     "min": 95,
+     "max": null,
+     "label": "Normal",
+     "tone": "good"
+    }
+   ],
+   "current_from": {
+    "manual_log": "spo2_fingertip",
+    "value_key": "spo2_pct",
+    "agg": "mean",
+    "window": 14
+   },
+   "goal_id": "spo2_fingertip"
+  },
+  "skin_temp": {
+   "label": "Skin temperature vs your baseline",
+   "unit": "°C",
+   "better": "range",
+   "group": "lungs",
+   "source": {
+    "label": "Your own baseline (WHOOP reads skin temp against your baseline and publishes no population bands): bands are your 30-cycle median +/- SD, statistical, from your data",
+    "url": "https://www.whoop.com/us/en/thelocker/how-whoop-tracks-skin-temperature/"
+   },
+   "bands": "personal_baseline_sd",
+   "current_from": {
+    "field": "skin_temp_c",
+    "agg": "median",
+    "window": 30,
+    "recent_agg": "mean",
+    "recent_window": 7
+   },
+   "goal_id": null
+  },
+  "blood_pressure": {
+   "label": "Blood pressure",
+   "unit": "mmHg",
+   "better": "lower",
+   "group": "lungs",
+   "source": {
+    "label": "AHA/ACC 2025 high blood pressure guideline categories",
+    "url": "https://www.ahajournals.org/doi/10.1161/HYP.0000000000000249",
+    "extra_urls": [
+     "https://www.heart.org/en/health-topics/high-blood-pressure/the-facts-about-high-blood-pressure/high-bp-top-10"
+    ]
+   },
+   "bands": [
+    {
+     "min": null,
+     "max": 120,
+     "label": "Normal",
+     "tone": "good"
+    },
+    {
+     "min": 120,
+     "max": 130,
+     "label": "Elevated",
+     "tone": "ok"
+    },
+    {
+     "min": 130,
+     "max": 140,
+     "label": "Stage 1 hypertension",
+     "tone": "watch"
+    },
+    {
+     "min": 140,
+     "max": null,
+     "label": "Stage 2 hypertension",
+     "tone": "flag"
+    }
+   ],
+   "current_from": {
+    "manual_log": "blood_pressure",
+    "agg": "mean_of_pairs",
+    "window": 14
+   },
+   "goal_id": "blood_pressure",
+   "bands_axis": "systolic",
+   "bands_diastolic": [
+    {
+     "min": null,
+     "max": 80,
+     "label": "Normal",
+     "tone": "good"
+    },
+    {
+     "min": 80,
+     "max": 90,
+     "label": "Stage 1 hypertension",
+     "tone": "watch"
+    },
+    {
+     "min": 90,
+     "max": null,
+     "label": "Stage 2 hypertension",
+     "tone": "flag"
+    }
+   ],
+   "category_rule": "worse of the systolic and diastolic categories (AHA: Elevated is systolic 120-129 with diastolic under 80)",
+   "note": "Your category is the worse of the two readings: e.g. 118/84 is Stage 1 because of the diastolic. Bars show systolic; diastolic bands are listed separately."
+  },
+  "day_strain": {
+   "label": "Day strain",
+   "unit": "WHOOP 0-21",
+   "better": "match_recovery",
+   "group": "activity",
+   "source": {
+    "label": "WHOOP strain levels: Light 0-9, Moderate 10-13, High 14-17, All out 18-21",
+    "url": "https://www.whoop.com/us/en/thelocker/how-does-whoop-strain-work-101/"
+   },
+   "bands": [
+    {
+     "min": 0,
+     "max": 10,
+     "label": "Light",
+     "tone": "ok"
+    },
+    {
+     "min": 10,
+     "max": 14,
+     "label": "Moderate",
+     "tone": "good"
+    },
+    {
+     "min": 14,
+     "max": 18,
+     "label": "High",
+     "tone": "watch"
+    },
+    {
+     "min": 18,
+     "max": null,
+     "label": "All out",
+     "tone": "flag"
+    }
+   ],
+   "current_from": {
+    "field": "day_strain",
+    "agg": "median",
+    "window": 30,
+    "recent_agg": "mean",
+    "recent_window": 7
+   },
+   "goal_id": "day_strain",
+   "note": "Not 'higher is better': the right band depends on that day's recovery colour."
+  },
+  "weekly_cardio": {
+   "label": "Weekly cardio (moderate-equivalent minutes)",
+   "unit": "min/week",
+   "better": "higher",
+   "group": "activity",
+   "source": {
+    "label": "WHO 2020 physical activity guidelines: 150-300 min moderate or 75-150 min vigorous per week (1 vigorous min = 2 moderate) + strength 2+ days. Intensity from ACSM (Garber 2011): moderate 40-59% HRR (WHOOP zone 1), vigorous 60-89% HRR (zones 2-4+)",
+    "url": "https://www.who.int/publications/i/item/9789240015128",
+    "extra_urls": [
+     "https://doi.org/10.1249/MSS.0b013e318213fefb"
+    ]
+   },
+   "bands": [
+    {
+     "min": null,
+     "max": 150,
+     "label": "Below WHO guideline",
+     "tone": "watch"
+    },
+    {
+     "min": 150,
+     "max": 300,
+     "label": "Meets WHO guideline",
+     "tone": "good"
+    },
+    {
+     "min": 300,
+     "max": null,
+     "label": "Above guideline (additional benefit)",
+     "tone": "good"
+    }
+   ],
+   "current_from": {
+    "field": "weekly_cardio_modeq",
+    "agg": "special",
+    "window": 4
+   },
+   "goal_id": "weekly_cardio",
+   "note": "Moderate-equivalent = zone-1 minutes + 2 x zone 2-5 minutes, from all WHOOP-tracked workouts, full Mon-Sun weeks."
+  },
+  "steps": {
+   "label": "Steps",
+   "unit": "steps/cycle",
+   "better": "higher",
+   "group": "activity",
+   "source": {
+    "label": "Paluch et al. 2022 meta-analysis: quartile medians 3,553 / 5,801 / 7,842 / 10,901; under-60 mortality benefit levels off at about 8,000-10,000",
+    "url": "https://www.thelancet.com/journals/lanpub/article/PIIS2468-2667(21)00302-9/fulltext"
+   },
+   "bands": [
+    {
+     "min": null,
+     "max": 5800,
+     "label": "Below 2nd-quartile median",
+     "tone": "watch"
+    },
+    {
+     "min": 5800,
+     "max": 8000,
+     "label": "Middle",
+     "tone": "ok"
+    },
+    {
+     "min": 8000,
+     "max": 10001,
+     "label": "Benefit plateau zone (8-10k)",
+     "tone": "good"
+    },
+    {
+     "min": 10001,
+     "max": null,
+     "label": "Above plateau",
+     "tone": "good"
+    }
+   ],
+   "current_from": {
+    "field": "steps",
+    "agg": "median",
+    "window": 30,
+    "recent_agg": "mean",
+    "recent_window": 7
+   },
+   "goal_id": "steps",
+   "note": "WHOOP counts steps per cycle, and your cycles vary in length; swimming and rowing add fitness without steps."
+  },
+  "bmi": {
+   "label": "BMI",
+   "unit": "kg/m²",
+   "better": "range",
+   "group": "body",
+   "source": {
+    "label": "WHO BMI classification (adults)",
+    "url": "https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight"
+   },
+   "bands": [
+    {
+     "min": null,
+     "max": 18.5,
+     "label": "Underweight",
+     "tone": "watch"
+    },
+    {
+     "min": 18.5,
+     "max": 25,
+     "label": "Normal weight",
+     "tone": "good"
+    },
+    {
+     "min": 25,
+     "max": 30,
+     "label": "Overweight",
+     "tone": "ok"
+    },
+    {
+     "min": 30,
+     "max": null,
+     "label": "Obesity",
+     "tone": "watch"
+    }
+   ],
+   "current_from": {
+    "profile": "bmi"
+   },
+   "goal_id": null,
+   "note": "Informational only (you chose no weight goal). BMI can't tell muscle from fat; waist-to-height is your tracked body metric."
+  },
+  "waist_to_height": {
+   "label": "Waist-to-height ratio",
+   "unit": "ratio",
+   "better": "lower",
+   "group": "body",
+   "source": {
+    "label": "NICE NG246 (2025) central adiposity: 0.4-0.49 healthy, 0.5-0.59 increased risk, 0.6+ high risk",
+    "url": "https://www.nice.org.uk/guidance/ng246/chapter/identifying-and-assessing-overweight-obesity-and-central-adiposity"
+   },
+   "bands": [
+    {
+     "min": null,
+     "max": 0.5,
+     "label": "Healthy central adiposity",
+     "tone": "good"
+    },
+    {
+     "min": 0.5,
+     "max": 0.6,
+     "label": "Increased",
+     "tone": "watch"
+    },
+    {
+     "min": 0.6,
+     "max": null,
+     "label": "High",
+     "tone": "flag"
+    }
+   ],
+   "current_from": {
+    "manual_log": "waist",
+    "value_key": "cm",
+    "agg": "latest",
+    "divide_by_height_cm": true
+   },
+   "goal_id": "body"
+  },
+  "vo2max": {
+   "label": "VO2max (estimated)",
+   "unit": "ml/kg/min",
+   "better": "higher",
+   "group": "fitness",
+   "source": {
+    "label": "The Cooper Institute, VO2max norms for men 40-49: Poor under 38.5, Fair 38.5-42.3, Good 42.4-46.3, Excellent 46.4-52.4, Superior 52.5+ (credit: The Cooper Institute)"
+   },
+   "bands": [
+    {
+     "min": null,
+     "max": 38.5,
+     "label": "Poor",
+     "tone": "watch"
+    },
+    {
+     "min": 38.5,
+     "max": 42.4,
+     "label": "Fair",
+     "tone": "ok"
+    },
+    {
+     "min": 42.4,
+     "max": 46.4,
+     "label": "Good",
+     "tone": "good"
+    },
+    {
+     "min": 46.4,
+     "max": 52.5,
+     "label": "Excellent",
+     "tone": "good"
+    },
+    {
+     "min": 52.5,
+     "max": null,
+     "label": "Superior",
+     "tone": "good"
+    }
+   ],
+   "current_from": {
+    "manual_log": "vo2max_lab",
+    "value_key": "ml_kg_min",
+    "agg": "latest"
+   },
+   "goal_id": "vo2max",
+   "estimate": {
+    "method": "Mean of three estimates from your own numbers: Uth-Sorensen heart-rate ratio (15.3 x max HR / resting HR), Jackson 1990 non-exercise model (age, BMI, activity rating) and Jurca 2005 non-exercise model (age, BMI, resting HR, activity rating). Typical error about +/-5 ml/kg/min; a lab test replaces it.",
+    "methods": [
+     "uth_sorensen",
+     "jackson_1990_bmi",
+     "jurca_2005_nasa"
+    ],
+    "urls": [
+     "https://doi.org/10.1007/s00421-003-0988-y",
+     "https://doi.org/10.1249/00005768-199012000-00021",
+     "https://doi.org/10.1016/j.amepre.2005.06.004"
+    ]
+   },
+   "note": "Shows your lab result once one is logged; until then it shows the estimate (mean of 3 methods). The trend line uses the same 3-method blend, with only resting HR changing week to week."
+  },
+  "row_steady": {
+   "label": "Steady rows (30+ min)",
+   "unit": "rows/week",
+   "better": "higher",
+   "group": "fitness",
+   "source": {
+    "label": "Your own WHOOP rowing workouts; no published norm for steady-row frequency. Zones 1-2 from your heart-rate reserve"
+   },
+   "current_from": {
+    "special": "row_steady",
+    "window": 4,
+    "min_minutes": 30
+   },
+   "goal_id": "row_min",
+   "bands": [],
+   "note": "Counts WHOOP-tracked rows of 30+ minutes. Value = average per full Mon-Sun week over the last 4 weeks."
+  },
+  "erg_2k": {
+   "label": "Concept2 2k time",
+   "unit": "s",
+   "better": "lower",
+   "group": "fitness",
+   "source": {
+    "label": "Concept2 logbook rankings 2025, men 40-49, heavyweight (1,957 rowers): 25th 8:16.0, 50th 7:39.2, 75th 7:10.3, 90th 6:49.2. Self-selected keen rowers, so skews fast vs the general public",
+    "url": "https://log.concept2.com/rankings/2025/rower/2000?age=40-49&gender=M&weight=H"
+   },
+   "bands": [
+    {
+     "min": null,
+     "max": 409.2,
+     "label": "Top 10% of ranked rowers",
+     "tone": "good"
+    },
+    {
+     "min": 409.2,
+     "max": 430.3,
+     "label": "75th-90th percentile",
+     "tone": "good"
+    },
+    {
+     "min": 430.3,
+     "max": 459.2,
+     "label": "50th-75th percentile",
+     "tone": "good"
+    },
+    {
+     "min": 459.2,
+     "max": 496.0,
+     "label": "25th-50th percentile",
+     "tone": "ok"
+    },
+    {
+     "min": 496.0,
+     "max": null,
+     "label": "Below 25th percentile of ranked rowers",
+     "tone": "ok"
+    }
+   ],
+   "current_from": {
+    "manual_log": "erg",
+    "test": "2k",
+    "agg": "best"
+   },
+   "goal_id": null,
+   "note": "Reference only, no goal: you chose a lab VO2max test instead of a 2k max test.",
+   "role": "reference_only"
+  },
+  "erg_split_500": {
+   "label": "2k pace per 500 m",
+   "unit": "s/500m",
+   "better": "lower",
+   "group": "fitness",
+   "source": {
+    "label": "Same Concept2 2025 rankings, pace column: 25th 2:04.0, 50th 1:54.8, 75th 1:47.5, 90th 1:42.3 (2k race pace; no published norm for steady-state splits)",
+    "url": "https://log.concept2.com/rankings/2025/rower/2000?age=40-49&gender=M&weight=H"
+   },
+   "bands": [
+    {
+     "min": null,
+     "max": 102.3,
+     "label": "Top 10% (2k pace)",
+     "tone": "good"
+    },
+    {
+     "min": 102.3,
+     "max": 107.5,
+     "label": "75th-90th",
+     "tone": "good"
+    },
+    {
+     "min": 107.5,
+     "max": 114.8,
+     "label": "50th-75th",
+     "tone": "good"
+    },
+    {
+     "min": 114.8,
+     "max": 124.0,
+     "label": "25th-50th",
+     "tone": "ok"
+    },
+    {
+     "min": 124.0,
+     "max": null,
+     "label": "Below 25th",
+     "tone": "ok"
+    }
+   ],
+   "current_from": {
+    "manual_log": "erg",
+    "value_key": "avg_split_500m",
+    "agg": "latest"
+   },
+   "goal_id": null,
+   "note": "Reference only, no goal. These are 2k race paces; your steady 30-minute rows will be well slower, and that's correct. Track your steady split at the same heart rate over time instead.",
+   "role": "reference_only"
+  }
+ },
+ "goals": {
+  "_about": "Your goals. status: confirmed (you set it) | proposed (Arnold's suggestion, not yet agreed) | ask (needs your answer). Dates are local calendar dates. Easy restart after illness, no intervals.",
+  "rhr": {
+   "metric": "rhr",
+   "target": "RHR 49 bpm",
+   "value": 49,
+   "status": "confirmed",
+   "timeframe": "by 2027-12-31",
+   "milestones": [
+    {
+     "by": "2026-12-31",
+     "target": "7-cycle avg 57 or lower",
+     "value": 57,
+     "status": "confirmed"
+    },
+    {
+     "by": "2027-03-31",
+     "target": "7-cycle avg 54 or lower",
+     "value": 54,
+     "status": "confirmed"
+    }
+   ]
+  },
+  "row_min": {
+   "metric": "row_steady",
+   "target": "Every row 30+ min steady",
+   "value": 30,
+   "status": "confirmed"
+  },
+  "row_freq": {
+   "metric": "row_steady",
+   "target": "3 steady rows a week, mostly zones 1-2 (under 144 bpm), once the seat is comfortable",
+   "value": 3,
+   "status": "proposed",
+   "timeframe": "from the first erg-cleared week"
+  },
+  "swim_freq": {
+   "metric": "weekly_cardio",
+   "target": "3 easy swims a week",
+   "value": 3,
+   "status": "proposed",
+   "timeframe": "from this week"
+  },
+  "hrv": {
+   "metric": "hrv",
+   "target": "30-cycle median 55 ms or higher",
+   "value": 55,
+   "status": "proposed",
+   "timeframe": "by 2026-12-31"
+  },
+  "recovery": {
+   "metric": "recovery",
+   "target": "30-day average 58% or higher (WHOOP member average)",
+   "value": 58,
+   "status": "proposed",
+   "timeframe": "by 2026-12-31"
+  },
+  "sleep": {
+   "metric": "sleep_total",
+   "target": "7+ hours a day, counting naps (7-day average)",
+   "value": 7,
+   "status": "confirmed",
+   "timeframe": "ongoing",
+   "_measure": "reference_bands.sleep_total.current.recent"
+  },
+  "sleep_efficiency": {
+   "metric": "sleep_efficiency",
+   "target": "7-cycle average 85% or higher",
+   "value": 85,
+   "status": "proposed",
+   "timeframe": "by 2026-11-30"
+  },
+  "sleep_consistency": {
+   "metric": "sleep_consistency",
+   "target": "7-cycle average 50% or higher",
+   "value": 50,
+   "status": "proposed",
+   "timeframe": "by 2026-12-31"
+  },
+  "sleep_performance": {
+   "metric": "sleep_performance",
+   "target": "7-cycle average 70% or higher (Sufficient)",
+   "value": 70,
+   "status": "proposed",
+   "timeframe": "by 2027-01-31"
+  },
+  "resp_rate": {
+   "metric": "resp_rate",
+   "target": "Stay at your baseline (about 15); flag a 7-cycle avg 1.5+ above baseline",
+   "value": null,
+   "status": "proposed",
+   "timeframe": "ongoing",
+   "note": "the +1.5 flag is Arnold's watch rule, not a published cut"
+  },
+  "spo2": {
+   "metric": "spo2_overnight",
+   "target": "Overnight 7-cycle avg 95%+",
+   "value": 95,
+   "status": "proposed",
+   "timeframe": "by 2026-12-31"
+  },
+  "blood_pressure": {
+   "metric": "blood_pressure",
+   "target": "Under 120/80 (AHA Normal)",
+   "value": [
+    120,
+    80
+   ],
+   "status": "proposed",
+   "timeframe": "baseline week (am + pm, 2 readings) before 2026-11-08"
+  },
+  "day_strain": {
+   "metric": "day_strain",
+   "target": "Training days Moderate (10-13); red-recovery days Light (under 10). No High days during the restart",
+   "value": null,
+   "status": "proposed",
+   "timeframe": "through 2026-11-30"
+  },
+  "weekly_cardio": {
+   "metric": "weekly_cardio",
+   "target": "150+ moderate-equivalent min every full week, plus strength 2+ days",
+   "value": 150,
+   "status": "proposed",
+   "timeframe": "by the week of 2026-11-23"
+  },
+  "steps": {
+   "metric": "steps",
+   "target": "7-cycle avg 7,000, then 8,000",
+   "value": 8000,
+   "status": "proposed",
+   "timeframe": "7,000 by 2026-11-30, 8,000 by 2027-01-31"
+  },
+  "body": {
+   "metric": "waist_to_height",
+   "target": "Waist under 90 cm (waist-to-height under 0.5). No weight goal; BMI informational only",
+   "value": 0.5,
+   "value_waist_cm": 90,
+   "status": "confirmed",
+   "timeframe": "first: measure your waist"
+  },
+  "vo2max": {
+   "metric": "vo2max",
+   "target": "Book a lab VO2max test; target category TBD after first result",
+   "value": null,
+   "status": "confirmed",
+   "timeframe": "book once you're cleared from the post-illness recovery day",
+   "method": "lab (direct gas analysis), no 2k max test"
+  },
+  "spo2_fingertip": {
+   "metric": "spo2_fingertip",
+   "target": "Fingertip resting 95%+",
+   "value": 95,
+   "status": "proposed",
+   "timeframe": "log a fingertip baseline this week"
+  }
+ }
+}
